@@ -1,16 +1,25 @@
 export function clickOnKey(element: HTMLElement, key = 'Enter') {
-	function handleKeyPress(event: KeyboardEvent) {
+	function handleKeyDown(event: KeyboardEvent) {
 		if (event.key === key) {
+			event.preventDefault()
 			element.focus()
+		}
+	}
+
+	function handleKeyUp(event: KeyboardEvent) {
+		if (event.key === key) {
+			event.preventDefault()
 			element.click()
 		}
 	}
 
-	document.addEventListener('keypress', handleKeyPress)
+	document.addEventListener('keydown', handleKeyDown)
+	document.addEventListener('keyup', handleKeyUp)
 
 	return {
 		destroy() {
-			document.removeEventListener('keypress', handleKeyPress)
+			document.removeEventListener('keydown', handleKeyDown)
+			document.removeEventListener('keyup', handleKeyUp)
 		}
 	}
 }
