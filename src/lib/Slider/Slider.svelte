@@ -1,28 +1,37 @@
 <script lang="ts">
-	import { skillsKey } from "$lib/context";
-	import type { Skill } from "src/routes/skills";
-	import { getContext, onMount } from "svelte";
+	import { skillsKey } from '$lib/context'
+	import type { Skill } from 'src/routes/skills/types'
+	import { getContext, onMount } from 'svelte'
 
-	const skills = getContext<Skill[]>(skillsKey);
-	let slides: HTMLDivElement;
+	const skills = getContext<Skill[]>(skillsKey)
+	let slides: HTMLDivElement
 
 	onMount(() => {
 		const loop = () => {
 			if (slides) {
-				slides.scrollLeft += 2;
+				slides.scrollLeft += 2
 
-				if (slides.scrollWidth - slides.clientWidth === slides.scrollLeft) {
-					slides.scrollLeft = 0;
+				if (
+					slides.scrollWidth / 2 - slides.clientWidth ===
+					slides.scrollLeft - slides.clientWidth
+				) {
+					slides.scrollLeft = 0
 				}
 			}
-			requestAnimationFrame(loop);
-		};
-		loop();
-	});
+			requestAnimationFrame(loop)
+		}
+		loop()
+	})
 </script>
 
 <div class="slider">
 	<div class="slides" bind:this={slides}>
+		{#each skills as skill}
+			<div class="slide">
+				<img src={skill.logo} alt={skill.name} class="w-full" />
+			</div>
+		{/each}
+
 		{#each skills as skill}
 			<div class="slide">
 				<img src={skill.logo} alt={skill.name} class="w-full" />
@@ -35,12 +44,12 @@
 
 <style lang="postcss">
 	.slider {
-		@apply flex flex-col w-screen relative;
+		@apply relative flex w-screen flex-col;
 		@apply before:left-0 before:bg-gradient-to-r after:right-0 after:bg-gradient-to-l;
 
 		&::before,
 		&::after {
-			@apply content-[''] absolute top-0 bottom-0 w-20 md:w-60 from-nord0 to-transparent z-10;
+			@apply absolute top-0 bottom-0 z-10 w-20 from-nord0 to-transparent content-[''] md:w-60;
 			@apply pointer-events-none;
 			--tw-gradient-to: rgba(46, 52, 64, 0); /* fix for safari */
 		}
@@ -58,10 +67,10 @@
 	}
 
 	.slide {
-		@apply flex flex-shrink-0 justify-center items-center w-[160px] p-10;
+		@apply flex w-[160px] flex-shrink-0 items-center justify-center p-10;
 
 		img {
-			@apply hover:scale-150 transition-transform cursor-pointer select-none;
+			@apply cursor-pointer select-none transition-transform hover:scale-150;
 		}
 	}
 

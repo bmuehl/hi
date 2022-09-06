@@ -1,72 +1,70 @@
 <script lang="ts">
-	import { browser } from "$app/env";
+	import { getContext, onDestroy, onMount } from 'svelte'
+	import TagCloud from 'TagCloud'
+	import type { Event } from 'three'
+	import Icon from '$lib/Icon/Icon.svelte'
+	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
+	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
+	import type { Skill } from 'src/routes/skills/types'
+	import { skillsKey } from '$lib/context'
+	import { browser } from '$app/environment'
 
-	import { getContext, onDestroy, onMount } from "svelte";
-	import TagCloud from "TagCloud";
-	import type { Event } from "three";
-	import Icon from "$lib/Icon/Icon.svelte";
-	import ChevronDown from "$lib/Icon/icons/ChevronDown.svelte";
-	import ChevronUp from "$lib/Icon/icons/ChevronUp.svelte";
-	import type { Skill } from "src/routes/skills";
-	import { skillsKey } from "$lib/context";
-
-	let tagCloud: HTMLDivElement;
+	let tagCloud: HTMLDivElement
 
 	const tagClick = (e: Event) => {
-		if (e.target.className === "tagcloud--item") {
-			alert(e.target.innerText);
+		if (e.target.className === 'tagcloud--item') {
+			alert(e.target.innerText)
 		}
-	};
+	}
 
-	const skills = getContext<Skill[]>(skillsKey);
+	const skills = getContext<Skill[]>(skillsKey)
 
 	onMount(() => {
-		const container = ".tagcloud";
-		const texts = skills.map((s) => s.name);
+		const texts = skills.map((s) => s.name)
 		const options = {
 			radius: tagCloud.clientWidth / 2,
 			keep: false,
-			initSpeed: "fast",
-			maxSpeed: "fast",
-		};
+			initSpeed: 'fast',
+			maxSpeed: 'fast'
+		}
 
-		TagCloud(tagCloud, texts, options);
+		TagCloud(tagCloud, texts, options)
 
-		document.addEventListener("click", tagClick);
-	});
+		document.addEventListener('click', tagClick)
+	})
 
 	onDestroy(() => {
 		if (browser) {
-			document.removeEventListener("click", tagClick);
+			document.removeEventListener('click', tagClick)
 		}
-	});
+	})
 </script>
 
 <div
 	bind:this={tagCloud}
-	class="tagcloud max-w-[500px] mx-auto my-5 relative overflow-hidden md:overflow-visible"
+	class="tagcloud relative mx-auto my-5 max-w-[500px] overflow-hidden md:overflow-visible"
 	tabindex="0"
 >
 	<div class="overlay">
 		<Icon
 			icon={ChevronUp}
 			size="l"
-			class="-rotate-45 translate-y-1 translate-x-1 left-0 top-0 icon"
+			class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
 		/>
 		<Icon
 			icon={ChevronUp}
 			size="l"
-			class="rotate-45 translate-y-1 -translate-x-1 right-0 top-0 icon"
+			class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
 		/>
 		<Icon
 			icon={ChevronDown}
 			size="l"
-			class="rotate-45 -translate-y-1 translate-x-1 left-0 bottom-0 icon"
+			class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
 		/>
 		<Icon
 			icon={ChevronDown}
 			size="l"
-			class="-rotate-45 -translate-y-1 -translate-x-1 right-0 bottom-0 icon"
+			class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
 		/>
 	</div>
 </div>
@@ -74,7 +72,7 @@
 <style lang="postcss">
 	.overlay {
 		@apply absolute left-0 right-0 top-0 bottom-0;
-		@apply transition-all duration-300 pointer-events-none scale-105;
+		@apply pointer-events-none scale-105 transition-all duration-300;
 		@apply opacity-0;
 	}
 
@@ -100,15 +98,15 @@
 		}
 
 		span.tagcloud--item {
-			@apply antialiased hover:cursor-pointer hover:bg-nord14 hover:p-2 hover:rounded-md hover:text-nord0 select-none;
+			@apply select-none antialiased hover:cursor-pointer hover:rounded-md hover:bg-nord14 hover:p-2 hover:text-nord0;
 		}
 	}
 
 	@keyframes bounce2 {
 		0%,
 		100% {
-			transform: translateY(var(--tw-translate-y))
-				translateX(var(--tw-translate-x)) rotate(var(--tw-rotate));
+			transform: translateY(var(--tw-translate-y)) translateX(var(--tw-translate-x))
+				rotate(var(--tw-rotate));
 			opacity: 0.5;
 			animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
 		}

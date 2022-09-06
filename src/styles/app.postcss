@@ -5,23 +5,24 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-  h1 {
+	h1 {
 		@apply text-2xl md:text-3xl;
-  }
-
-	p, q {
-		@apply text-[#606c85] mt-2 mb-6;
 	}
 
-	body, html {
+	p,
+	q {
+		@apply mt-2 mb-6 text-[#606c85];
+	}
+
+	body,
+	html {
 		@apply bg-nord0 text-nord5;
 	}
 
 	a {
 		@apply text-nord10;
-		@apply before:content-['['] after:content-[']']
+		@apply before:content-['['] after:content-[']'];
 	}
 }
 
@@ -31,13 +32,13 @@
 
 /* Text select color */
 ::selection {
-  @apply bg-th-selection opacity-30;
+	@apply bg-th-selection opacity-30;
 }
 ::-moz-selection {
-  @apply bg-th-selection opacity-30;
+	@apply bg-th-selection opacity-30;
 }
 
 /* Set global focus color */
 *:focus {
-	@apply border-transparent ring-0 outline-none outline-2 outline-nord3 rounded-sm;
+	@apply rounded-sm border-transparent outline-none outline-2 outline-nord3 ring-0;
 }

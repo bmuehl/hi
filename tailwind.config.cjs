@@ -1,10 +1,10 @@
 const config = {
-	content: ["./src/**/*.{html,js,svelte,ts}"],
+	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
 		extend: {
 			colors: {
-				'th-selection': 'var(--selection)',
+				'th-selection': 'var(--selection)'
 			}
 		},
 		fontFamily: {
@@ -12,9 +12,7 @@ const config = {
 		}
 	},
 
-	plugins: [
-		require('tailwind-nord')
-	],
-};
+	plugins: [require('tailwind-nord')]
+}
 
-module.exports = config;
+module.exports = config

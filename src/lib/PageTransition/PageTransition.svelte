@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { fly } from "svelte/transition";
-	import { backIn, elasticOut } from "svelte/easing";
+	import { fly } from 'svelte/transition'
+	import { backIn, elasticOut } from 'svelte/easing'
 
-	export let url: URL;
+	export let path: string
 
-	let height: number;
-	const duration = 350;
+	let height: number
+	const duration = 350
 </script>
 
-{#key url}
+{#key path}
 	<section
 		in:fly={{ y: height, duration, delay: duration - 100, easing: elasticOut }}
 		out:fly={{ y: -height, duration, easing: backIn }}

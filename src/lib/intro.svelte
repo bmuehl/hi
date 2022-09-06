@@ -1,15 +1,15 @@
 <script lang="ts">
 	// import * as THREE from "three";
 	// import * as SC from "svelte-cubed";
-	import Icon from "./Icon/Icon.svelte";
-	import Mail from "./Icon/icons/Mail.svelte";
-	import Home from "./Icon/icons/Home.svelte";
-	import Phone from "./Icon/icons/Phone.svelte";
-	import Cake from "./Icon/icons/Cake.svelte";
-	import Card from "./Card/Card.svelte";
-	import LockClosed from "./Icon/icons/LockClosed.svelte";
+	import Icon from './Icon/Icon.svelte'
+	import Mail from './Icon/icons/Mail.svelte'
+	import Home from './Icon/icons/Home.svelte'
+	import Phone from './Icon/icons/Phone.svelte'
+	import Cake from './Icon/icons/Cake.svelte'
+	import Card from './Card/Card.svelte'
+	import LockClosed from './Icon/icons/LockClosed.svelte'
 
-	let spin = 0;
+	// let spin = 0
 
 	// SC.onFrame(() => {
 	// 	spin += 0.01;
@@ -23,17 +23,15 @@
 
 		<Card>
 			<div class="flex flex-col items-start">
-				<div class="flex items-center mb-4">
+				<div class="mb-4 flex items-center">
 					<Icon icon={Mail} />
-					<a href="mailto:bernhard.muehl@gmail.com" class="ml-4"
-						>bernhard.muehl@gmail.com</a
-					>
+					<a href="mailto:bernhard.muehl@gmail.com" class="ml-4">bernhard.muehl@gmail.com</a>
 				</div>
-				<div class="flex items-center mb-4">
+				<div class="mb-4 flex items-center">
 					<Icon icon={Phone} />
 					<a href="tel:+436605090135" class="ml-4">+43 660 *********</a>
 				</div>
-				<div class="flex items-center mb-4">
+				<div class="mb-4 flex items-center">
 					<Icon icon={Home} />
 					<span class="ml-4">
 						************** ******<br />
@@ -48,13 +46,12 @@
 		</Card>
 
 		<p class="text-xs">
-			Use unlock button (<Icon icon={LockClosed} size="xs" />) to show sensitive
-			information.
+			Use unlock button (<Icon icon={LockClosed} size="xs" />) to show sensitive information.
 		</p>
 	</div>
 </div>
 
-<div class="relative h-44 w-full m7-6">
+<div class="m7-6 relative h-44 w-full">
 	<!-- ​<SC.Canvas antialias alpha>
 		<SC.Mesh
 			geometry={new THREE.BoxGeometry()}

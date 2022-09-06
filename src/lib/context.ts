@@ -1,5 +1,3 @@
-const skillsKey = Symbol();
+const skillsKey = Symbol()
 
-export {
-	skillsKey
-}
+export { skillsKey }
