@@ -23,3 +23,7 @@ export function clickOnKey(element: HTMLElement, key = 'Enter') {
 		}
 	}
 }
+
+export function randomNumberBetween(min = 0, max = 1) {
+	return Math.floor(Math.random() * (max - min + 1) + min)
+}
