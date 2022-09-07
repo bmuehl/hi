@@ -11,10 +11,7 @@
 			if (slides) {
 				slides.scrollLeft += 2
 
-				if (
-					slides.scrollWidth / 2 - slides.clientWidth ===
-					slides.scrollLeft - slides.clientWidth
-				) {
+				if (slides.scrollWidth / 2 - slides.clientWidth <= slides.scrollLeft - slides.clientWidth) {
 					slides.scrollLeft = 0
 				}
 			}
