@@ -1,8 +1,7 @@
 <script>
 	import Icon from '$lib/Icon/Icon.svelte'
 	import LockClosed from '$lib/Icon/icons/LockClosed.svelte'
-	import { randomNumberBetween } from '$lib/utils'
-	import { onMount } from 'svelte'
+	import { onInterval, randomNumberBetween } from '$lib/utils'
 
 	const imageDefault = 'me.svg'
 	const imageEyesClosed = 'me-eyes-closed.svg'
@@ -16,9 +15,7 @@
 		}, randomNumberBetween(100, 500))
 	}
 
-	onMount(() => {
-		setInterval(() => blink(), randomNumberBetween(1000, 5000))
-	})
+	onInterval(() => blink(), randomNumberBetween(1000, 5000))
 </script>
 
 <div class="shadow-lg">
