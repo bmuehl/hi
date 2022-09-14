@@ -37,3 +37,31 @@ export function onInterval(callback: () => void, milliseconds: number) {
 		clearInterval(interval)
 	})
 }
+
+export function inView(node: HTMLElement, params = { threshold: 0 }) {
+	let observer: IntersectionObserver
+
+	const handleIntersect: IntersectionObserverCallback = (e) => {
+		const v = e[0].isIntersecting ? 'enter' : 'exit'
+		node.dispatchEvent(new CustomEvent(v))
+	}
+
+	const setObserver = ({ root, threshold }: IntersectionObserverInit) => {
+		const options = { root, threshold }
+		if (observer) observer.disconnect()
+		observer = new IntersectionObserver(handleIntersect, options)
+		observer.observe(node)
+	}
+
+	setObserver(params)
+
+	return {
+		update(params: IntersectionObserverInit) {
+			setObserver(params)
+		},
+
+		destroy() {
+			if (observer) observer.disconnect()
+		}
+	}
+}

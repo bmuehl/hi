@@ -12,15 +12,17 @@
 		image = imageEyesClosed
 		setTimeout(() => {
 			image = imageDefault
-		}, randomNumberBetween(100, 500))
+		}, randomNumberBetween(150, 350))
 	}
 
-	onInterval(() => blink(), randomNumberBetween(1000, 5000))
+	onInterval(() => blink(), randomNumberBetween(1500, 5000))
 </script>
 
 <div class="shadow-lg">
 	<div class="flex flex-col overflow-hidden rounded-lg bg-nord1 md:flex-row">
-		<img src={`./assets/${image}`} class="h-full max-h-64 object-cover" alt="card" />
+		<div class="h-full md:max-h-64 bg-[#adefd1]">
+			<img src={`./assets/${image}`} class="md:object-cover mx-auto" alt="card" />
+		</div>
 		<div class="relative">
 			<div class="p-8 sm:p-9 md:p-7 xl:p-9">
 				<slot />
