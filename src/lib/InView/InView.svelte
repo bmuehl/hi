@@ -4,11 +4,7 @@
 	let animated = false
 </script>
 
-<div
-	use:inView={{ threshold }}
-	on:enter={() => (animated = true)}
-	on:exit={() => (animated = false)}
->
+<div use:inView={{ threshold }} on:enter={() => (animated = true)}>
 	{#if animated}
 		<slot />
 	{/if}

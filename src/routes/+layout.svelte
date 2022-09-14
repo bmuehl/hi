@@ -11,16 +11,16 @@
 	export let data: LayoutData
 </script>
 
-<div class="max-width: 64rem container mx-auto">
-	<PageTransition path={data.path}>
-		<slot />
-	</PageTransition>
-</div>
+<PageTransition path={data.path}>
+	<slot />
+</PageTransition>
 
-<footer class="flex flex-col items-center bg-nord1 py-6">
-	{@html data.joke}
+<footer class="bg-nord1 py-6 sticky">
+	<div class="container mx-auto text-center">
+		{@html data.joke}
 
-	<p class="text-center text-xs">
-		Not funny? <button on:click={fetchJoke}>[try again!]</button>
-	</p>
+		<p class="text-xs">
+			Not funny? <button on:click={fetchJoke}>[try again!]</button>
+		</p>
+	</div>
 </footer>
