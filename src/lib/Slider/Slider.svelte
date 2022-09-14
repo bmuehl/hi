@@ -5,11 +5,14 @@
 
 	const skills = getContext<Skill[]>(skillsKey)
 	let slides: HTMLDivElement
+	let slider: HTMLDivElement
 
 	onMount(() => {
 		const loop = () => {
 			if (slides) {
-				slides.scrollLeft += 2
+				if (document.activeElement !== slider) {
+					slides.scrollLeft += 2
+				}
 
 				if (slides.scrollWidth / 2 - slides.clientWidth <= slides.scrollLeft - slides.clientWidth) {
 					slides.scrollLeft = 0
@@ -21,7 +24,7 @@
 	})
 </script>
 
-<div class="slider">
+<div class="slider" bind:this={slider} tabindex="0">
 	<div class="slides" bind:this={slides}>
 		{#each skills as skill}
 			<div class="slide">
@@ -35,9 +38,9 @@
 			</div>
 		{/each}
 	</div>
-
-	<div class="description">Description</div>
 </div>
+
+<div class="description">Description</div>
 
 <style lang="postcss">
 	.slider {
@@ -64,7 +67,7 @@
 	}
 
 	.slide {
-		@apply flex w-[160px] flex-shrink-0 items-center justify-center p-10;
+		@apply flex w-[160px] flex-shrink-0 items-center justify-center px-10 py-6;
 
 		img {
 			@apply cursor-pointer select-none transition-transform hover:scale-150;
@@ -72,7 +75,7 @@
 	}
 
 	.description {
-		@apply flex items-center justify-center;
+		@apply flex items-center justify-center mt-4;
 	}
 
 	@keyframes slide {

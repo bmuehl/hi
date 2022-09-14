@@ -15,7 +15,7 @@
 	<slot />
 </PageTransition>
 
-<footer class="bg-nord1 py-6 sticky">
+<footer class="py-6 bg-nord1">
 	<div class="container mx-auto text-center">
 		{@html data.joke}
 
