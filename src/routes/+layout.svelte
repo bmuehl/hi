@@ -15,7 +15,7 @@
 	<slot />
 </PageTransition>
 
-<footer class="py-6 bg-nord1">
+<footer class="py-6 bg-nord1 overflow-hidden max-w-full">
 	<div class="container mx-auto text-center">
 		{@html data.joke}
 
