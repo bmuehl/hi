@@ -38,14 +38,6 @@ export function onInterval(callback: () => void, milliseconds: number) {
 	})
 }
 
-export function onTimeout(callback: () => void, milliseconds: number) {
-	const timeout = setTimeout(callback, milliseconds)
-
-	onDestroy(() => {
-		clearTimeout(timeout)
-	})
-}
-
 export function inView(node: HTMLElement, params = { threshold: 0 }) {
 	let observer: IntersectionObserver
 

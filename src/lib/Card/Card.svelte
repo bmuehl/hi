@@ -1,7 +1,7 @@
 <script>
 	import Icon from '$lib/Icon/Icon.svelte'
 	import LockClosed from '$lib/Icon/icons/LockClosed.svelte'
-	import { randomNumberBetween, onTimeout } from '$lib/utils'
+	import { randomNumberBetween } from '$lib/utils'
 	import { onMount } from 'svelte'
 
 	const imageDefault = 'me.svg'
@@ -10,9 +10,9 @@
 	let image = imageDefault
 
 	function blink() {
-		onTimeout(() => {
+		setTimeout(() => {
 			image = imageEyesClosed
-			onTimeout(() => {
+			setTimeout(() => {
 				image = imageDefault
 				blink()
 			}, randomNumberBetween(150, 300))
