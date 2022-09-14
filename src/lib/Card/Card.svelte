@@ -16,7 +16,7 @@
 				image = imageDefault
 				blink()
 			}, randomNumberBetween(150, 300))
-		}, randomNumberBetween(1500, 5000))
+		}, randomNumberBetween(2000, 5000))
 	}
 
 	onMount(() => blink())
