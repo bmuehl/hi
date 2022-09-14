@@ -2,10 +2,10 @@
 	import '../styles/app.postcss'
 	import PageTransition from '$lib/PageTransition/PageTransition.svelte'
 	import type { LayoutData } from './$types'
+	import { getJoke } from './jokes/+server'
 
 	const fetchJoke = async () => {
-		const response = await fetch('/jokes')
-		data.joke = await response.text()
+		data.joke = await getJoke()
 	}
 
 	export let data: LayoutData
@@ -17,7 +17,9 @@
 
 <footer class="py-6 bg-nord1 overflow-hidden max-w-full">
 	<div class="container mx-auto text-center">
-		{@html data.joke}
+		<div class="flex flex-col">
+			{@html data.joke}
+		</div>
 
 		<p class="text-xs">
 			Not funny? <button on:click={fetchJoke}>[try again!]</button>
