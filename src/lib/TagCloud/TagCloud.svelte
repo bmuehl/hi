@@ -42,7 +42,7 @@
 
 <div
 	bind:this={tagCloud}
-	class="tagcloud relative mx-auto my-5 max-w-[500px] overflow-hidden md:overflow-visible"
+	class="tagcloud relative mx-auto max-w-[500px] overflow-hidden md:overflow-visibles"
 	tabindex="0"
 >
 	<div class="overlay">

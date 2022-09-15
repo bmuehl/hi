@@ -12,7 +12,7 @@
 </script>
 
 <h1>Skills</h1>
-<div class="mt-5 w-full">
+<div class="w-full">
 	<TagCloud />
 </div>
 <Slider />

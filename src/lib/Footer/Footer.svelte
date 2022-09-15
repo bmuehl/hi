@@ -7,9 +7,9 @@
 	}
 </script>
 
-<footer class="bg-nord1 overflow-hidden max-w-full py-4">
+<footer class="bg-nord1 overflow-hidden max-w-full py-4 shadow-lg">
 	<div class="container mx-auto text-center">
-		<div class="flex flex-col">
+		<div class="flex flex-col text-sm">
 			{@html joke}
 		</div>
 

@@ -115,6 +115,11 @@
 		"domain": "https://cloud.google.com/"
 	},
 	{
+		"name": "Docker",
+		"logo": "./assets/docker.svg",
+		"domain": "https://www.docker.com/"
+	},
+	{
 		"name": "Kubernetes",
 		"logo": "./assets/kubernetes.svg",
 		"domain": "https://kubernetes.io/"
