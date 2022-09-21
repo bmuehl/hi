@@ -26,6 +26,6 @@
 	}
 
 	.wrapper {
-		@apply container mx-auto flex flex-col items-center justify-center h-full;
+		@apply container mx-auto flex h-full flex-col items-center justify-center pt-14;
 	}
 </style>

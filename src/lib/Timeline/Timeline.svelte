@@ -1,30 +1,35 @@
 <script lang="ts">
 	import Icon from '$lib/Icon/Icon.svelte'
-	import Phone from '$lib/Icon/icons/Phone.svelte'
+	import AcademicCap from '$lib/Icon/icons/AcademicCap.svelte'
+	import Briefcase from '$lib/Icon/icons/Briefcase.svelte'
 	import InView from '$lib/InView/InView.svelte'
 	import { blur, slide } from 'svelte/transition'
 
 	let items = [
 		{
-			icon: Phone,
+			icon: AcademicCap,
+			category: 'education',
 			time: 'Vienna, 2011',
 			title: 'Technologisches Gewerbemuseum',
 			description: 'Information Technology'
 		},
 		{
-			icon: Phone,
+			icon: AcademicCap,
+			category: 'education',
 			time: 'Vienna, 2012',
 			title: 'Univsersity of Vienna',
 			description: 'Bachelor of Psychology'
 		},
 		{
-			icon: Phone,
+			icon: Briefcase,
+			category: 'experience',
 			time: 'Vienna, March 2015 - Present',
 			title: 'Vienna BioCenter Core Facilities',
 			description: 'Software Engineer'
 		},
 		{
-			icon: Phone,
+			icon: Briefcase,
+			category: 'experience',
 			time: 'Vienna, April 2019 - Present',
 			title: 'Hyke Systems',
 			description: 'Web Developer'
@@ -38,7 +43,9 @@
 			<li class="mb-10 ml-6 relative">
 				<span
 					in:blur={{ delay: i * 800 }}
-					class="flex absolute -left-9 justify-center items-center w-6 h-6 bg-nord15 rounded-full"
+					class="flex absolute -left-9 justify-center items-center w-6 h-6 rounded-full"
+					class:bg-nord11={item.category === 'education'}
+					class:bg-nord15={item.category === 'experience'}
 				>
 					<Icon icon={item.icon} size="xs" />
 				</span>

@@ -26,7 +26,7 @@
 	},
 	{
 		"name": "postCSS",
-		"logo": "https://postcss.org/assets/postcss.83d93145.svg",
+		"logo": "./assets/postcss.svg",
 		"domain": "https://postcss.org/"
 	},
 	{
