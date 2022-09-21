@@ -1,130 +1,156 @@
 [
 	{
+		"id": 1,
 		"name": "Vue",
 		"logo": "./assets/vue.svg",
 		"domain": "https://vuejs.org/"
 	},
 	{
+		"id": 2,
 		"name": "React",
 		"logo": "./assets/react.svg",
 		"domain": "https://reactjs.org/"
 	},
 	{
+		"id": 3,
 		"name": "Svelte",
 		"logo": "./assets/svelte.svg",
 		"domain": "https://svelte.dev/"
 	},
 	{
+		"id": 4,
 		"name": "CSS3",
 		"logo": "./assets/css3.svg",
 		"domain": ""
 	},
 	{
+		"id": 5,
 		"name": "Sass",
 		"logo": "https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg",
 		"domain": "https://sass-lang.com/"
 	},
 	{
+		"id": 6,
 		"name": "postCSS",
 		"logo": "./assets/postcss.svg",
 		"domain": "https://postcss.org/"
 	},
 	{
+		"id": 7,
 		"name": "Java",
 		"logo": "./assets/java.svg",
 		"domain": "https://dev.java/"
 	},
 	{
+		"id": 8,
 		"name": "Python",
 		"logo": "./assets/python.svg",
 		"domain": "https://www.python.org/"
 	},
 	{
+		"id": 9,
 		"name": "PHP",
 		"logo": "./assets/php.svg",
 		"domain": "https://www.php.net/"
 	},
 	{
+		"id": 10,
 		"name": "Wordpress",
 		"logo": "./assets/wordpress.svg",
 		"domain": "https://wordpress.org/"
 	},
 	{
+		"id": 11,
 		"name": "Spring",
 		"logo": "./assets/spring.svg",
 		"domain": "https://spring.io/"
 	},
 	{
+		"id": 12,
 		"name": "Node",
 		"logo": "https://nodejs.org/static/images/logo.svg",
 		"domain": "https://nodejs.org/"
 	},
 	{
+		"id": 13,
 		"name": "Magento2",
 		"logo": "./assets/magento2.svg",
 		"domain": "https://business.adobe.com/products/magento/magento-commerce.html"
 	},
 	{
+		"id": 14,
 		"name": "Sharepoint",
 		"logo": "./assets/sharepoint.svg",
 		"domain": "https://www.microsoft.com/en-ww/microsoft-365/sharepoint/collaboration"
 	},
 	{
+		"id": 15,
 		"name": "Azure Cloud",
 		"logo": "./assets/azure.svg",
 		"domain": "https://azure.microsoft.com/"
 	},
 	{
+		"id": 16,
 		"name": "Azure DevOps",
 		"logo": "./assets/azure-devops.svg",
 		"domain": "https://azure.microsoft.com/en-us/services/devops/"
 	},
 	{
+		"id": 17,
 		"name": "Git",
 		"logo": "./assets/git.svg",
 		"domain": "https://git-scm.com/"
 	},
 	{
+		"id": 18,
 		"name": "Jenkins",
 		"logo": "https://www.jenkins.io/images/logos/jenkins/jenkins.svg",
 		"domain": "https://www.jenkins.io/"
 	},
 	{
+		"id": 19,
 		"name": "AWS",
 		"logo": "./assets/aws.svg",
 		"domain": "https://aws.amazon.com/"
 	},
 	{
+		"id": 20,
 		"name": "WebGL",
 		"logo": "./assets/webgl.svg",
 		"domain": "https://www.khronos.org/webgl/"
 	},
 	{
+		"id": 21,
 		"name": "PostgreSQL",
 		"logo": "./assets/postgresql.svg",
 		"domain": "https://www.postgresql.org/"
 	},
 	{
+		"id": 22,
 		"name": "MySQL",
 		"logo": "https://www.mysql.com/common/logos/mysql-logo.svg",
 		"domain": "https://www.mysql.com/"
 	},
 	{
+		"id": 23,
 		"name": "Googel Cloud",
 		"logo": "./assets/googlecloud.svg",
 		"domain": "https://cloud.google.com/"
 	},
 	{
+		"id": 24,
 		"name": "Docker",
 		"logo": "./assets/docker.svg",
 		"domain": "https://www.docker.com/"
 	},
 	{
+		"id": 25,
 		"name": "Kubernetes",
 		"logo": "./assets/kubernetes.svg",
 		"domain": "https://kubernetes.io/"
 	},
 	{
+		"id": 26,
 		"name": "Terraform",
 		"logo": "./assets/terraform.svg",
 		"domain": "https://www.terraform.io/"

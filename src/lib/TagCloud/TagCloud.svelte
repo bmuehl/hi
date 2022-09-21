@@ -7,12 +7,16 @@
 	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
 	import type { Skill } from 'src/routes/skills/types'
 	import { browser } from '$app/environment'
+	import { focusSkill } from '$lib/store'
 
 	let tagCloud: HTMLDivElement
 
 	const tagClick = (e: Event) => {
 		if (e.target.className === 'tagcloud--item') {
-			alert(e.target.innerText)
+			const skill = skills.find((s) => s.name === e.target.textContent)
+			if (skill) {
+				focusSkill.set(skill.id)
+			}
 		}
 	}
 
