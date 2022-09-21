@@ -1,21 +1,57 @@
 <script lang="ts">
-	import { skillsKey } from '$lib/context'
 	import type { Skill } from 'src/routes/skills/types'
-	import { getContext, onMount } from 'svelte'
+	import { onMount } from 'svelte'
+	import { tweened } from 'svelte/motion'
+	import { cubicOut } from 'svelte/easing'
+	import { onCollision } from '$lib/utils'
 
-	const skills = getContext<Skill[]>(skillsKey)
+	export let skills: Array<Skill> = []
+
 	let slides: HTMLDivElement
 	let slider: HTMLDivElement
+	let collider: HTMLDivElement
+	let description = '-'
+	let activeSlide: string | null
+	const progress = tweened(0, { duration: 500, easing: cubicOut })
+	const speed = 18
+
+	const setActiveSlide = (id: string, value: string) => {
+		activeSlide = id
+		description = value
+	}
+
+	const setSlideFocus = (id: string, value: string) => {
+		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`)
+
+		if (slide) {
+			progress.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2)
+			setActiveSlide(value, value)
+		}
+	}
 
 	onMount(() => {
-		const loop = () => {
+		progress.subscribe((value) => {
+			if (slides) {
+				slides.scrollLeft = value
+			}
+		})
+
+		const updateProgress = async () => {
 			if (slides) {
 				if (document.activeElement !== slider) {
-					slides.scrollLeft += 2
+					await progress.set(slides.scrollLeft + speed)
+				}
+			}
+		}
+
+		const loop = () => {
+			if (slides) {
+				if (slides.scrollWidth / 2 - slides.clientWidth <= slides.scrollLeft - slides.clientWidth) {
+					progress.set(0, { duration: 0 })
 				}
 
-				if (slides.scrollWidth / 2 - slides.clientWidth <= slides.scrollLeft - slides.clientWidth) {
-					slides.scrollLeft = 0
+				if (document.activeElement !== slider) {
+					updateProgress()
 				}
 			}
 			requestAnimationFrame(loop)
@@ -25,22 +61,24 @@
 </script>
 
 <div class="slider" bind:this={slider} tabindex="0">
+	<div class="collider" bind:this={collider} />
 	<div class="slides" bind:this={slides}>
-		{#each skills as skill}
-			<div class="slide">
-				<img src={skill.logo} alt={skill.name} class="w-full" />
-			</div>
-		{/each}
-
-		{#each skills as skill}
-			<div class="slide">
-				<img src={skill.logo} alt={skill.name} class="w-full" />
+		{#each skills as skill, i}
+			<div
+				class="slide"
+				class:active={activeSlide === skill.name + `-${i}`}
+				on:click={() => setSlideFocus(skill.name + `-${i}`, skill.name)}
+				data-slideId={skill.name + `-${i}`}
+				use:onCollision={{ collider }}
+				on:collision={() => setActiveSlide(skill.name + `-${i}`, skill.name)}
+			>
+				<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
 			</div>
 		{/each}
 	</div>
 </div>
 
-<div class="description">Description</div>
+<div class="description">{description}</div>
 
 <style lang="postcss">
 	.slider {
@@ -56,10 +94,14 @@
 	}
 
 	.slides {
-		@apply flex w-full overflow-y-hidden overflow-x-scroll;
+		@apply pointer-events-none flex w-full overflow-y-hidden overflow-x-scroll;
 		/* animation: 30s linear 0s infinite normal none running slide; */
 		-ms-overflow-style: none; /* for Internet Explorer, Edge */
 		scrollbar-width: none; /* for Firefox */
+	}
+
+	.collider {
+		@apply absolute left-1/2 h-full w-[1px] bg-transparent;
 	}
 
 	.slides::-webkit-scrollbar {
@@ -67,15 +109,19 @@
 	}
 
 	.slide {
-		@apply flex w-[160px] flex-shrink-0 items-center justify-center px-10 py-6;
+		@apply pointer-events-auto flex w-[160px] flex-shrink-0 items-center justify-center px-10 py-6;
 
 		img {
-			@apply cursor-pointer select-none transition-transform hover:scale-150;
+			@apply max-h-[80px] w-full cursor-pointer select-none object-contain transition-transform hover:scale-150;
+		}
+
+		&.active img {
+			@apply scale-150;
 		}
 	}
 
 	.description {
-		@apply flex items-center justify-center mt-4;
+		@apply my-4 flex items-center justify-center;
 	}
 
 	@keyframes slide {

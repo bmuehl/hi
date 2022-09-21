@@ -83,3 +83,34 @@ export function inView(node: HTMLElement, params = { threshold: 0 }) {
 		}
 	}
 }
+
+export function onCollision(node: HTMLElement, params: { collider: HTMLElement }) {
+	let collision = false
+
+	const collide = (n1: HTMLElement, n2: HTMLElement) => {
+		const rect1 = n1.getBoundingClientRect()
+		const rect2 = n2.getBoundingClientRect()
+
+		if (
+			rect1.x < rect2.x + rect2.width &&
+			rect1.x + rect1.width > rect2.x &&
+			rect1.y < rect2.y + rect2.height &&
+			rect1.y + rect1.height > rect2.y
+		) {
+			if (collision === false) {
+				collision = true
+				node.dispatchEvent(new CustomEvent('collision'))
+			}
+		} else {
+			collision = false
+		}
+
+		requestAnimationFrame(collide.bind(null, n1, n2))
+	}
+
+	return {
+		update(params: { collider: HTMLElement }) {
+			collide(node, params.collider)
+		}
+	}
+}
