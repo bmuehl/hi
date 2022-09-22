@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'
-	import { onCollision } from '$lib/utils'
+	import { inView, onCollision } from '$lib/utils'
 	import { activeSkill, focusSkill } from '$lib/store'
 
 	export let skills: Array<Skill> = []
@@ -43,6 +43,21 @@
 		}
 	}
 
+	const swapNodes = (e: CustomEvent) => {
+		const node = e.target as HTMLDivElement
+		const id = Number(node.dataset.slideid) - skills.length
+		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id + 1}"]`)
+		if (slide) {
+			swap(slide, node)
+		}
+	}
+
+	function swap(node1: HTMLElement, node2: HTMLElement) {
+		const afterNode1 = node1.nextElementSibling
+		node2.replaceWith(node1)
+		slides.insertBefore(node2, afterNode1)
+	}
+
 	onMount(() => {
 		progress.subscribe((value) => {
 			if (slides) {
@@ -78,22 +93,31 @@
 <div class="slider" bind:this={slider} tabindex="0">
 	<div class="collider" bind:this={collider} />
 	<div class="slides" bind:this={slides}>
-		{#each skills as skill}
-			<div
-				class="slide"
-				class:active={$activeSkill?.id === skill.id}
-				on:click={() => ($focusSkill = skill.id)}
-				data-slideId={skill.id}
-				use:onCollision={{ collider }}
-				on:collision={() => collisionHandler(skill.id)}
-			>
-				<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
-			</div>
+		{#each [...skills, ...skills] as skill, i}
+			{#if i < skills.length}
+				<div
+					class="slide"
+					class:active={$activeSkill?.id === skill.id}
+					on:click={() => ($focusSkill = skill.id)}
+					data-slideId={skill.id}
+					use:onCollision={{ collider }}
+					on:collision={() => collisionHandler(skill.id)}
+				>
+					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
+				</div>
+			{:else}
+				<div class="slide" data-slideId={i} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
+					{i}
+				</div>
+			{/if}
 		{/each}
 	</div>
 </div>
 
-<div class="description">{$activeSkill?.name}</div>
+<div class="description">
+	<strong class="mb-1">{$activeSkill?.name}</strong>
+	<span>{$activeSkill?.description || '-'}</span>
+</div>
 
 <style lang="postcss">
 	.slider {
@@ -143,7 +167,7 @@
 	}
 
 	.description {
-		@apply my-4 flex items-center justify-center;
+		@apply mt-4 flex flex-col items-center justify-center;
 	}
 
 	@keyframes slide {

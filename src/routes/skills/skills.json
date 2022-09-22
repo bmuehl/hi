@@ -3,7 +3,8 @@
 		"id": 1,
 		"name": "Vue",
 		"logo": "./assets/vue.svg",
-		"domain": "https://vuejs.org/"
+		"domain": "https://vuejs.org/",
+		"description": "Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web."
 	},
 	{
 		"id": 2,
@@ -33,7 +34,8 @@
 		"id": 6,
 		"name": "postCSS",
 		"logo": "./assets/postcss.svg",
-		"domain": "https://postcss.org/"
+		"domain": "https://postcss.org/",
+		"description": ""
 	},
 	{
 		"id": 7,

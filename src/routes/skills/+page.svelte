@@ -3,6 +3,7 @@
 	import TagCloud from '$lib/TagCloud/TagCloud.svelte'
 	import type { PageData } from './$types'
 	import { clickOnKey } from '$lib/utils'
+	import Kbd from '$lib/Kbd/Kbd.svelte'
 
 	export let data: PageData
 </script>
@@ -11,6 +12,6 @@
 <div class="w-full">
 	<TagCloud skills={data.skills} />
 </div>
-<Slider skills={[...data.skills, ...data.skills]} />
+<Slider skills={data.skills} />
 
-<a use:clickOnKey data-sveltekit-prefetch href="/private">next / ⏎</a>
+<a class="mt-6" use:clickOnKey data-sveltekit-prefetch href="/private">next / <Kbd>Enter</Kbd></a>

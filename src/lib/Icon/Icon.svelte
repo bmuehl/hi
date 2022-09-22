@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte'
 
-	export let icon: typeof SvelteComponent
+	export let src: typeof SvelteComponent
 	export let size: 'l' | 'base' | 'xs' = 'base'
 </script>
 
@@ -14,7 +14,7 @@
 	class:h-3={size === 'xs'}
 	class:w-3={size === 'xs'}
 >
-	<svelte:component this={icon} />
+	<svelte:component this={src} />
 </span>
 
 <style lang="postcss">

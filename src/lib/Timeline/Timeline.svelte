@@ -40,14 +40,14 @@
 <ol class="border-l border-gray-200 dark:border-gray-700">
 	<InView>
 		{#each items as item, i}
-			<li class="mb-10 ml-6 relative">
+			<li class="mb-10 ml-8 relative">
 				<span
 					in:blur={{ delay: i * 800 }}
-					class="flex absolute -left-9 justify-center items-center w-6 h-6 rounded-full"
-					class:bg-nord11={item.category === 'education'}
+					class="flex absolute -left-[49px] justify-center items-center w-8 h-8 rounded-full"
+					class:bg-nord10={item.category === 'education'}
 					class:bg-nord15={item.category === 'experience'}
 				>
-					<Icon icon={item.icon} size="xs" />
+					<Icon class="text-nord0" src={item.icon} />
 				</span>
 				<div in:slide={{ delay: i * 800 + 500 }}>
 					<time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
