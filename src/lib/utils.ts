@@ -21,16 +21,16 @@ export const getJoke = async () => {
 	return ''
 }
 
-export function clickOnKey(element: HTMLElement, key = 'Enter') {
+export function clickOnKey(element: HTMLElement, keys = ['Enter']) {
 	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === key) {
+		if (keys.includes(event.key)) {
 			event.preventDefault()
 			element.focus()
 		}
 	}
 
 	function handleKeyUp(event: KeyboardEvent) {
-		if (event.key === key) {
+		if (keys.includes(event.key)) {
 			event.preventDefault()
 			element.click()
 		}

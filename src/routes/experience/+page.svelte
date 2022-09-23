@@ -4,7 +4,7 @@
 	import { clickOnKey } from '$lib/utils'
 </script>
 
-<h1 class="mb-8">Education / Experience</h1>
+<h1 class="mb-8">Timeline</h1>
 
 <Timeline />
 
