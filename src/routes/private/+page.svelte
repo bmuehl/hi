@@ -22,8 +22,8 @@
 			new THREE.MeshStandardMaterial({
 				metalness: 0,
 				// roughness: 0,
-				color: new THREE.Color(0xa3be8c),
-				wireframe: true
+				color: new THREE.Color(0xa3be8c)
+				// wireframe: true
 			})
 		)
 	})
