@@ -9,6 +9,7 @@
 
 	// const modelURL = '/assets/scene.gltf'
 	let model: GLTF | null = null
+	let pixelRatio: number
 
 	let spin = 0
 
@@ -22,6 +23,8 @@
 	// })
 
 	onMount(async () => {
+		pixelRatio = window.devicePixelRatio
+
 		const loader = new GLTFLoader()
 		model = await loader.loadAsync('/assets/models/guitar/scene.gltf')
 		const mesh = model.scene.children[0].children[0].children[0].children[0].children[0]
@@ -46,7 +49,7 @@
 <!-- nord15: 0xebcb8b -->
 
 <div class="m7-6 absolute h-full w-full pointer-events-none">
-	​<SC.Canvas antialias alpha>
+	​<SC.Canvas antialias alpha {pixelRatio}>
 		<!-- <SC.Mesh
 			geometry={new THREE.BoxGeometry()}
 			material={new THREE.MeshStandardMaterial({ color: 0xa3be8c })}
