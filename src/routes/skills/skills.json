@@ -4,7 +4,8 @@
 		"name": "Vue",
 		"logo": "./assets/vue.svg",
 		"domain": "https://vuejs.org/",
-		"description": "Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web."
+		"experience": "Used multiple years at work as main frontend framework",
+		"score": 4.5
 	},
 	{
 		"id": 2,
@@ -35,7 +36,7 @@
 		"name": "postCSS",
 		"logo": "./assets/postcss.svg",
 		"domain": "https://postcss.org/",
-		"description": ""
+		"experience": ""
 	},
 	{
 		"id": 7,
@@ -59,7 +60,9 @@
 		"id": 10,
 		"name": "Wordpress",
 		"logo": "./assets/wordpress.svg",
-		"domain": "https://wordpress.org/"
+		"domain": "https://wordpress.org/",
+		"experience": "Theme and Plugin Development",
+		"score": 4
 	},
 	{
 		"id": 11,

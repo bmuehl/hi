@@ -3,5 +3,6 @@ export type Skill = {
 	name: string
 	logo: string
 	domain: string
-	description?: string
+	experience?: string
+	score?: number
 }

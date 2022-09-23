@@ -116,7 +116,8 @@
 
 <div class="description">
 	<strong class="mb-1">{$activeSkill?.name}</strong>
-	<span>{$activeSkill?.description || '-'}</span>
+	<span>{$activeSkill?.experience || '-'}</span>
+	<span>{$activeSkill?.score || '-'}</span>
 </div>
 
 <style lang="postcss">
