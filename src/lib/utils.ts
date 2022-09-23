@@ -1,4 +1,7 @@
 import { onDestroy } from 'svelte'
+import type { Mesh } from 'svelte-cubed'
+import type { Object3D } from 'three'
+import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 
 export const getJoke = async () => {
 	const response = await fetch(
@@ -113,4 +116,12 @@ export function onCollision(node: HTMLElement, params: { collider: HTMLElement }
 			collide(node, params.collider)
 		}
 	}
+}
+
+export const applyMaterial = (scene: GLTF['scene'], material: THREE.MeshStandardMaterial) => {
+	scene.traverse((child: Mesh | Object3D) => {
+		if ('isMesh' in child && child.isMesh) {
+			child.material = material
+		}
+	})
 }

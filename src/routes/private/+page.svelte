@@ -3,38 +3,30 @@
 	import * as THREE from 'three'
 	import * as SC from 'svelte-cubed'
 	import Kbd from '$lib/Kbd/Kbd.svelte'
-	import { clickOnKey } from '$lib/utils'
+	import { applyMaterial, clickOnKey } from '$lib/utils'
 	import { onMount } from 'svelte'
-	import type { MeshPhysicalMaterial, Mesh } from 'three'
 
-	// const modelURL = '/assets/scene.gltf'
 	let model: GLTF | null = null
 	let pixelRatio: number
 
 	let spin = 0
-
-	// function loadGLTF() {
-	// 	const loader = new GLTFLoader()
-	// 	return loader.loadAsync(modelURL)
-	// }
-
-	// onMount(() => {
-	// 	loadGLTF().then((_model) => (model = _model))
-	// })
 
 	onMount(async () => {
 		pixelRatio = window.devicePixelRatio
 
 		const loader = new GLTFLoader()
 		model = await loader.loadAsync('/assets/models/guitar/scene.gltf')
-		const mesh = model.scene.children[0].children[0].children[0].children[0].children[0]
-			.children[0] as Mesh
-		const material = mesh.material as MeshPhysicalMaterial
-		// material.metalness = 0
-		// material.roughness = 0
-		// material.flatShading = true
-		// material.color.setRGB(0.163, 0.19, 0.14)
-		material.wireframe = true
+
+		applyMaterial(
+			model.scene,
+			new THREE.MeshStandardMaterial({
+				metalness: 0,
+				// roughness: 0,
+				// flatShading: true,
+				color: new THREE.Color(0xa3be8c),
+				wireframe: true
+			})
+		)
 	})
 
 	SC.onFrame(() => {
