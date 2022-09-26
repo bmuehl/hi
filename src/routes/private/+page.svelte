@@ -22,8 +22,8 @@
 			new THREE.MeshStandardMaterial({
 				metalness: 0,
 				// roughness: 0,
-				color: new THREE.Color(0xa3be8c)
-				// wireframe: true
+				color: new THREE.Color(0xa3be8c),
+				wireframe: true
 			})
 		)
 	})
@@ -35,9 +35,9 @@
 
 <!-- nord15: 0xb48ead -->
 <!-- nord14: 0xa3be8c -->
-<!-- nord15: 0xebcb8b -->
+<!-- nord13: 0xebcb8b -->
 
-<div class="absolute h-screen w-screen overflow-hidden">
+<div class="absolute h-screen w-screen overflow-hidden top-0 left-0 right-0 bottom-0">
 	​<SC.Canvas antialias alpha {pixelRatio}>
 		<!-- <SC.Mesh
 			geometry={new THREE.BoxGeometry()}
@@ -45,7 +45,7 @@
 			rotation={[0, spin, spin + 0.04]}
 		/> -->
 		<SC.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.5} />
-		<SC.OrbitControls enableZoom={true} enableDamping={true} dampingFactor={0.05} />
+		<SC.OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} />
 		<SC.AmbientLight intensity={0.75} />
 		<SC.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
 
