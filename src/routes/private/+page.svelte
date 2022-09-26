@@ -36,14 +36,10 @@
 <!-- nord15: 0xb48ead -->
 <!-- nord14: 0xa3be8c -->
 <!-- nord13: 0xebcb8b -->
+<!-- nord11: 0xbf616a -->
 
 <div class="absolute h-screen w-screen overflow-hidden top-0 left-0 right-0 bottom-0">
 	​<SC.Canvas antialias alpha {pixelRatio}>
-		<!-- <SC.Mesh
-			geometry={new THREE.BoxGeometry()}
-			material={new THREE.MeshStandardMaterial({ color: 0xa3be8c })}
-			rotation={[0, spin, spin + 0.04]}
-		/> -->
 		<SC.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.5} />
 		<SC.OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} />
 		<SC.AmbientLight intensity={0.75} />
@@ -55,7 +51,7 @@
 	</SC.Canvas>
 </div>
 
-<div class="z-20 text-center">
+<div class="z-20">
 	<h1 class="mb-8">About Me</h1>
 
 	<NextLink href="/" top />
