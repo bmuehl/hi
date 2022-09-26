@@ -59,7 +59,11 @@
 </div>
 
 <div class="z-20">
-	<h1 class="mb-8">About Me</h1>
+	<div class="p-10 rounded-lg bg-nord2 bg-opacity-80">
+		<h1 class="mb-8">About Me</h1>
+
+		<span>// TODO</span>
+	</div>
 
 	<NextLink href="/" top />
 </div>
