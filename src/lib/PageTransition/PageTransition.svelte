@@ -14,18 +14,12 @@
 		out:fly={{ y: -height, duration, easing: backIn }}
 		bind:clientHeight={height}
 	>
-		<div class="wrapper">
-			<slot />
-		</div>
+		<slot />
 	</section>
 {/key}
 
 <style lang="postcss">
 	section {
-		@apply h-screen max-h-screen overflow-y-auto;
-	}
-
-	.wrapper {
-		@apply container mx-auto flex h-full flex-col items-center justify-center pt-14;
+		@apply container mx-auto flex min-h-screen flex-col items-center justify-center px-4 pt-20;
 	}
 </style>

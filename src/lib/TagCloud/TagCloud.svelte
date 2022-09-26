@@ -45,27 +45,27 @@
 
 <div
 	bind:this={tagCloud}
-	class="tagcloud relative mx-auto max-w-[500px] overflow-hidden md:overflow-visibles"
+	class="tagcloud relative mx-auto max-w-[450px] overflow-hidden md:overflow-visibles text-sm"
 	tabindex="0"
 >
 	<div class="overlay">
 		<Icon
-			icon={ChevronUp}
+			src={ChevronUp}
 			size="l"
 			class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
 		/>
 		<Icon
-			icon={ChevronUp}
+			src={ChevronUp}
 			size="l"
 			class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
 		/>
 		<Icon
-			icon={ChevronDown}
+			src={ChevronDown}
 			size="l"
 			class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
 		/>
 		<Icon
-			icon={ChevronDown}
+			src={ChevronDown}
 			size="l"
 			class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
 		/>

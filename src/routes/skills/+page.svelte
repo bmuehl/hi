@@ -8,10 +8,12 @@
 	export let data: PageData
 </script>
 
-<h1>Experience</h1>
+<h1 class="mb-2">Experience</h1>
+
 <div class="w-full">
 	<TagCloud skills={data.skills} />
 </div>
+
 <Slider skills={data.skills} />
 
 <a class="mt-6" use:clickOnKey data-sveltekit-prefetch href="/private">next / <Kbd>Enter</Kbd></a>

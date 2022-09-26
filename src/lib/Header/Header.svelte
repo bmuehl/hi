@@ -11,59 +11,49 @@
 
 <header>
 	<div class="wrapper">
-		<a
-			data-sveltekit-prefetch
-			href="/"
-			use:clickOnKey={['h', 'H']}
-			class="nav-item"
-			class:active={active === 'home'}
-		>
-			<span class="key-binding">h</span>ome
-		</a>
-		<span><Icon src={ChevronRight} /></span>
-		<a
-			data-sveltekit-prefetch
-			href="/experience"
-			use:clickOnKey={['t', 'T']}
-			class="nav-item"
-			class:active={active === 'experience'}
-		>
-			<span class="key-binding">t</span>imeline
-		</a>
-		<span><Icon src={ChevronRight} /></span>
-		<a
-			data-sveltekit-prefetch
-			href="/skills"
-			use:clickOnKey={['e', 'E']}
-			class="nav-item"
-			class:active={active === 'skills'}
-		>
-			<span class="key-binding">e</span>xperience
-		</a>
-		<span><Icon src={ChevronRight} /></span>
-		<a
-			data-sveltekit-prefetch
-			href="/private"
-			use:clickOnKey={['A', 'a']}
-			class="nav-item"
-			class:active={active === 'private'}
-		>
-			<span class="key-binding">a</span>bout me
-		</a>
+		<div class="nav-item" class:active={active === 'home'}>
+			<a data-sveltekit-prefetch href="/" use:clickOnKey={['h', 'H']}>
+				<span class="key-binding">h</span>ome
+			</a>
+		</div>
+		<div class="mx-4 flex items-center">
+			<Icon src={ChevronRight} />
+		</div>
+		<div class="nav-item" class:active={active === 'experience'}>
+			<a data-sveltekit-prefetch href="/experience" use:clickOnKey={['t', 'T']}>
+				<span class="key-binding">t</span>imeline
+			</a>
+		</div>
+		<div class="mx-4 flex items-center">
+			<Icon src={ChevronRight} />
+		</div>
+		<div class="nav-item" class:active={active === 'skills'}>
+			<a data-sveltekit-prefetch href="/skills" use:clickOnKey={['e', 'E']}>
+				<span class="key-binding">e</span>xperience
+			</a>
+		</div>
+		<div class="mx-4 flex items-center">
+			<Icon src={ChevronRight} />
+		</div>
+		<div class="nav-item" class:active={active === 'private'}>
+			<a data-sveltekit-prefetch href="/private" use:clickOnKey={['A', 'a']}>
+				<span class="key-binding">a</span>bout me
+			</a>
+		</div>
 	</div>
 </header>
 
 <style lang="postcss">
 	header {
-		@apply absolute left-0 top-0 right-0 z-10 mb-10 h-14 bg-nord1 bg-opacity-90 shadow-lg;
+		@apply absolute left-0 top-0 right-0 z-10 h-14 overflow-x-auto bg-nord1 bg-opacity-90 shadow-lg;
 	}
 
 	.wrapper {
-		@apply container mx-auto flex h-full items-center justify-around;
+		@apply container mx-auto flex h-full items-center justify-start md:justify-around;
 	}
 
 	.nav-item {
-		@apply rounded-xl py-3 px-7;
+		@apply flex h-full items-center justify-center whitespace-nowrap px-4;
 
 		&.active {
 			@apply bg-nord0 bg-opacity-90 shadow-inner;

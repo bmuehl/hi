@@ -33,13 +33,13 @@
 	})
 </script>
 
-<h1>About Me</h1>
+<h1 class="mb-8">About Me</h1>
 
 <!-- nord15: 0xb48ead -->
 <!-- nord14: 0xa3be8c -->
 <!-- nord15: 0xebcb8b -->
 
-<div class="m7-6 absolute h-full w-full pointer-events-none">
+<div class="absolute h-full w-full">
 	​<SC.Canvas antialias alpha {pixelRatio}>
 		<!-- <SC.Mesh
 			geometry={new THREE.BoxGeometry()}

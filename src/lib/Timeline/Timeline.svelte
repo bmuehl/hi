@@ -37,7 +37,7 @@
 	]
 </script>
 
-<ol class="border-l border-gray-200 dark:border-gray-700">
+<ol class="border-l border-gray-200 dark:border-gray-700 mx-4">
 	<InView>
 		{#each items as item, i}
 			<li class="mb-10 ml-8 relative">

@@ -5,6 +5,7 @@
 	import { cubicOut } from 'svelte/easing'
 	import { inView, onCollision } from '$lib/utils'
 	import { activeSkill, focusSkill } from '$lib/store'
+	import Rating from '$lib/Rating/Rating.svelte'
 
 	export let skills: Array<Skill> = []
 
@@ -116,8 +117,8 @@
 
 <div class="description">
 	<strong class="mb-1">{$activeSkill?.name}</strong>
-	<span>{$activeSkill?.experience || '-'}</span>
-	<span>{$activeSkill?.score || '-'}</span>
+	<span class="text-sm mb-2">{$activeSkill?.experience || '-'}</span>
+	<Rating score={$activeSkill?.score || 0} />
 </div>
 
 <style lang="postcss">
@@ -168,7 +169,7 @@
 	}
 
 	.description {
-		@apply mt-4 flex flex-col items-center justify-center;
+		@apply mt-6 flex flex-col items-center justify-center;
 	}
 
 	@keyframes slide {

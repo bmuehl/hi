@@ -7,15 +7,15 @@
 	}
 </script>
 
-<footer class="bg-nord1 overflow-hidden max-w-full py-4 shadow-lg">
-	<div class="container mx-auto text-center">
-		<div class="flex flex-col text-sm mb-2">
+<footer class="bg-nord1 overflow-hidden w-full py-2 shadow-lg mt-8">
+	<div class="container mx-auto text-center flex flex-col px-2">
+		<div class="text-xs mb-2 flex flex-col">
 			{@html joke}
 		</div>
 
 		<hr class="border-nord2" />
 
-		<div class="text-xs mt-4">
+		<div class="text-xs mt-2">
 			<button class="text-nord10" on:click={fetchJoke}>[try again]</button>
 		</div>
 	</div>
