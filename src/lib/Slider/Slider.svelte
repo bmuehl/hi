@@ -124,7 +124,7 @@
 <style lang="postcss">
 	.slider {
 		@apply relative flex w-screen flex-col;
-		@apply before:left-0 before:bg-gradient-to-r after:right-0 after:bg-gradient-to-l;
+		@apply max-w-7xl before:left-0 before:bg-gradient-to-r after:right-0 after:bg-gradient-to-l;
 
 		&::before,
 		&::after {
