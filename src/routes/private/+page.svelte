@@ -2,9 +2,9 @@
 	import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 	import * as THREE from 'three'
 	import * as SC from 'svelte-cubed'
-	import Kbd from '$lib/Kbd/Kbd.svelte'
-	import { applyMaterial, clickOnKey } from '$lib/utils'
+	import { applyMaterial } from '$lib/utils'
 	import { onMount } from 'svelte'
+	import NextLink from '$lib/NextLink/NextLink.svelte'
 
 	let model: GLTF | null = null
 	let pixelRatio: number
@@ -58,5 +58,5 @@
 <div class="z-20">
 	<h1 class="mb-8">About Me</h1>
 
-	<a class="mt-6" use:clickOnKey data-sveltekit-prefetch href="/">top / <Kbd>Enter</Kbd></a>
+	<NextLink href="/" top />
 </div>

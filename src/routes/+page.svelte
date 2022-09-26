@@ -5,8 +5,7 @@
 	import Phone from '$lib/Icon/icons/Phone.svelte'
 	import Cake from '$lib/Icon/icons/Cake.svelte'
 	import Card from '$lib/Card/Card.svelte'
-	import { clickOnKey } from '$lib/utils'
-	import Kbd from '$lib/Kbd/Kbd.svelte'
+	import NextLink from '$lib/NextLink/NextLink.svelte'
 </script>
 
 <div class="flex flex-col">
@@ -42,6 +41,4 @@
 	</div>
 </div>
 
-<a class="mt-6" use:clickOnKey data-sveltekit-prefetch href="/experience">
-	next / <Kbd>Enter</Kbd>
-</a>
+<NextLink href="/experience" />
