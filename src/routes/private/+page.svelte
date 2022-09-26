@@ -8,12 +8,12 @@
 
 	let model: GLTF | null = null
 	let pixelRatio: number
+	let wrapper: HTMLDivElement
 
 	let spin = 0
 
 	onMount(async () => {
 		pixelRatio = window.devicePixelRatio
-		pixelRatio = pixelRatio < 4 ? 4 : pixelRatio // should probably remove this line, but looks much nicer
 
 		const loader = new GLTFLoader()
 		model = await loader.loadAsync('/assets/models/guitar/scene.gltf')
@@ -39,8 +39,14 @@
 <!-- nord13: 0xebcb8b -->
 <!-- nord11: 0xbf616a -->
 
-<div class="wrapper">
-	​<SC.Canvas antialias alpha {pixelRatio}>
+<div class="wrapper" bind:this={wrapper}>
+	​<SC.Canvas
+		antialias
+		alpha
+		{pixelRatio}
+		width={wrapper?.clientWidth}
+		height={wrapper?.clientHeight}
+	>
 		<SC.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
 		<SC.OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} />
 		<SC.AmbientLight intensity={0.75} />
