@@ -13,6 +13,7 @@
 
 	onMount(async () => {
 		pixelRatio = window.devicePixelRatio
+		pixelRatio = pixelRatio < 4 ? 4 : pixelRatio // should probably remove this line, but looks much nicer
 
 		const loader = new GLTFLoader()
 		model = await loader.loadAsync('/assets/models/guitar/scene.gltf')
@@ -38,9 +39,9 @@
 <!-- nord13: 0xebcb8b -->
 <!-- nord11: 0xbf616a -->
 
-<div class="absolute h-screen w-screen overflow-hidden top-0 left-0 right-0 bottom-0">
+<div class="wrapper">
 	​<SC.Canvas antialias alpha {pixelRatio}>
-		<SC.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.5} />
+		<SC.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
 		<SC.OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} />
 		<SC.AmbientLight intensity={0.75} />
 		<SC.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
@@ -56,3 +57,13 @@
 
 	<NextLink href="/" top />
 </div>
+
+<style lang="postcss">
+	.wrapper {
+		@apply absolute top-0 h-screen w-screen overflow-hidden;
+
+		:global(> .container) {
+			@apply max-w-none; /* fix conflict with tailwindcss */
+		}
+	}
+</style>

@@ -94,8 +94,9 @@
 <div class="slider" bind:this={slider} tabindex="0">
 	<div class="collider" bind:this={collider} />
 	<div class="slides" bind:this={slides}>
-		{#each [...skills, ...skills] as skill, i}
+		{#each { length: skills.length * 2 } as _, i}
 			{#if i < skills.length}
+				{@const skill = skills[i]}
 				<div
 					class="slide"
 					class:active={$activeSkill?.id === skill.id}
