@@ -7,6 +7,6 @@
 </script>
 
 <a class="mt-6 flex items-center" use:clickOnKey data-sveltekit-prefetch {href}>
-	<span>{top ? 'next' : 'top'}</span>
+	<span>{top ? 'top' : 'next'}</span>
 	<span class="hidden md:inline-flex">&nbsp;/&nbsp;<Kbd>Enter</Kbd></span>
 </a>

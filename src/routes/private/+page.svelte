@@ -55,7 +55,7 @@
 	</SC.Canvas>
 </div>
 
-<div class="z-20">
+<div class="z-20 text-center">
 	<h1 class="mb-8">About Me</h1>
 
 	<NextLink href="/" top />
