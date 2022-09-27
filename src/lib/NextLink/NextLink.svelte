@@ -6,7 +6,12 @@
 	export let top = false
 </script>
 
-<a class="mt-6 flex items-center justify-center" use:clickOnKey data-sveltekit-prefetch {href}>
+<a
+	class="my-8 inline-flex items-center justify-center"
+	use:clickOnKey
+	data-sveltekit-prefetch
+	{href}
+>
 	<span>{top ? 'top' : 'next'}</span>
 	<span class="hidden md:inline-flex">&nbsp;/&nbsp;<Kbd>Enter</Kbd></span>
 </a>

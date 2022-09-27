@@ -7,7 +7,7 @@
 	}
 </script>
 
-<footer class="bg-nord1 overflow-hidden w-full py-2 shadow-lg mt-8">
+<footer class="bg-nord1 overflow-hidden w-full py-2 shadow-lg">
 	<div class="container mx-auto text-center flex flex-col px-2">
 		<div class="text-xs mb-2 flex flex-col">
 			{@html joke}

@@ -6,7 +6,8 @@
 	import { onMount } from 'svelte'
 	import NextLink from '$lib/NextLink/NextLink.svelte'
 
-	let model: GLTF | null = null
+	let guitar: GLTF
+	let racket: GLTF
 	let pixelRatio: number
 	let wrapper: HTMLDivElement
 
@@ -16,14 +17,24 @@
 		pixelRatio = window.devicePixelRatio
 
 		const loader = new GLTFLoader()
-		model = await loader.loadAsync('/assets/models/guitar/scene.gltf')
+		guitar = await loader.loadAsync('/assets/models/guitar/scene.gltf')
+		racket = await loader.loadAsync('/assets/models/racket/scene.gltf')
 
 		applyMaterial(
-			model.scene,
+			guitar.scene,
 			new THREE.MeshStandardMaterial({
 				metalness: 0,
 				// roughness: 0,
 				color: new THREE.Color(0xa3be8c),
+				wireframe: true
+			})
+		)
+
+		applyMaterial(
+			racket.scene,
+			new THREE.MeshStandardMaterial({
+				metalness: 0,
+				color: new THREE.Color(0xebcb8b),
 				wireframe: true
 			})
 		)
@@ -52,13 +63,17 @@
 		<SC.AmbientLight intensity={0.75} />
 		<SC.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
 
-		{#if model}
-			<SC.Primitive object={model.scene} scale={[0.7, 0.7, 0.7]} rotation={[spin + 0.04, 0, 0]} />
+		{#if guitar}
+			<SC.Primitive object={guitar.scene} scale={[0.7, 0.7, 0.7]} rotation={[spin + 0.04, 0, 0]} />
+		{/if}
+
+		{#if racket}
+			<SC.Primitive object={racket.scene} scale={[50, 50, 50]} rotation={[0, 0, spin + 0.04]} />
 		{/if}
 	</SC.Canvas>
 </div>
 
-<div class="z-20">
+<div class="z-20 flex flex-col items-center">
 	<div class="p-10 rounded-lg bg-nord2 bg-opacity-80">
 		<h1 class="mb-8">About Me</h1>
 
