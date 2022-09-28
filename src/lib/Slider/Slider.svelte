@@ -30,8 +30,8 @@
 		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`)
 
 		if (slide) {
-			if (document.activeElement !== slider) {
-				slider.focus()
+			if (document.activeElement !== slide) {
+				slide.focus()
 			}
 			progress.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2)
 			setActiveSlide(id)
@@ -47,7 +47,7 @@
 	const swapNodes = (e: CustomEvent) => {
 		const node = e.target as HTMLDivElement
 		const id = Number(node.dataset.slideid) - skills.length
-		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id + 1}"]`)
+		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`)
 		if (slide) {
 			swap(slide, node)
 		}
@@ -79,7 +79,7 @@
 					progress.set(0, { duration: 0 })
 				}
 
-				if (document.activeElement !== slider) {
+				if (document.activeElement?.parentElement !== slides) {
 					updateProgress()
 				}
 			}
@@ -91,13 +91,14 @@
 	$: $focusSkill, setSlideFocus($focusSkill)
 </script>
 
-<div class="slider" bind:this={slider} tabindex="0">
+<div class="slider" bind:this={slider}>
 	<div class="collider" bind:this={collider} />
 	<div class="slides" bind:this={slides}>
 		{#each { length: skills.length * 2 } as _, i}
 			{#if i < skills.length}
 				{@const skill = skills[i]}
 				<div
+					tabindex="0"
 					class="slide"
 					class:active={$activeSkill?.id === skill.id}
 					on:click={() => ($focusSkill = skill.id)}
@@ -108,8 +109,8 @@
 					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
 				</div>
 			{:else}
-				<div class="slide" data-slideId={i} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
-					{i}
+				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
+					{i + 1}
 				</div>
 			{/if}
 		{/each}
