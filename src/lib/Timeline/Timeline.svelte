@@ -7,32 +7,32 @@
 
 	let items = [
 		{
-			icon: AcademicCap,
 			category: 'education',
-			time: 'Vienna, 2011',
+			time: 'Vienna, 2006 - 2011',
 			title: 'Technologisches Gewerbemuseum',
-			description: 'Information Technology'
+			description: 'Information Technology',
+			status: 'done'
 		},
 		{
-			icon: AcademicCap,
 			category: 'education',
-			time: 'Vienna, 2012',
+			time: 'Vienna, 2012 - Present',
 			title: 'Univsersity of Vienna',
-			description: 'Bachelor of Psychology'
+			description: 'Bachelor of Psychology',
+			status: 'waiting'
 		},
 		{
-			icon: Briefcase,
-			category: 'experience',
-			time: 'Vienna, March 2015 - Present',
+			category: 'work',
+			time: 'Vienna, 2015 - Present',
 			title: 'Vienna BioCenter Core Facilities',
-			description: 'Software Engineer'
+			description: 'Software Engineer',
+			status: 'in-progress'
 		},
 		{
-			icon: Briefcase,
-			category: 'experience',
-			time: 'Vienna, April 2019 - Present',
+			category: 'work',
+			time: 'Vienna, 2019 - Present',
 			title: 'Hyke Systems',
-			description: 'Web Developer'
+			description: 'Web Developer',
+			status: 'in-progress'
 		}
 	]
 </script>
@@ -44,10 +44,11 @@
 				<span
 					in:blur={{ delay: i * 800 }}
 					class="flex absolute -left-[49px] justify-center items-center w-8 h-8 rounded-full"
-					class:bg-nord10={item.category === 'education'}
-					class:bg-nord15={item.category === 'experience'}
+					class:bg-nord14={item.status === 'done'}
+					class:bg-nord13={item.status === 'waiting'}
+					class:bg-nord12={item.status === 'in-progress'}
 				>
-					<Icon class="text-nord0" src={item.icon} />
+					<Icon class="text-nord0" src={item.category === 'education' ? AcademicCap : Briefcase} />
 				</span>
 				<div in:slide={{ delay: i * 800 + 500 }}>
 					<time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
