@@ -1,11 +1,19 @@
 <script lang="ts">
 	import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 	import * as THREE from 'three'
-	import * as SC from 'svelte-cubed'
 	import { applyMaterial } from '$lib/utils'
 	import { onMount } from 'svelte'
 	import NextLink from '$lib/NextLink/NextLink.svelte'
 	import Spinner from '$lib/Spinner/Spinner.svelte'
+	import {
+		AmbientLight,
+		Canvas,
+		DirectionalLight,
+		onFrame,
+		OrbitControls,
+		PerspectiveCamera,
+		Primitive
+	} from '$lib/Three'
 
 	let guitar: GLTF
 	let racket: GLTF
@@ -44,7 +52,7 @@
 		loading = false
 	})
 
-	SC.onFrame(() => {
+	onFrame(() => {
 		spin += 0.01
 	})
 </script>
@@ -54,6 +62,7 @@
 <!-- nord13: 0xebcb8b -->
 <!-- nord12: 0xd08770 -->
 <!-- nord11: 0xbf616a -->
+<!-- nord11: 0x2e3440 -->
 
 <div class="wrapper" bind:this={wrapper}>
 	{#if loading}
@@ -61,23 +70,17 @@
 			<Spinner />
 		</div>
 	{/if}
-	​<SC.Canvas
-		antialias
-		alpha
-		{pixelRatio}
-		width={wrapper?.clientWidth}
-		height={wrapper?.clientHeight}
-	>
-		<SC.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
-		<SC.OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} />
-		<SC.AmbientLight intensity={0.75} />
-		<SC.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
+	​<Canvas antialias alpha {pixelRatio} width={wrapper?.clientWidth} height={wrapper?.clientHeight}>
+		<PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
+		<OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} enablePan={false} />
+		<AmbientLight intensity={0.75} />
+		<DirectionalLight intensity={0.6} position={[0, 10, 10]} />
 
 		{#if !loading}
-			<SC.Primitive object={guitar.scene} scale={[0.7, 0.7, 0.7]} rotation={[spin + 0.04, 0, 0]} />
-			<SC.Primitive object={racket.scene} scale={[50, 50, 50]} rotation={[0, 0, spin + 0.04]} />
+			<Primitive object={guitar.scene} scale={[0.7, 0.7, 0.7]} rotation={[spin + 0.04, 0, 0]} />
+			<Primitive object={racket.scene} scale={[50, 50, 50]} rotation={[0, 0, spin + 0.04]} />
 		{/if}
-	</SC.Canvas>
+	</Canvas>
 </div>
 
 <div class="z-20 flex flex-col items-center">
