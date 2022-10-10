@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { camera, onFrame, Primitive } from '$lib/Three'
 	import { onMount } from 'svelte'
-	import { Text } from 'troika-three-text'
+	import { Text, preloadFont } from 'troika-three-text'
+	import { setup } from '$lib/Three/utils/context'
 
 	export let index: number
 
 	export let length: number
+
+	export let onSync: ((troika: Text) => void) | null = null
 
 	export const radius = 18
 
@@ -13,25 +16,39 @@
 
 	let element: Text
 
-	onMount(() => generateElement())
+	const font = './node_modules/@fontsource/fira-code/files/fira-code-all-700-normal.woff'
+	const characters = 'abcdefghijklmnopqrstuvwxyz'
+
+	onMount(async () => {
+		await loadFont()
+		generateElement()
+	})
+
+	const { root } = setup()
 
 	onFrame(() => {
-		if (element) {
-			element.quaternion.copy($camera.quaternion)
-		}
+		element?.quaternion.copy($camera.quaternion)
 	})
+
+	const loadFont = async () => new Promise((res) => preloadFont({ font, characters }, res))
 
 	const generateElement = () => {
 		element = new Text()
 		element.text = content
 		element.fontSize = 0.7
-		element.font = './node_modules/@fontsource/fira-code/files/fira-code-all-400-normal.woff'
+		element.font = font
 		const position = computePosition()
 		element.position.set(position[0], position[1], position[2])
 
 		element.anchorX = 'center'
 		element.anchorY = 'middle'
-		element.sync()
+
+		element.sync(() => {
+			root.invalidate()
+			if (onSync) {
+				onSync(element)
+			}
+		})
 	}
 
 	const computePosition = () => {
@@ -47,6 +64,6 @@
 
 <span class="hidden" contenteditable bind:textContent={content}><slot /></span>
 
-{#if element}
-	<Primitive object={element} />
-{/if}
+<!-- {#if element} -->
+<Primitive object={element} />
+<!-- {/if} -->

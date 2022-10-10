@@ -1,6 +1,11 @@
 declare module 'troika-three-text' {
 	import type { Mesh } from 'three'
 
+	export function preloadFont(
+		{ font: string, characters: string },
+		callback: (params: unknown) => void
+	)
+
 	export class Text extends Mesh {
 		text? = ''
 		anchorX?: number | string = 0
@@ -14,7 +19,7 @@ declare module 'troika-three-text' {
 		maxWidth? = Infinity
 		whiteSpace? = 'normal'
 		material?: THREE.Material
-		sync: () => void
+		sync: (troika: () => void) => void
 		// TODO: add more properties
 	}
 }

@@ -4,7 +4,7 @@
 	import type { PageData } from './$types'
 	import Text from './Text.svelte'
 	import { tweened } from 'svelte/motion'
-	import { cubicInOut } from 'svelte/easing'
+	import { expoIn } from 'svelte/easing'
 	import {
 		AmbientLight,
 		Canvas,
@@ -17,13 +17,20 @@
 
 	let pixelRatio: number
 	let wrapper: HTMLDivElement
-	let cameraPositionZ = tweened(1, { duration: 2500, easing: cubicInOut })
-	// let cameraPositionZ = tweened(30, { duration: 2500, easing: cubicInOut })
+	let cameraPositionZ = tweened(11, { duration: 1200, easing: expoIn })
+	let loaded = false
+	let active = false
 
 	onMount(() => {
 		pixelRatio = window.devicePixelRatio
-		cameraPositionZ.set(30)
 	})
+
+	$: (async () => {
+		if (loaded) {
+			await cameraPositionZ.set(30)
+			active = true
+		}
+	})()
 </script>
 
 <div class="wrapper" bind:this={wrapper}>
@@ -37,12 +44,18 @@
 	>
 		<!-- <Primitive object={new THREE.AxesHelper(10)} /> -->
 		<PerspectiveCamera position={[1, 1, $cameraPositionZ]} />
-		<TrackballControls zoomSpeed={2} panSpeed={0} />
+		{#if active}
+			<TrackballControls zoomSpeed={2} panSpeed={0} />
+		{/if}
 		<AmbientLight intensity={0.75} />
 		<DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
 
 		{#each data.skills as skill, index}
-			<Text {index} length={data.skills.length}>{skill.name}</Text>
+			{#if data.skills.length === index + 1}
+				<Text {index} length={data.skills.length} onSync={() => (loaded = true)}>{skill.name}</Text>
+			{:else}
+				<Text {index} length={data.skills.length}>{skill.name}</Text>
+			{/if}
 		{/each}
 	</Canvas>
 </div>

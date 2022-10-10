@@ -1,11 +1,10 @@
-<script>
+<script lang="ts">
 	import * as THREE from 'three'
 	import { setup } from '../../utils/context'
 	import { transform } from '../../utils/object'
 	import * as defaults from '../../utils/defaults'
 
-	/** @type {THREE.Object3D} */
-	export let object
+	export let object: THREE.Object3D
 
 	export let position = defaults.position
 	export let rotation = defaults.rotation
@@ -13,8 +12,7 @@
 
 	const { root, self } = setup(new THREE.Object3D())
 
-	/** @type {THREE.Object3D} */
-	let previous
+	let previous: THREE.Object3D
 
 	$: {
 		if (previous) {
