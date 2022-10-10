@@ -16,7 +16,8 @@
 	export let data: PageData
 
 	let pixelRatio: number
-	let wrapper: HTMLDivElement
+	let clientHeight: number
+	let clientWidth: number
 	let cameraPositionZ = tweened(11, { duration: 1200, easing: expoIn })
 	let loaded = false
 	let active = false
@@ -33,19 +34,19 @@
 	})()
 </script>
 
-<div class="wrapper" bind:this={wrapper}>
+<div class="wrapper" bind:clientHeight bind:clientWidth>
 	​<Canvas
 		antialias
 		alpha
 		{pixelRatio}
-		width={wrapper?.clientWidth}
-		height={wrapper?.clientHeight}
-		fog={new THREE.FogExp2(0x2e3440, 0.02)}
+		width={clientWidth}
+		height={clientHeight}
+		fog={new THREE.Fog(0x2e3440, 0, 60)}
 	>
 		<!-- <Primitive object={new THREE.AxesHelper(10)} /> -->
 		<PerspectiveCamera position={[1, 1, $cameraPositionZ]} />
 		{#if active}
-			<TrackballControls zoomSpeed={2} panSpeed={0} />
+			<TrackballControls zoomSpeed={2} panSpeed={0} maxDistance={50} minDistance={4} />
 		{/if}
 		<AmbientLight intensity={0.75} />
 		<DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
@@ -63,9 +64,5 @@
 <style lang="postcss">
 	.wrapper {
 		@apply absolute top-0 h-screen w-screen overflow-hidden;
-
-		:global(> .container) {
-			@apply max-w-none; /* fix conflict with tailwindcss */
-		}
 	}
 </style>

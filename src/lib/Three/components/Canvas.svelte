@@ -104,9 +104,7 @@
 
 		camera: {
 			object: null,
-			callback: () => {
-				console.warn('no camera is set')
-			},
+			callback: () => ({}),
 			set: (camera, callback) => {
 				root.camera.object = camera
 				root.camera.callback = callback
@@ -224,7 +222,7 @@
 
 <svelte:window on:resize={resize} />
 
-<div class="container" bind:this={container}>
+<div class="three-container" bind:this={container}>
 	<canvas bind:this={root.canvas} />
 
 	{#if root.scene}
@@ -233,7 +231,7 @@
 </div>
 
 <style>
-	.container,
+	.three-container,
 	canvas {
 		position: absolute;
 		width: 100%;

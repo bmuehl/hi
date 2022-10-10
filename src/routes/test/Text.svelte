@@ -16,7 +16,7 @@
 
 	let element: Text
 
-	const font = './assets/fonts/fira-code-all-700-normal.woff'
+	const font = '/assets/fonts/fira-code-all-700-normal.woff'
 	const characters = 'abcdefghijklmnopqrstuvwxyz'
 
 	onMount(async () => {

@@ -18,7 +18,8 @@
 	let guitar: GLTF
 	let racket: GLTF
 	let pixelRatio: number
-	let wrapper: HTMLDivElement
+	let clientHeight: number
+	let clientWidth: number
 
 	let spin = 0
 	let loading = true
@@ -64,13 +65,13 @@
 <!-- nord11: 0xbf616a -->
 <!-- nord11: 0x2e3440 -->
 
-<div class="wrapper" bind:this={wrapper}>
+<div class="wrapper" bind:clientHeight bind:clientWidth>
 	{#if loading}
 		<div class="relative top-16 left-3">
 			<Spinner />
 		</div>
 	{/if}
-	​<Canvas antialias alpha {pixelRatio} width={wrapper?.clientWidth} height={wrapper?.clientHeight}>
+	​<Canvas antialias alpha {pixelRatio} width={clientWidth} height={clientHeight}>
 		<PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
 		<OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} enablePan={false} />
 		<AmbientLight intensity={0.75} />
