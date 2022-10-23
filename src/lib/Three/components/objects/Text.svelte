@@ -37,7 +37,7 @@
 
 	onFrame(() => {
 		element?.quaternion.copy($camera.quaternion)
-		element?.material.color.lerp(color.set(hovered ? '#bf616a' : 'white'), 0.1)
+		element?.material.color.lerp(color.set(hovered ? '#a3be8c' : 'white'), 0.1)
 		root.invalidate()
 	})
 
@@ -46,7 +46,7 @@
 	const generateElement = () => {
 		element = new Text()
 		element.text = content
-		element.fontSize = 0.7
+		element.fontSize = 0.85
 		element.font = font
 		const position = computePosition()
 		element.position.set(position[0], position[1], position[2])

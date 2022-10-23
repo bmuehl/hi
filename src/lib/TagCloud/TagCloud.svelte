@@ -38,7 +38,7 @@
 </script>
 
 <div
-	class="tagcloud relative overflow-hidden md:overflow-visible h-[380px] md:h-[500px] max-w-[750px] mx-auto"
+	class="tagcloud relative overflow-hidden md:overflow-visible h-[380px] md:h-[550px] max-w-[750px] mx-auto"
 	bind:clientHeight
 	bind:clientWidth
 >
