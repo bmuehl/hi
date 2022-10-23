@@ -2,6 +2,7 @@ export { default as Canvas } from './components/Canvas.svelte'
 
 // objects
 export { default as Primitive } from './components/objects/Primitive.svelte'
+export { default as Text } from './components/objects/Text.svelte'
 
 // cameras
 export { default as PerspectiveCamera } from './components/cameras/PerspectiveCamera.svelte'

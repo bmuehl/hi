@@ -3,6 +3,9 @@
 	import { setup } from '../../utils/context'
 	import { transform } from '../../utils/object'
 	import * as defaults from '../../utils/defaults'
+	import { onFrame } from '$lib/Three/utils/lifecycle'
+	import { raycaster } from '$lib/Three/utils/store'
+	import { createEventDispatcher, onDestroy } from 'svelte'
 
 	export let object: THREE.Object3D
 
@@ -12,7 +15,34 @@
 
 	const { root, self } = setup(new THREE.Object3D())
 
+	const dispatch = createEventDispatcher()
+
 	let previous: THREE.Object3D
+
+	const dispatchClickEvent = (e: MouseEvent) => {
+		e.stopPropagation() // todo: this is not working
+		const intersects = $raycaster.intersectObject(self)
+
+		if (intersects.length > 0) {
+			dispatch('click', self)
+		}
+	}
+
+	root.canvas.addEventListener('click', dispatchClickEvent)
+
+	onDestroy(() => {
+		root.canvas.removeEventListener('click', dispatchClickEvent)
+	})
+
+	onFrame(() => {
+		const intersects = $raycaster.intersectObject(self)
+
+		if (intersects.length > 0) {
+			dispatch('pointerover', self)
+		} else {
+			dispatch('pointerout', self)
+		}
+	})
 
 	$: {
 		if (previous) {

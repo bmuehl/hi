@@ -18,7 +18,14 @@ declare module 'troika-three-text' {
 		lineHeight? = 'normal'
 		maxWidth? = Infinity
 		whiteSpace? = 'normal'
-		material?: THREE.Material
+		material: THREE.MeshBasicMaterial
+		color?: THREE.Color | string | number
+		outlineWidth?: number | string = 0
+		outlineColor?: string | number | THREE.Color = 0x000000
+		outlineOpacity?: number = 1
+		strokeWidth?: number | string = 0
+		strokeColor?: string | number | THREE.Color = 0x808080
+		strokeOpacity?: number = 1
 		sync: (troika: () => void) => void
 		// TODO: add more properties
 	}

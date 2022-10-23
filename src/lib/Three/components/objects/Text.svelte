@@ -3,12 +3,17 @@
 	import { onMount } from 'svelte'
 	import { Text, preloadFont } from 'troika-three-text'
 	import { setup } from '$lib/Three/utils/context'
+	import * as THREE from 'three'
+	import { focusSkill } from '$lib/store'
+	import type { Skill } from '../../../../routes/skills/types'
 
 	export let index: number
 
 	export let length: number
 
 	export let onSync: ((troika: Text) => void) | null = null
+
+	export let skills: Array<Skill> = []
 
 	export const radius = 18
 
@@ -19,6 +24,10 @@
 	const font = '/assets/fonts/fira-code-all-700-normal.woff'
 	const characters = 'abcdefghijklmnopqrstuvwxyz'
 
+	const color = new THREE.Color()
+
+	let hovered = false
+
 	onMount(async () => {
 		await loadFont()
 		generateElement()
@@ -28,6 +37,8 @@
 
 	onFrame(() => {
 		element?.quaternion.copy($camera.quaternion)
+		element?.material.color.lerp(color.set(hovered ? '#bf616a' : 'white'), 0.1)
+		root.invalidate()
 	})
 
 	const loadFont = async () => new Promise((res) => preloadFont({ font, characters }, res))
@@ -60,10 +71,22 @@
 			(radius * Math.cos(phi)) / 2
 		]
 	}
+
+	const clickHandler = () => {
+		const skill = skills.find((s) => s.name === content)
+		if (skill) {
+			focusSkill.set(skill.id)
+		}
+	}
+
+	$: hovered, (document.body.style.cursor = hovered ? 'pointer' : 'auto')
 </script>
 
 <span class="hidden" contenteditable bind:textContent={content}><slot /></span>
 
-<!-- {#if element} -->
-<Primitive object={element} />
-<!-- {/if} -->
+<Primitive
+	object={element}
+	on:pointerover={() => (hovered = true)}
+	on:pointerout={() => (hovered = false)}
+	on:click={clickHandler}
+/>

@@ -1,10 +1,8 @@
 import { onMount } from 'svelte'
 
-/** @param {() => void} callback */
-export function onFrame(callback) {
+export function onFrame(callback: () => void) {
 	onMount(() => {
-		/** @type {number} */
-		let frame
+		let frame: number
 
 		requestAnimationFrame(function loop() {
 			frame = requestAnimationFrame(loop)

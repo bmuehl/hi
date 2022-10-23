@@ -1,29 +1,24 @@
-<script>
+<script lang="ts">
 	import { set_root } from '../utils/context'
 	import { onDestroy, onMount } from 'svelte'
 	import * as THREE from 'three'
+	import { raycaster } from '../utils/store'
 
 	/** Scene options https://threejs.org/docs/?q=scene#api/en/scenes/Scene */
 
-	/** @type {THREE.Color | THREE.Texture} */
-	export let background = null
+	export let background: THREE.Color | THREE.Texture | null = null
 
-	/** @type {THREE.Texture} */
-	export let environment = null
+	export let environment: THREE.Texture | null = null
 
-	/** @type {THREE.FogBase} */
-	export let fog = null
+	export let fog: THREE.FogBase | null = null
 
-	/** @type {THREE.Material} */
-	export let overrideMaterial = null
+	export let overrideMaterial: THREE.Material | null = null
 
 	/** Renderer options https://threejs.org/docs/?q=render#api/en/renderers/WebGLRenderer */
 
-	/** @type {'lowp' | 'mediump' | 'highp'} */
-	export let precision = 'highp'
+	export let precision: 'lowp' | 'mediump' | 'highp' = 'highp'
 
-	/** @type {'default' | 'high-performance' | 'low-power'} */
-	export let powerPreference = 'default'
+	export let powerPreference: 'default' | 'high-performance' | 'low-power' = 'default'
 
 	export let alpha = false
 	export let premultipliedAlpha = true
@@ -42,25 +37,30 @@
 	export let localClippingEnabled = false
 	export let physicallyCorrectLights = false
 
-	/** @type {number} */
-	export let outputEncoding = undefined
+	export let outputEncoding: number | undefined = undefined
 
-	/** @type {THREE.Plane[]} */
-	export let clippingPlanes = []
+	export let clippingPlanes: THREE.Plane[] = []
 
-	/** @type {boolean | typeof THREE.BasicShadowMap | typeof THREE.PCFShadowMap | typeof THREE.PCFSoftShadowMap | typeof THREE.VSMShadowMap} */
-	export let shadows = undefined
+	export let shadows:
+		| boolean
+		| typeof THREE.BasicShadowMap
+		| typeof THREE.PCFShadowMap
+		| typeof THREE.PCFSoftShadowMap
+		| typeof THREE.VSMShadowMap
+		| undefined = undefined
 
-	/** @type {typeof THREE.NoToneMapping | typeof THREE.LinearToneMapping | typeof THREE.ReinhardToneMapping | typeof THREE.CineonToneMapping | typeof THREE.ACESFilmicToneMapping} */
-	export let toneMapping = THREE.NoToneMapping
+	export let toneMapping:
+		| typeof THREE.NoToneMapping
+		| typeof THREE.LinearToneMapping
+		| typeof THREE.ReinhardToneMapping
+		| typeof THREE.CineonToneMapping
+		| typeof THREE.ACESFilmicToneMapping = THREE.NoToneMapping
 	export let toneMappingExposure = 1
 
 	/** additional props */
-	/** @type {number} */
-	export let width = undefined
+	export let width: number | undefined = undefined
 
-	/** @type {number} */
-	export let height = undefined
+	export let height: number | undefined = undefined
 
 	export let pixelRatio = typeof devicePixelRatio !== 'undefined' ? devicePixelRatio : 1
 
@@ -69,20 +69,17 @@
 		return root.renderer.info
 	}
 
-	/** @type {number} */
-	let _width
+	let _width: number
 
-	/** @type {number} */
-	let _height
+	let _height: number
 
-	/** @type {HTMLElement} */
-	let container
+	let container: HTMLElement
 
-	/** @type {number} */
-	let frame = null
+	let frame: number | null = null
 
-	/** @param {Function} fn */
-	const run = (fn) => fn()
+	let rect: DOMRect
+
+	const run = (fn: () => void) => fn()
 
 	const invalidate = () => {
 		if (frame) return
@@ -94,8 +91,7 @@
 		})
 	}
 
-	/** @type {Array<() => void>}*/
-	const before_render = []
+	const before_render: Array<() => void> = []
 
 	const root = set_root({
 		canvas: null,
@@ -216,11 +212,23 @@
 		root.camera.callback(w, h)
 		root.renderer.setPixelRatio(pixelRatio)
 
+		rect = root.renderer.domElement.getBoundingClientRect()
+
 		invalidate()
+	}
+
+	const mouse = new THREE.Vector2()
+
+	const mouseHandler = (e: MouseEvent) => {
+		mouse.set(
+			((e.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1,
+			-((e.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1
+		)
+		$raycaster.setFromCamera(mouse, root.camera.object)
 	}
 </script>
 
-<svelte:window on:resize={resize} />
+<svelte:window on:resize={resize} on:mousemove={mouseHandler} />
 
 <div class="three-container" bind:this={container}>
 	<canvas bind:this={root.canvas} />

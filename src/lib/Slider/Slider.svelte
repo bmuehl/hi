@@ -97,7 +97,7 @@
 		{#each { length: skills.length * 2 } as _, i}
 			{#if i < skills.length}
 				{@const skill = skills[i]}
-				<div
+				<menuitem
 					tabindex="0"
 					class="slide"
 					class:active={$activeSkill?.id === skill.id}
@@ -107,7 +107,7 @@
 					on:collision={() => collisionHandler(skill.id)}
 				>
 					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
-				</div>
+				</menuitem>
 			{:else}
 				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
 					{i + 1}
@@ -138,7 +138,6 @@
 
 	.slides {
 		@apply pointer-events-none flex w-full overflow-y-hidden overflow-x-scroll py-2;
-		/* animation: 30s linear 0s infinite normal none running slide; */
 		-ms-overflow-style: none; /* for Internet Explorer, Edge */
 		scrollbar-width: none; /* for Firefox */
 	}
@@ -172,14 +171,5 @@
 
 	.description {
 		@apply mt-6 flex flex-col items-center justify-center;
-	}
-
-	@keyframes slide {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-100%);
-		}
 	}
 </style>

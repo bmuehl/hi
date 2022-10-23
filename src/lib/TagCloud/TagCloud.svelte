@@ -1,75 +1,96 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte'
-	import TagCloud from 'TagCloud'
-	import type { Event } from 'three'
-	import Icon from '$lib/Icon/Icon.svelte'
-	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
-	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
+	import * as THREE from 'three'
+	import { onMount } from 'svelte'
+	import { tweened } from 'svelte/motion'
+	import { expoIn } from 'svelte/easing'
+	import {
+		AmbientLight,
+		Canvas,
+		DirectionalLight,
+		TrackballControls,
+		PerspectiveCamera,
+		Text
+	} from '$lib/Three'
 	import type { Skill } from 'src/routes/skills/types'
-	import { browser } from '$app/environment'
-	import { focusSkill } from '$lib/store'
-
-	let tagCloud: HTMLDivElement
-
-	const tagClick = (e: Event) => {
-		if (e.target.className === 'tagcloud--item') {
-			const skill = skills.find((s) => s.name === e.target.textContent)
-			if (skill) {
-				focusSkill.set(skill.id)
-			}
-		}
-	}
+	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
+	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
+	import Icon from '$lib/Icon/Icon.svelte'
 
 	export let skills: Array<Skill> = []
 
+	let pixelRatio: number
+	let clientHeight: number
+	let clientWidth: number
+	let cameraPositionZ = tweened(11, { duration: 1200, easing: expoIn })
+	let loaded = false
+	let active = false
+
 	onMount(() => {
-		const texts = skills.map((s) => s.name)
-		const options = {
-			radius: tagCloud.clientWidth / 2,
-			keep: false,
-			initSpeed: 'fast',
-			maxSpeed: 'fast'
-		}
-
-		TagCloud(tagCloud, texts, options)
-
-		document.addEventListener('click', tagClick)
+		pixelRatio = window.devicePixelRatio
 	})
 
-	onDestroy(() => {
-		if (browser) {
-			document.removeEventListener('click', tagClick)
+	$: (async () => {
+		if (loaded) {
+			await cameraPositionZ.set(30)
+			active = true
 		}
-	})
+	})()
 </script>
 
 <div
-	bind:this={tagCloud}
-	class="tagcloud relative mx-auto max-w-[450px] overflow-hidden md:overflow-visibles text-sm"
-	tabindex="0"
+	class="tagcloud relative overflow-hidden md:overflow-visible h-[380px] md:h-[500px] max-w-[750px] mx-auto"
+	bind:clientHeight
+	bind:clientWidth
 >
-	<div class="overlay">
-		<Icon
-			src={ChevronUp}
-			size="l"
-			class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
-		/>
-		<Icon
-			src={ChevronUp}
-			size="l"
-			class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
-		/>
-		<Icon
-			src={ChevronDown}
-			size="l"
-			class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
-		/>
-		<Icon
-			src={ChevronDown}
-			size="l"
-			class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
-		/>
-	</div>
+	​<Canvas
+		antialias
+		alpha
+		{pixelRatio}
+		width={clientWidth}
+		height={clientHeight}
+		fog={new THREE.Fog(0x2e3440, 0, 60)}
+	>
+		<!-- <Primitive object={new THREE.AxesHelper(10)} /> -->
+		<PerspectiveCamera position={[1, 1, $cameraPositionZ]} />
+		{#if active}
+			<TrackballControls zoomSpeed={2} panSpeed={0} maxDistance={50} minDistance={4} />
+		{/if}
+		<AmbientLight intensity={0.75} />
+		<DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
+
+		{#each skills as skill, index}
+			{#if skills.length === index + 1}
+				<Text {index} length={skills.length} onSync={() => (loaded = true)} {skills}
+					>{skill.name}</Text
+				>
+			{:else}
+				<Text {index} length={skills.length} {skills}>{skill.name}</Text>
+			{/if}
+		{/each}
+
+		<div class="overlay">
+			<Icon
+				src={ChevronUp}
+				size="l"
+				class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
+			/>
+			<Icon
+				src={ChevronUp}
+				size="l"
+				class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
+			/>
+			<Icon
+				src={ChevronDown}
+				size="l"
+				class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
+			/>
+			<Icon
+				src={ChevronDown}
+				size="l"
+				class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
+			/>
+		</div>
+	</Canvas>
 </div>
 
 <style lang="postcss">
@@ -84,28 +105,24 @@
 			@apply absolute -m-6 items-center justify-center;
 		}
 
-		div.tagcloud:focus {
+		.tagcloud:focus {
 			@apply outline-none md:outline-2 md:outline-nord3;
 		}
 
-		div.tagcloud:hover > .overlay,
-		div.tagcloud:focus > .overlay,
-		div.tagcloud:active > .overlay {
+		.tagcloud:hover .overlay,
+		.tagcloud:focus .overlay,
+		.tagcloud:active .overlay {
 			@apply scale-95 opacity-100;
 		}
 
-		div.tagcloud:hover .icon,
-		div.tagcloud:focus .icon,
-		div.tagcloud:active .icon {
-			animation: bounce2 1s infinite;
-		}
-
-		span.tagcloud--item {
-			@apply select-none antialiased hover:cursor-pointer hover:rounded-md hover:bg-nord14 hover:p-2 hover:text-nord0;
+		.tagcloud:hover .icon,
+		.tagcloud:focus .icon,
+		.tagcloud:active .icon {
+			animation: bounce 1s infinite;
 		}
 	}
 
-	@keyframes bounce2 {
+	@keyframes bounce {
 		0%,
 		100% {
 			transform: translateY(var(--tw-translate-y)) translateX(var(--tw-translate-x))

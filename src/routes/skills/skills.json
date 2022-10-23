@@ -138,7 +138,7 @@
 	},
 	{
 		"id": 23,
-		"name": "Googel Cloud",
+		"name": "Google Cloud",
 		"logo": "./assets/googlecloud.svg",
 		"domain": "https://cloud.google.com/"
 	},
