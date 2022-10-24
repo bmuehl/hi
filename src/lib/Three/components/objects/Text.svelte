@@ -6,6 +6,8 @@
 	import * as THREE from 'three'
 	import { focusSkill } from '$lib/store'
 	import type { Skill } from '../../../../routes/skills/types'
+	import { tweened } from 'svelte/motion'
+	import { expoIn } from 'svelte/easing'
 
 	export let index: number
 
@@ -28,6 +30,8 @@
 
 	let hovered = false
 
+	let fontSize = tweened(0.85, { duration: 200 })
+
 	onMount(async () => {
 		await loadFont()
 		generateElement()
@@ -36,8 +40,12 @@
 	const { root } = setup()
 
 	onFrame(() => {
-		element?.quaternion.copy($camera.quaternion)
-		element?.material.color.lerp(color.set(hovered ? '#a3be8c' : 'white'), 0.1)
+		if (element) {
+			element.quaternion.copy($camera.quaternion)
+			element.material.color.lerp(color.set(hovered ? '#a3be8c' : 'white'), 0.1)
+			element.fontSize = $fontSize
+		}
+
 		root.invalidate()
 	})
 
@@ -46,7 +54,7 @@
 	const generateElement = () => {
 		element = new Text()
 		element.text = content
-		element.fontSize = 0.85
+		element.fontSize = $fontSize
 		element.font = font
 		const position = computePosition()
 		element.position.set(position[0], position[1], position[2])
@@ -80,6 +88,8 @@
 	}
 
 	$: hovered, (document.body.style.cursor = hovered ? 'pointer' : 'auto')
+
+	$: hovered, fontSize.set(hovered ? 1 : 0.85)
 </script>
 
 <span class="hidden" contenteditable bind:textContent={content}><slot /></span>
