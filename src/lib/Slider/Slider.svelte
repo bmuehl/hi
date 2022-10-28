@@ -10,10 +10,10 @@
 	export let skills: Array<Skill> = []
 
 	let slides: HTMLDivElement
-	let slider: HTMLDivElement
 	let collider: HTMLDivElement
-	const progress = tweened(0, { duration: 500, easing: cubicOut })
-	const speed = 10
+	const speed = 2
+
+	const focusTransition = tweened(0, { duration: 500, easing: cubicOut })
 
 	const setActiveSlide = (id: number) => {
 		const skill = skills.find((s) => s.id === id)
@@ -30,11 +30,15 @@
 		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`)
 
 		if (slide) {
+			focusTransition.set(slides.scrollLeft, { duration: 0 })
+			focusTransition.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2)
+			focusTransition.subscribe((value) => {
+				slides.scrollLeft = value
+			})
+			setActiveSlide(id)
 			if (document.activeElement !== slide) {
 				slide.focus()
 			}
-			progress.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2)
-			setActiveSlide(id)
 		}
 	}
 
@@ -60,27 +64,17 @@
 	}
 
 	onMount(() => {
-		progress.subscribe((value) => {
-			if (slides) {
-				slides.scrollLeft = value
-			}
-		})
-
-		const updateProgress = () => {
-			if ($focusSkill) {
-				$focusSkill = false
-			}
-			progress.set(slides.scrollLeft + speed)
-		}
-
 		const loop = () => {
 			if (slides) {
 				if (slides.scrollWidth / 2 - slides.clientWidth <= slides.scrollLeft - slides.clientWidth) {
-					progress.set(0, { duration: 0 })
+					slides.scrollLeft = 0
 				}
 
 				if (document.activeElement?.parentElement !== slides) {
-					updateProgress()
+					if ($focusSkill) {
+						$focusSkill = false
+					}
+					slides.scrollLeft += speed
 				}
 			}
 			requestAnimationFrame(loop)
@@ -91,7 +85,7 @@
 	$: $focusSkill, setSlideFocus($focusSkill)
 </script>
 
-<div class="slider" bind:this={slider}>
+<div class="slider">
 	<div class="collider" bind:this={collider} />
 	<div class="slides" bind:this={slides}>
 		{#each { length: skills.length * 2 } as _, i}
@@ -137,7 +131,7 @@
 	}
 
 	.slides {
-		@apply pointer-events-none flex w-full overflow-y-hidden overflow-x-scroll py-2;
+		@apply flex w-full overflow-y-hidden overflow-x-scroll py-2;
 		-ms-overflow-style: none; /* for Internet Explorer, Edge */
 		scrollbar-width: none; /* for Firefox */
 	}

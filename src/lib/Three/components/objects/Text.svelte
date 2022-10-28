@@ -7,7 +7,6 @@
 	import { focusSkill } from '$lib/store'
 	import type { Skill } from '../../../../routes/skills/types'
 	import { tweened } from 'svelte/motion'
-	import { expoIn } from 'svelte/easing'
 
 	export let index: number
 
