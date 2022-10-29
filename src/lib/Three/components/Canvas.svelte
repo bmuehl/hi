@@ -214,6 +214,8 @@
 		root.camera.callback(w, h)
 		root.renderer.setPixelRatio(pixelRatio)
 
+		rect = root.renderer.domElement.getBoundingClientRect()
+
 		invalidate()
 	}
 
