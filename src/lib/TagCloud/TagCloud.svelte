@@ -11,7 +11,7 @@
 		PerspectiveCamera,
 		Text
 	} from '$lib/Three'
-	import type { Skill } from 'src/routes/skills/types'
+	import type { Skill } from 'src/routes/experience/types'
 	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
 	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
 	import Icon from '$lib/Icon/Icon.svelte'

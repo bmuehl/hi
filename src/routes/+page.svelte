@@ -41,4 +41,4 @@
 	</div>
 </div>
 
-<NextLink href="/experience" />
+<NextLink href="/timeline" />

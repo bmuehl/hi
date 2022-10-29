@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Skill } from 'src/routes/skills/types'
+	import type { Skill } from 'src/routes/experience/types'
 	import { onMount } from 'svelte'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'

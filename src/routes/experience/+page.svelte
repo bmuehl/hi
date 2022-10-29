@@ -1,10 +1,18 @@
 <script lang="ts">
+	import Slider from '$lib/Slider/Slider.svelte'
+	import TagCloud from '$lib/TagCloud/TagCloud.svelte'
+	import type { PageData } from './$types'
 	import NextLink from '$lib/NextLink/NextLink.svelte'
-	import Timeline from '$lib/Timeline/Timeline.svelte'
+
+	export let data: PageData
 </script>
 
-<h1 class="mb-8">Timeline</h1>
+<!-- <h1 class="mb-2">Experience</h1> -->
 
-<Timeline />
+<div class="w-full">
+	<TagCloud skills={data.skills} />
+</div>
 
-<NextLink href="/skills" />
+<Slider skills={data.skills} />
+
+<NextLink href="/me" />

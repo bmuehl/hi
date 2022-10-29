@@ -5,7 +5,7 @@
 	import { setup } from '$lib/Three/utils/context'
 	import * as THREE from 'three'
 	import { focusSkill } from '$lib/store'
-	import type { Skill } from '../../../../routes/skills/types'
+	import type { Skill } from '../../../../routes/experience/types'
 	import { tweened } from 'svelte/motion'
 
 	export let index: number

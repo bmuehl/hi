@@ -19,24 +19,24 @@
 		<div class="mx-4 flex items-center">
 			<Icon src={ChevronRight} />
 		</div>
-		<div class="nav-item" class:active={active === 'experience'}>
-			<a data-sveltekit-prefetch href="/experience" use:clickOnKey={['t', 'T']}>
+		<div class="nav-item" class:active={active === 'timeline'}>
+			<a data-sveltekit-prefetch href="/timeline" use:clickOnKey={['t', 'T']}>
 				<span class="key-binding">t</span>imeline
 			</a>
 		</div>
 		<div class="mx-4 flex items-center">
 			<Icon src={ChevronRight} />
 		</div>
-		<div class="nav-item" class:active={active === 'skills'}>
-			<a data-sveltekit-prefetch href="/skills" use:clickOnKey={['e', 'E']}>
+		<div class="nav-item" class:active={active === 'experience'}>
+			<a data-sveltekit-prefetch href="/experience" use:clickOnKey={['e', 'E']}>
 				<span class="key-binding">e</span>xperience
 			</a>
 		</div>
 		<div class="mx-4 flex items-center">
 			<Icon src={ChevronRight} />
 		</div>
-		<div class="nav-item" class:active={active === 'private'}>
-			<a data-sveltekit-prefetch href="/private" use:clickOnKey={['A', 'a']}>
+		<div class="nav-item" class:active={active === 'me'}>
+			<a data-sveltekit-prefetch href="/me" use:clickOnKey={['A', 'a']}>
 				<span class="key-binding">a</span>bout me
 			</a>
 		</div>
