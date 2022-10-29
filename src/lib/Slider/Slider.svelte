@@ -6,12 +6,17 @@
 	import { inView, onCollision } from '$lib/utils'
 	import { activeSkill, focusSkill } from '$lib/store'
 	import Rating from '$lib/Rating/Rating.svelte'
+	import Icon from '$lib/Icon/Icon.svelte'
+	import Pause from '$lib/Icon/icons/Pause.svelte'
+	import Play from '$lib/Icon/icons/Play.svelte'
+	import { slide } from 'svelte/transition'
 
 	export let skills: Array<Skill> = []
 
 	let slides: HTMLDivElement
 	let collider: HTMLDivElement
 	const speed = 2
+	let showControlDescription = false
 
 	const focusTransition = tweened(0, { duration: 500, easing: cubicOut })
 
@@ -63,6 +68,12 @@
 		slides.insertBefore(node2, afterNode1)
 	}
 
+	function focusCurrent() {
+		if (!$focusSkill) {
+			$focusSkill = $activeSkill?.id
+		}
+	}
+
 	onMount(() => {
 		const loop = () => {
 			if (slides) {
@@ -108,6 +119,24 @@
 				</div>
 			{/if}
 		{/each}
+	</div>
+	<div
+		class="absolute z-20 flex bottom-0 md:h-full right-2 items-center"
+		class:opacity-40={!$focusSkill}
+	>
+		<button
+			class="flex items-center"
+			on:click={focusCurrent}
+			on:mouseenter={() => (showControlDescription = true)}
+			on:mouseleave={() => (showControlDescription = false)}
+			on:focus={() => (showControlDescription = true)}
+			on:blur={() => (showControlDescription = false)}
+		>
+			{#if showControlDescription}
+				<span transition:slide class="text-sm">{$focusSkill ? 'Play' : 'Pause'}</span>
+			{/if}
+			<Icon src={$focusSkill ? Play : Pause} />
+		</button>
 	</div>
 </div>
 
