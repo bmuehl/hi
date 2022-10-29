@@ -142,19 +142,30 @@
 </div>
 
 <div class="description">
-	<strong class="mb-1 text-lg">{$activeSkill?.name}</strong>
-	{#if $activeSkill?.url}
-		<div class="flex items-center">
-			<Icon src={ArrowTopRightOnSquare} class="text-nord10" />
-			<a href={$activeSkill.url} target="_blank" rel="noopener noreferrer" class="text-sm ml-1">
-				open website
-			</a>
-		</div>
-	{/if}
-	<hr class="border-t border-nord3 w-full my-4" />
-	<span class="text-sm text-center my-2">{$activeSkill?.experience || '-'}</span>
-	<hr class="border-t border-nord3 w-full my-4" />
-	<Rating score={$activeSkill?.score || 0} />
+	<div class="header">
+		<strong class="text-lg">{$activeSkill?.name}</strong>
+		{#if $activeSkill?.url}
+			<div class="flex items-center">
+				<a
+					href={$activeSkill.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-xs ml-1 flex items-center"
+				>
+					open website
+					<Icon src={ArrowTopRightOnSquare} size="xs" class="text-nord10 ml-1" />
+				</a>
+			</div>
+		{/if}
+	</div>
+	<hr class="border-t border-nord3 w-full" />
+	<div class="content">
+		<span class="text-sm text-center my-2">{$activeSkill?.experience || '-'}</span>
+	</div>
+	<hr class="border-t border-nord3 w-full" />
+	<div class="footer">
+		<Rating score={$activeSkill?.score || 0} />
+	</div>
 </div>
 
 <style lang="postcss">
@@ -204,6 +215,18 @@
 	}
 
 	.description {
-		@apply mt-6 flex flex-col items-center justify-center;
+		@apply mt-6 flex w-full max-w-3xl flex-col rounded-lg;
+
+		.header {
+			@apply flex flex-col items-center justify-center p-3;
+		}
+
+		.content {
+			@apply flex items-center justify-center p-4;
+		}
+
+		.footer {
+			@apply flex items-center justify-center p-3;
+		}
 	}
 </style>
