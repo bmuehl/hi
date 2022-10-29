@@ -1,4 +1,4 @@
-import type { Skill } from 'src/routes/skills/types'
+import type { Skill } from 'src/routes/experience/types'
 import { writable } from 'svelte/store'
 
 export const activeSkill = writable<Skill>(undefined)

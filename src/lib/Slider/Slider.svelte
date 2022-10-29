@@ -10,12 +10,13 @@
 	import Pause from '$lib/Icon/icons/Pause.svelte'
 	import Play from '$lib/Icon/icons/Play.svelte'
 	import { slide } from 'svelte/transition'
+	import ArrowTopRightOnSquare from '$lib/Icon/icons/ArrowTopRightOnSquare.svelte'
 
 	export let skills: Array<Skill> = []
 
 	let slides: HTMLDivElement
 	let collider: HTMLDivElement
-	const speed = 2
+	const speed = 1.5
 	let showControlDescription = false
 
 	const focusTransition = tweened(0, { duration: 500, easing: cubicOut })
@@ -141,8 +142,18 @@
 </div>
 
 <div class="description">
-	<strong class="mb-1">{$activeSkill?.name}</strong>
-	<span class="text-sm mb-2">{$activeSkill?.experience || '-'}</span>
+	<strong class="mb-1 text-lg">{$activeSkill?.name}</strong>
+	{#if $activeSkill?.url}
+		<div class="flex items-center">
+			<Icon src={ArrowTopRightOnSquare} class="text-nord10" />
+			<a href={$activeSkill.url} target="_blank" rel="noopener noreferrer" class="text-sm ml-1">
+				open website
+			</a>
+		</div>
+	{/if}
+	<hr class="border-t border-nord3 w-full my-4" />
+	<span class="text-sm text-center my-2">{$activeSkill?.experience || '-'}</span>
+	<hr class="border-t border-nord3 w-full my-4" />
 	<Rating score={$activeSkill?.score || 0} />
 </div>
 

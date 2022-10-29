@@ -5,3 +5,5 @@ import * as THREE from 'three'
 export const camera = writable<Camera>(undefined)
 
 export const raycaster = writable<THREE.Raycaster>(new THREE.Raycaster())
+
+export const moved = writable<boolean>(false)

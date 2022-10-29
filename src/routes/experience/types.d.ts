@@ -2,7 +2,7 @@ export type Skill = {
 	id: number
 	name: string
 	logo: string
-	domain: string
+	url?: string
 	experience?: string
 	score?: number
 }
