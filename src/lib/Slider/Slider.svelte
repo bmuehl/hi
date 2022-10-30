@@ -115,8 +115,9 @@
 					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
 				</menuitem>
 			{:else}
+				{@const skill = skills[i - skills.length]}
 				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
-					{i + 1}
+					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
 				</div>
 			{/if}
 		{/each}
