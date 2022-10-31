@@ -112,12 +112,12 @@
 					use:onCollision={{ collider }}
 					on:collision={() => collisionHandler(skill.id)}
 				>
-					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
+					<img src={skill.logo} alt={skill.name} />
 				</menuitem>
 			{:else}
 				{@const skill = skills[i - skills.length]}
 				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
-					<img src={skill.logo} alt={skill.name} class="max-h-[80px] w-auto" />
+					<img src={skill.logo} alt={skill.name} />
 				</div>
 			{/if}
 		{/each}
@@ -197,10 +197,13 @@
 	}
 
 	.slide {
-		@apply pointer-events-auto flex w-[170px] flex-shrink-0 cursor-pointer items-center justify-center rounded-3xl px-14 py-10 transition-colors duration-200;
+		@apply pointer-events-auto flex h-[160px] w-[170px] flex-shrink-0 cursor-pointer items-center justify-center rounded-3xl p-7 transition-colors duration-200;
 
 		img {
-			@apply max-h-[80px] w-full select-none object-contain transition-transform duration-300;
+			@apply h-full w-full select-none object-contain transition-transform duration-300;
+			@apply scale-0;
+			--tw-scale-x: 0.6;
+			--tw-scale-y: 0.6;
 		}
 
 		&.active {
@@ -209,9 +212,7 @@
 
 		&:hover img,
 		&.active img {
-			@apply scale-150;
-			--tw-scale-x: 1.8;
-			--tw-scale-y: 1.8;
+			@apply scale-100;
 		}
 	}
 
