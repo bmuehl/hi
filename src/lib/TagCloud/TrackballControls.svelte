@@ -1,10 +1,8 @@
 <script lang="ts">
 	import * as THREE from 'three'
-	import { setup } from '../../utils/context'
 	import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls'
 	import { createEventDispatcher } from 'svelte'
-	import { onFrame } from '../../utils/lifecycle'
-	import type { Position } from '$lib/Three/types/common'
+	import { useFrame, useThrelte } from '@threlte/core'
 
 	export let dynamicDampingFactor = 0.1
 	export let enabled = true
@@ -20,45 +18,37 @@
 	export let rotateSpeed = 1
 	export let zoomSpeed = 1
 
-	export let target: Position = [0, 0, 0]
+	export let target = [0, 0, 0]
 
-	const { root } = setup()
+	const { camera, renderer } = useThrelte()
 	const dispatch = createEventDispatcher()
 
 	let controls: TrackballControls
 
-	root.controls.set((camera, canvas) => {
-		controls = new TrackballControls(camera, canvas)
+	controls = new TrackballControls($camera, renderer?.domElement)
 
-		controls.addEventListener('start', (e) => {
-			dispatch('start', e)
-		})
-
-		controls.addEventListener('end', (e) => {
-			dispatch('end', e)
-		})
-
-		controls.addEventListener('change', (e) => {
-			dispatch('change', e)
-
-			if (
-				!target ||
-				controls.target.x !== target[0] ||
-				controls.target.y !== target[1] ||
-				controls.target.z !== target[2]
-			) {
-				target = [controls.target.x, controls.target.y, controls.target.z]
-			}
-
-			root.invalidate()
-		})
-
-		// TODO do we need to remove these listeners?
-
-		return controls
+	controls.addEventListener('start', (e) => {
+		dispatch('start', e)
 	})
 
-	onFrame(() => {
+	controls.addEventListener('end', (e) => {
+		dispatch('end', e)
+	})
+
+	controls.addEventListener('change', (e) => {
+		dispatch('change', e)
+
+		if (
+			!target ||
+			controls.target.x !== target[0] ||
+			controls.target.y !== target[1] ||
+			controls.target.z !== target[2]
+		) {
+			target = [controls.target.x, controls.target.y, controls.target.z]
+		}
+	})
+
+	useFrame(() => {
 		if (controls) {
 			controls.update()
 		}

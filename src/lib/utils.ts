@@ -1,5 +1,5 @@
+import type { Mesh } from '@threlte/core'
 import { onDestroy } from 'svelte'
-import type { Mesh } from 'svelte-cubed'
 import type { Object3D } from 'three'
 import type { GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
 

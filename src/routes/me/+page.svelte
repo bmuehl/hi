@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { GLTFLoader, type GLTF } from 'three/examples/jsm/loaders/GLTFLoader'
-	import * as THREE from 'three'
-	import { applyMaterial } from '$lib/utils'
 	import { onMount } from 'svelte'
 	import NextLink from '$lib/NextLink/NextLink.svelte'
 	import Spinner from '$lib/Spinner/Spinner.svelte'
@@ -9,63 +6,15 @@
 		AmbientLight,
 		Canvas,
 		DirectionalLight,
-		onFrame,
 		OrbitControls,
-		PerspectiveCamera,
-		Primitive
-	} from '$lib/Three'
+		PerspectiveCamera
+	} from '@threlte/core'
+	import Scene from './Scene.svelte'
 
-	let guitar: GLTF
-	let racket: GLTF
-	let bottle: GLTF
-	let pixelRatio: number
-	let clientHeight: number
-	let clientWidth: number
-
-	let spin = 0
 	let loading = true
 
-	onMount(async () => {
-		pixelRatio = window.devicePixelRatio
-
-		const loader = new GLTFLoader()
-		guitar = await loader.loadAsync('/assets/models/guitar/scene.gltf')
-		racket = await loader.loadAsync('/assets/models/racket/scene.gltf')
-		bottle = await loader.loadAsync('/assets/models/bottle/scene.gltf')
-
-		applyMaterial(
-			guitar.scene,
-			new THREE.MeshStandardMaterial({
-				metalness: 0,
-				// roughness: 0,
-				color: new THREE.Color(0xa3be8c),
-				wireframe: true
-			})
-		)
-
-		applyMaterial(
-			racket.scene,
-			new THREE.MeshStandardMaterial({
-				metalness: 0,
-				color: new THREE.Color(0xebcb8b),
-				wireframe: true
-			})
-		)
-
-		applyMaterial(
-			bottle.scene,
-			new THREE.MeshStandardMaterial({
-				// metalness: 0,
-				color: new THREE.Color(0xd08770),
-				wireframe: true
-			})
-		)
-
+	onMount(() => {
 		loading = false
-	})
-
-	onFrame(() => {
-		spin += 0.01
 	})
 </script>
 
@@ -76,21 +25,27 @@
 <!-- nord11: 0xbf616a -->
 <!-- nord11: 0x2e3440 -->
 
-<div class="wrapper" bind:clientHeight bind:clientWidth>
-	{#if loading}
+{#if loading}
+	<div
+		class="absolute top-0 flex items-center justify-center h-screen w-screen pointer-events-none"
+	>
 		<Spinner />
-	{/if}
-	​<Canvas antialias alpha {pixelRatio} width={clientWidth} height={clientHeight}>
-		<PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
-		<OrbitControls enableZoom={false} enableDamping={true} dampingFactor={0.05} enablePan={false} />
-		<AmbientLight intensity={0.75} />
-		<DirectionalLight intensity={0.6} position={[0, 10, 10]} />
+	</div>
+{/if}
 
-		{#if !loading}
-			<Primitive object={guitar.scene} scale={[0.7, 0.7, 0.7]} rotation={[spin + 0.04, 0, 0]} />
-			<Primitive object={racket.scene} scale={[50, 50, 50]} rotation={[0, 0, spin + 0.04]} />
-			<Primitive object={bottle.scene} scale={[0.4, 0.4, 0.4]} rotation={[0, spin + 0.04, 0]} />
-		{/if}
+<div class="wrapper">
+	​<Canvas linear flat>
+		<PerspectiveCamera position={{ x: -10, y: 36, z: 20 }} near={1} far={500} fov={40} scale={0.7}>
+			<OrbitControls
+				enableZoom={false}
+				enableDamping={true}
+				dampingFactor={0.05}
+				enablePan={false}
+			/>
+		</PerspectiveCamera>
+		<AmbientLight intensity={0.75} />
+		<DirectionalLight intensity={0.6} position={{ x: 0, y: 10, z: 10 }} />
+		<Scene />
 	</Canvas>
 </div>
 
@@ -106,10 +61,6 @@
 
 <style lang="postcss">
 	.wrapper {
-		@apply absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden;
-
-		:global(> .container) {
-			@apply max-w-none; /* fix conflict with tailwindcss */
-		}
+		@apply absolute top-0 flex h-screen w-screen overflow-hidden;
 	}
 </style>
