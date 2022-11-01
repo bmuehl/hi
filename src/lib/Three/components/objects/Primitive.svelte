@@ -4,7 +4,7 @@
 	import { transform } from '../../utils/object'
 	import * as defaults from '../../utils/defaults'
 	import { onFrame } from '$lib/Three/utils/lifecycle'
-	import { moved, raycaster } from '$lib/Three/utils/store'
+	import { mouse } from '$lib/Three/utils/store'
 	import { createEventDispatcher, onDestroy } from 'svelte'
 
 	export let object: THREE.Object3D
@@ -22,11 +22,11 @@
 	const dispatchClickEvent = (e: MouseEvent) => {
 		e.stopPropagation() // todo: this is not working
 
-		if ($moved) {
+		if ($mouse.moved) {
 			return
 		}
 
-		const intersects = $raycaster.intersectObject(self)
+		const intersects = $mouse.raycaster.intersectObject(self)
 		if (intersects.length > 0) {
 			dispatch('click', self)
 		}
@@ -39,7 +39,7 @@
 	})
 
 	onFrame(() => {
-		const intersects = $raycaster.intersectObject(self)
+		const intersects = $mouse.raycaster.intersectObject(self)
 
 		if (intersects.length > 0) {
 			dispatch('pointerover', self)

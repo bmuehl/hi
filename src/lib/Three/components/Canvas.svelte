@@ -2,7 +2,7 @@
 	import { set_root } from '../utils/context'
 	import { onDestroy, onMount } from 'svelte'
 	import * as THREE from 'three'
-	import { moved, raycaster } from '../utils/store'
+	import { mouse } from '../utils/store'
 
 	/** Scene options https://threejs.org/docs/?q=scene#api/en/scenes/Scene */
 
@@ -219,22 +219,22 @@
 		invalidate()
 	}
 
-	const mouse = new THREE.Vector2()
+	const mousePosition = new THREE.Vector2()
 
 	const mouseHandler = (e: MouseEvent) => {
-		$moved = true
-		mouse.set(
+		$mouse.moved = true
+		mousePosition.set(
 			((e.clientX - rect.left) / (rect.right - rect.left)) * 2 - 1,
 			-((e.clientY - rect.top) / (rect.bottom - rect.top)) * 2 + 1
 		)
-		$raycaster.setFromCamera(mouse, root.camera.object)
+		$mouse.raycaster.setFromCamera(mousePosition, root.camera.object)
 	}
 </script>
 
 <svelte:window
 	on:resize={resize}
 	on:mousemove={mouseHandler}
-	on:mousedown={() => ($moved = false)}
+	on:mousedown={() => ($mouse.moved = false)}
 />
 
 <div class="three-container" bind:this={container}>

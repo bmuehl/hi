@@ -17,6 +17,7 @@
 
 	let guitar: GLTF
 	let racket: GLTF
+	let bottle: GLTF
 	let pixelRatio: number
 	let clientHeight: number
 	let clientWidth: number
@@ -30,6 +31,7 @@
 		const loader = new GLTFLoader()
 		guitar = await loader.loadAsync('/assets/models/guitar/scene.gltf')
 		racket = await loader.loadAsync('/assets/models/racket/scene.gltf')
+		bottle = await loader.loadAsync('/assets/models/bottle/scene.gltf')
 
 		applyMaterial(
 			guitar.scene,
@@ -46,6 +48,15 @@
 			new THREE.MeshStandardMaterial({
 				metalness: 0,
 				color: new THREE.Color(0xebcb8b),
+				wireframe: true
+			})
+		)
+
+		applyMaterial(
+			bottle.scene,
+			new THREE.MeshStandardMaterial({
+				// metalness: 0,
+				color: new THREE.Color(0xd08770),
 				wireframe: true
 			})
 		)
@@ -67,9 +78,7 @@
 
 <div class="wrapper" bind:clientHeight bind:clientWidth>
 	{#if loading}
-		<div class="relative top-16 left-3">
-			<Spinner />
-		</div>
+		<Spinner />
 	{/if}
 	​<Canvas antialias alpha {pixelRatio} width={clientWidth} height={clientHeight}>
 		<PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} zoom={0.7} />
@@ -80,6 +89,7 @@
 		{#if !loading}
 			<Primitive object={guitar.scene} scale={[0.7, 0.7, 0.7]} rotation={[spin + 0.04, 0, 0]} />
 			<Primitive object={racket.scene} scale={[50, 50, 50]} rotation={[0, 0, spin + 0.04]} />
+			<Primitive object={bottle.scene} scale={[0.4, 0.4, 0.4]} rotation={[0, spin + 0.04, 0]} />
 		{/if}
 	</Canvas>
 </div>
@@ -96,7 +106,7 @@
 
 <style lang="postcss">
 	.wrapper {
-		@apply absolute top-0 h-screen w-screen overflow-hidden;
+		@apply absolute top-0 flex h-screen w-screen items-center justify-center overflow-hidden;
 
 		:global(> .container) {
 			@apply max-w-none; /* fix conflict with tailwindcss */
