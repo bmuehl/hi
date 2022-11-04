@@ -3,9 +3,9 @@ lockfileVersion: 5.4
 specifiers:
   '@fontsource/fira-code': ^4.5.12
   '@sveltejs/adapter-static': 1.0.0-next.47
-  '@sveltejs/kit': 1.0.0-next.531
+  '@sveltejs/kit': 1.0.0-next.532
   '@threlte/core': ^4.3.2
-  '@threlte/extras': ^4.4.1
+  '@threlte/extras': ^4.5.0
   '@types/three': ^0.144.0
   '@typescript-eslint/eslint-plugin': ^5.42.0
   '@typescript-eslint/parser': ^5.42.0
@@ -33,13 +33,13 @@ specifiers:
 dependencies:
   '@fontsource/fira-code': 4.5.12
   '@threlte/core': 4.3.2
-  '@threlte/extras': 4.4.1_three@0.146.0
+  '@threlte/extras': 4.5.0_three@0.146.0
   tailwind-nord: 1.2.0
   three: 0.146.0
 
 devDependencies:
   '@sveltejs/adapter-static': 1.0.0-next.47
-  '@sveltejs/kit': 1.0.0-next.531_svelte@3.52.0+vite@3.2.2
+  '@sveltejs/kit': 1.0.0-next.532_svelte@3.52.0+vite@3.2.2
   '@types/three': 0.144.0
   '@typescript-eslint/eslint-plugin': 5.42.0_6xw5wg2354iw4zujk2f3vyfrzu
   '@typescript-eslint/parser': 5.42.0_wyqvi574yv7oiwfeinomdzmc3m
@@ -168,8 +168,8 @@ packages:
     resolution: {integrity: sha512-pYY9/FhJAIWB3BXnLoKXj5yMZjQjtD9ZsW8UOqKE51H5sbCNHu+wdBlh2CkW20ww4yhfYrlvLWioxij6DPRO9w==}
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.531_svelte@3.52.0+vite@3.2.2:
-    resolution: {integrity: sha512-8uBJF5BweIFoyw+Kqv0jsDSfndNw2mTF222qi8rDuptOy7gjoWXYFy2F0kd8orNeZUnjFrHE+g/qDNHq7zzEJg==}
+  /@sveltejs/kit/1.0.0-next.532_svelte@3.52.0+vite@3.2.2:
+    resolution: {integrity: sha512-g+t+dncoz/DBc1mfwSfBaIBqE5pl0caMUy7yZzjsnyw0WG3AevC04d2KfTOgtOMgXVDnSVqZxlTR+MM5tnKeyw==}
     engines: {node: '>=16.14'}
     hasBin: true
     requiresBuild: true
@@ -180,7 +180,7 @@ packages:
       '@sveltejs/vite-plugin-svelte': 1.1.0_svelte@3.52.0+vite@3.2.2
       '@types/cookie': 0.5.1
       cookie: 0.5.0
-      devalue: 4.0.1
+      devalue: 4.2.0
       kleur: 4.1.5
       magic-string: 0.26.7
       mime: 3.0.0
@@ -222,8 +222,8 @@ packages:
     resolution: {integrity: sha512-CiXT8CCpqxg0Ss15xn2fpJtMGtXxH1hKjhkf/zfETdU/ZtkuPSMQxnuE7exnXMySHsccmyGH66o1cgKZZ1UE4A==}
     dev: false
 
-  /@threlte/extras/4.4.1_three@0.146.0:
-    resolution: {integrity: sha512-7hrSqV0JOb8aVwUdkejyXuZY3T9j6FsDJqfg2+/+dT4YYdmxV3pZtr1GdP5gNgnI4Z92PH9cEuePhkHo2BkSYg==}
+  /@threlte/extras/4.5.0_three@0.146.0:
+    resolution: {integrity: sha512-Mp99m4BOl9gfc7MBNlcVzZ47ZowkaiKfWi/+VMmaGvQ03xXm7iVwCnzMFCYHIBCSjfQyu/eHc9b4h6dZ6WkDHw==}
     dependencies:
       troika-three-text: 0.46.4_three@0.146.0
     transitivePeerDependencies:
@@ -675,8 +675,8 @@ packages:
       minimist: 1.2.7
     dev: true
 
-  /devalue/4.0.1:
-    resolution: {integrity: sha512-Oksbel8g2rv5ivcCyImF1RXEU2FcS1OtCwVs4tJCCeVws/Dp9EE15fUbEsNr/xLD3ZxsQURBCDf56Lk1CgwCpg==}
+  /devalue/4.2.0:
+    resolution: {integrity: sha512-mbjoAaCL2qogBKgeFxFPOXAUsZchircF+B/79LD4sHH0+NHfYm8gZpQrskKDn5gENGt35+5OI1GUF7hLVnkPDw==}
     dev: true
 
   /didyoumean/1.2.2:
