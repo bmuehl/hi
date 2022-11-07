@@ -8,12 +8,17 @@
 	import Icon from '$lib/Icon/Icon.svelte'
 	import Tag from './Tag.svelte'
 	import TrackballControls from './TrackballControls.svelte'
+	import { onMount } from 'svelte'
+	import { fade } from 'svelte/transition'
 
 	export let skills: Array<Skill> = []
 
 	let cameraPositionZ = tweened(11, { duration: 1200, easing: expoIn })
 	let loaded = false
 	let active = false
+	let start = false
+
+	onMount(() => setTimeout(() => (start = true), 250))
 
 	$: (async () => {
 		if (loaded) {
@@ -24,50 +29,54 @@
 </script>
 
 <div
-	class="tagcloud relative overflow-hidden md:overflow-visible h-[380px] md:h-[550px] max-w-[750px] mx-auto flex"
+	class="tagcloud relative overflow-hidden md:overflow-visible h-[380px] md:h-[550px] max-w-[750px] mx-auto flex items-center justify-center"
 >
-	​<Canvas linear flat>
-		<Fog color={0x2e3440} near={0} far={60} />
-		<PerspectiveCamera position={{ x: 0, y: 0, z: $cameraPositionZ }} />
-		{#if active}
-			<TrackballControls zoomSpeed={2} panSpeed={0} maxDistance={50} minDistance={4} />
-		{/if}
-		<AmbientLight intensity={0.75} />
-		<DirectionalLight intensity={0.6} position={{ x: -2, y: 3, z: 2 }} />
+	{#if start}
+		<div class="flex w-full h-full" in:fade>
+			​<Canvas linear flat>
+				<Fog color={0x2e3440} near={0} far={60} />
+				<PerspectiveCamera position={{ x: 0, y: 0, z: $cameraPositionZ }} />
+				{#if active}
+					<TrackballControls zoomSpeed={2} panSpeed={0} maxDistance={50} minDistance={4} />
+				{/if}
+				<AmbientLight intensity={0.75} />
+				<DirectionalLight intensity={0.6} position={{ x: -2, y: 3, z: 2 }} />
 
-		{#each skills as skill, index}
-			<Tag
-				text={skill.name}
-				{index}
-				{skills}
-				length={skills.length}
-				on:loaded={() => (loaded = true)}
-			/>
-		{/each}
-	</Canvas>
+				{#each skills as skill, index}
+					<Tag
+						text={skill.name}
+						{index}
+						{skills}
+						length={skills.length}
+						on:loaded={() => (loaded = true)}
+					/>
+				{/each}
+			</Canvas>
 
-	<div class="overlay">
-		<Icon
-			src={ChevronUp}
-			size="l"
-			class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
-		/>
-		<Icon
-			src={ChevronUp}
-			size="l"
-			class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
-		/>
-		<Icon
-			src={ChevronDown}
-			size="l"
-			class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
-		/>
-		<Icon
-			src={ChevronDown}
-			size="l"
-			class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
-		/>
-	</div>
+			<div class="overlay">
+				<Icon
+					src={ChevronUp}
+					size="l"
+					class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
+				/>
+				<Icon
+					src={ChevronUp}
+					size="l"
+					class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
+				/>
+				<Icon
+					src={ChevronDown}
+					size="l"
+					class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
+				/>
+				<Icon
+					src={ChevronDown}
+					size="l"
+					class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
+				/>
+			</div>
+		</div>
+	{/if}
 </div>
 
 <style lang="postcss">
