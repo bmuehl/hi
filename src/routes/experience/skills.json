@@ -27,6 +27,7 @@
 		"id": 4,
 		"name": "CSS3",
 		"logo": "./assets/css3.svg",
+		"url": "https://www.w3.org/Style/CSS/",
 		"experience": "Used for a long time, but I'm not a designer",
 		"score": 5
 	},

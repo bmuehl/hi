@@ -160,7 +160,7 @@
 		{/if}
 	</div>
 	<hr class="border-t border-nord3 w-full" />
-	<div class="content">
+	<div class="content h-20">
 		<span class="text-sm text-center my-2">{$activeSkill?.experience || '-'}</span>
 	</div>
 	<hr class="border-t border-nord3 w-full" />
