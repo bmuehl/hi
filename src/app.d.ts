@@ -8,5 +8,3 @@ declare namespace App {
 	// interface PageData {}
 	// interface Platform {}
 }
-
-declare module 'TagCloud'
