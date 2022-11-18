@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { tweened } from 'svelte/motion'
 	import { expoIn } from 'svelte/easing'
-	import { AmbientLight, Canvas, DirectionalLight, PerspectiveCamera, Fog } from '@threlte/core'
+	import { Canvas, T, Fog } from '@threlte/core'
 	import type { Skill } from 'src/routes/experience/types'
 	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
 	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
@@ -29,18 +29,18 @@
 </script>
 
 <div
-	class="tagcloud relative overflow-hidden md:overflow-visible h-[380px] md:h-[550px] max-w-[750px] mx-auto flex items-center justify-center"
+	class="tagcloud relative mx-auto flex h-[380px] max-w-[750px] items-center justify-center overflow-hidden md:h-[550px] md:overflow-visible"
 >
 	{#if start}
-		<div class="flex w-full h-full" in:fade>
-			​<Canvas linear flat>
+		<div class="flex h-full w-full" in:fade>
+			<Canvas linear flat>
 				<Fog color={0x2e3440} near={0} far={60} />
-				<PerspectiveCamera position={{ x: 0, y: 0, z: $cameraPositionZ }} />
+				<T.PerspectiveCamera makeDefault position={[0, 0, $cameraPositionZ]} />
 				{#if active}
 					<TrackballControls zoomSpeed={2} panSpeed={0} maxDistance={50} minDistance={4} />
 				{/if}
-				<AmbientLight intensity={0.75} />
-				<DirectionalLight intensity={0.6} position={{ x: -2, y: 3, z: 2 }} />
+				<T.AmbientLight intensity={0.75} />
+				<T.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
 
 				{#each skills as skill, index}
 					<Tag

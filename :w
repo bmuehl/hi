@@ -2,10 +2,12 @@
 	import { onMount } from 'svelte'
 	import NextLink from '$lib/NextLink/NextLink.svelte'
 	import Spinner from '$lib/Spinner/Spinner.svelte'
-	import { T, Canvas, OrbitControls } from '@threlte/core'
+	import { T, Canvas, useThrelte } from '@threlte/core'
 	import Scene from './Scene.svelte'
 
 	let loading = true
+
+	const { renderer } = useThrelte()
 
 	onMount(() => {
 		loading = false
@@ -29,20 +31,14 @@
 
 <div class="wrapper">
 	<Canvas linear flat>
-		<T.PerspectiveCamera
-			makeDefault
-			position={[-10, 36, 20]}
-			near={1}
-			far={500}
-			fov={40}
-			scale={0.7}
-		>
-			<OrbitControls
-				enableZoom={false}
-				enableDamping={true}
-				dampingFactor={0.05}
-				enablePan={false}
-			/>
+		<T.PerspectiveCamera position={[-10, 36, 20]} near={1} far={500} fov={40} scale={0.7} let:ref>
+			<!-- <T.OrbitControls -->
+			<!-- 	args={[ref, renderer?.domElement]} -->
+			<!-- 	enableZoom={false} -->
+			<!-- 	enableDamping={true} -->
+			<!-- 	dampingFactor={0.05} -->
+			<!-- 	enablePan={false} -->
+			<!-- /> -->
 		</T.PerspectiveCamera>
 		<T.AmbientLight intensity={0.75} />
 		<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
