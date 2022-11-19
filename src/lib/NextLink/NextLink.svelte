@@ -8,10 +8,10 @@
 
 <a
 	class="my-8 inline-flex items-center justify-center"
-	use:clickOnKey
+	use:clickOnKey={[' ']}
 	data-sveltekit-prefetch
 	{href}
 >
 	<span>{top ? 'top' : 'next'}</span>
-	<span class="hidden md:inline-flex">&nbsp;/&nbsp;<Kbd>Enter</Kbd></span>
+	<span class="hidden md:inline-flex">&nbsp;/&nbsp;<Kbd>Space</Kbd></span>
 </a>
