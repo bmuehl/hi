@@ -11,6 +11,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.46.1
   '@typescript-eslint/parser': ^5.46.1
   autoprefixer: ^10.4.13
+  cv: 'link:'
   eslint: ^8.30.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
@@ -19,7 +20,7 @@ specifiers:
   postcss: ^8.4.20
   postcss-load-config: ^4.0.1
   prettier: ^2.8.1
-  prettier-plugin-tailwindcss: ^0.2.1
+  prettier-plugin-svelte: ^2.9.0
   rollup: ^3.7.5
   svelte: 3.55.0
   svelte-check: ^2.10.2
@@ -36,6 +37,7 @@ dependencies:
   '@fontsource/fira-code': 4.5.12
   '@threlte/core': 5.0.8
   '@threlte/extras': 4.9.2_three@0.147.0
+  cv: 'link:'
   tailwind-nord: 1.2.0
   three: 0.147.0
 
@@ -55,7 +57,7 @@ devDependencies:
   postcss: 8.4.20
   postcss-load-config: 4.0.1_postcss@8.4.20
   prettier: 2.8.1
-  prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.1
+  prettier-plugin-svelte: 2.9.0_ajxj753sv7dbwexjherrch25ta
   rollup: 3.7.5
   svelte: 3.55.0
   svelte-check: 2.10.2_7tgmgw23w4ankk7vtabgm5xtbu
@@ -1805,13 +1807,14 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-tailwindcss/0.2.1_prettier@2.8.1:
-    resolution: {integrity: sha512-aIO8IguumORyRsmT+E7JfJ3A9FEoyhqZR7Au7TBOege3VZkgMvHJMkufeYp4zjnDK2iq4ktkvGMNOQR9T8lisQ==}
-    engines: {node: '>=12.17.0'}
+  /prettier-plugin-svelte/2.9.0_ajxj753sv7dbwexjherrch25ta:
+    resolution: {integrity: sha512-3doBi5NO4IVgaNPtwewvrgPpqAcvNv0NwJNflr76PIGgi9nf1oguQV1Hpdm9TI2ALIQVn/9iIwLpBO5UcD2Jiw==}
     peerDependencies:
-      prettier: '>=2.2.0'
+      prettier: ^1.16.4 || ^2.0.0
+      svelte: ^3.2.0
     dependencies:
       prettier: 2.8.1
+      svelte: 3.55.0
     dev: true
 
   /prettier/2.8.1:

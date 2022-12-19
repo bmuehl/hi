@@ -1,5 +1,4 @@
 {
-	"plugins": ["prettier-plugin-tailwindcss"],
 	"useTabs": true,
 	"singleQuote": true,
 	"tabWidth": 2,
@@ -7,5 +6,7 @@
 	"bracketSameLine": false,
 	"semi": false,
 	"printWidth": 100,
-	"svelteStrictMode": false
+	"plugins": ["prettier-plugin-svelte"],
+	"pluginSearchDirs": ["."],
+	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
 }
