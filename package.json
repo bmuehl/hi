@@ -13,13 +13,13 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "1.0.0",
-		"@sveltejs/kit": "1.0.0",
+		"@sveltejs/kit": "1.0.1",
 		"@threlte/preprocess": "^0.0.2",
 		"@types/three": "^0.146.0",
 		"@typescript-eslint/eslint-plugin": "^5.46.1",
 		"@typescript-eslint/parser": "^5.46.1",
 		"autoprefixer": "^10.4.13",
-		"eslint": "^8.29.0",
+		"eslint": "^8.30.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-svelte3": "^4.0.0",
@@ -28,7 +28,7 @@
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.1",
 		"prettier-plugin-tailwindcss": "^0.2.1",
-		"rollup": "^3.7.4",
+		"rollup": "^3.7.5",
 		"svelte": "3.55.0",
 		"svelte-check": "^2.10.2",
 		"svelte-preprocess": "^5.0.0",
@@ -36,13 +36,13 @@
 		"tailwindcss": "^3.2.4",
 		"tslib": "^2.4.1",
 		"typescript": "~4.9.4",
-		"vite": "^4.0.1"
+		"vite": "^4.0.2"
 	},
 	"type": "module",
 	"dependencies": {
 		"@fontsource/fira-code": "^4.5.12",
-		"@threlte/core": "^5.0.7",
-		"@threlte/extras": "^4.8.0",
+		"@threlte/core": "^5.0.8",
+		"@threlte/extras": "^4.9.2",
 		"tailwind-nord": "^1.2.0",
 		"three": "^0.147.0"
 	}
