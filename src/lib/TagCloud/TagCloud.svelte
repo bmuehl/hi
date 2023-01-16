@@ -22,7 +22,7 @@
 
 	$: (async () => {
 		if (loaded) {
-			await cameraPositionZ.set(27)
+			await cameraPositionZ.set(28)
 			active = true
 		}
 	})()
