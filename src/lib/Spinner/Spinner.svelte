@@ -10,7 +10,7 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	.wrapper {
 		@apply h-8 w-8;
 	}
