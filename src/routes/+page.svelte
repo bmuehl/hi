@@ -8,6 +8,10 @@
 	import NextLink from '$lib/NextLink/NextLink.svelte'
 </script>
 
+<svelte:head>
+	<title>Bernhard Mühl | My Info</title>
+</svelte:head>
+
 <div class="flex flex-col">
 	<div>
 		<h1>Bernhard Mühl</h1>

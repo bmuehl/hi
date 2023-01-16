@@ -24,14 +24,14 @@
 			category: 'work',
 			time: 'Vienna, 2015 - Present',
 			title: 'Vienna BioCenter Core Facilities',
-			description: 'Software Engineer',
+			description: 'Software Architect',
 			status: 'in-progress'
 		},
 		{
 			category: 'work',
 			time: 'Vienna, 2019 - Present',
 			title: 'Hyke Systems',
-			description: 'Web Developer',
+			description: 'Full Stack Developer',
 			status: 'in-progress'
 		}
 	]

@@ -7,7 +7,9 @@
 	export let data: PageData
 </script>
 
-<!-- <h1 class="mb-2">Experience</h1> -->
+<svelte:head>
+	<title>Bernhard Mühl | My Experience</title>
+</svelte:head>
 
 <div class="w-full">
 	<TagCloud skills={data.skills} />

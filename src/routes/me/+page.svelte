@@ -19,6 +19,10 @@
 <!-- nord11: 0xbf616a -->
 <!-- nord11: 0x2e3440 -->
 
+<svelte:head>
+	<title>Bernhard Mühl | My Self</title>
+</svelte:head>
+
 {#if loading}
 	<div
 		class="pointer-events-none absolute top-0 flex h-screen w-screen items-center justify-center"
