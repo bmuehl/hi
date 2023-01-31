@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte'
 	import NextLink from '$lib/NextLink/NextLink.svelte'
 	import Spinner from '$lib/Spinner/Spinner.svelte'
-	import { T, Canvas, OrbitControls } from '@threlte/core'
+	import { Canvas } from '@threlte/core'
 	import Scene from './Scene.svelte'
 
 	let loading = true
@@ -31,25 +31,8 @@
 	</div>
 {/if}
 
-<div class="wrapper">
+<div class="absolute top-0 flex h-screen w-screen overflow-hidden">
 	<Canvas linear flat>
-		<T.PerspectiveCamera
-			makeDefault
-			position={[-10, 36, 20]}
-			near={1}
-			far={500}
-			fov={40}
-			scale={0.7}
-		>
-			<OrbitControls
-				enableZoom={false}
-				enableDamping={true}
-				dampingFactor={0.05}
-				enablePan={false}
-			/>
-		</T.PerspectiveCamera>
-		<T.AmbientLight intensity={0.75} />
-		<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
 		<Scene />
 	</Canvas>
 </div>
@@ -63,9 +46,3 @@
 
 	<NextLink href="/" top />
 </div>
-
-<style lang="postcss">
-	.wrapper {
-		@apply absolute top-0 flex h-screen w-screen overflow-hidden;
-	}
-</style>

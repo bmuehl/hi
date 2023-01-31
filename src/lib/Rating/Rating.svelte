@@ -5,7 +5,7 @@
 <div class="flex items-center">
 	<svg
 		aria-hidden="true"
-		class="w-5 h-5"
+		class="h-5 w-5"
 		class:text-nord3={score < 1}
 		class:text-nord13={score >= 1}
 		fill="currentColor"
@@ -17,7 +17,7 @@
 	>
 	<svg
 		aria-hidden="true"
-		class="w-5 h-5 "
+		class="h-5 w-5 "
 		class:text-nord3={score < 2}
 		class:text-nord13={score >= 2}
 		fill="currentColor"
@@ -29,7 +29,7 @@
 	>
 	<svg
 		aria-hidden="true"
-		class="w-5 h-5"
+		class="h-5 w-5"
 		class:text-nord3={score < 3}
 		class:text-nord13={score >= 3}
 		fill="currentColor"
@@ -41,7 +41,7 @@
 	>
 	<svg
 		aria-hidden="true"
-		class="w-5 h-5"
+		class="h-5 w-5"
 		class:text-nord3={score < 4}
 		class:text-nord13={score >= 4}
 		fill="currentColor"
@@ -53,7 +53,7 @@
 	>
 	<svg
 		aria-hidden="true"
-		class="w-5 h-5"
+		class="h-5 w-5"
 		class:text-nord3={score < 5}
 		class:text-nord13={score >= 5}
 		fill="currentColor"

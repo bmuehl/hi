@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Skill } from 'src/routes/experience/types'
+	import type { Skill } from '$routes/experience/types'
 	import { onMount } from 'svelte'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'
@@ -123,7 +123,7 @@
 		{/each}
 	</div>
 	<div
-		class="absolute z-20 flex bottom-0 md:h-full right-2 items-center"
+		class="absolute bottom-0 right-2 z-20 flex items-center md:h-full"
 		class:opacity-40={!$focusSkill}
 	>
 		<button
@@ -151,19 +151,19 @@
 					href={$activeSkill.url}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-xs ml-1 flex items-center"
+					class="ml-1 flex items-center text-xs"
 				>
 					open website
-					<Icon src={ArrowTopRightOnSquare} size="xs" class="text-nord10 ml-1" />
+					<Icon src={ArrowTopRightOnSquare} size="xs" class="ml-1 text-nord10" />
 				</a>
 			</div>
 		{/if}
 	</div>
-	<hr class="border-t border-nord3 w-full" />
+	<hr class="w-full border-t border-nord3" />
 	<div class="content h-20">
-		<span class="text-sm text-center my-2">{$activeSkill?.experience || '-'}</span>
+		<span class="my-2 text-center text-sm">{$activeSkill?.experience || '-'}</span>
 	</div>
-	<hr class="border-t border-nord3 w-full" />
+	<hr class="w-full border-t border-nord3" />
 	<div class="footer">
 		<Rating score={$activeSkill?.score || 0} />
 	</div>

@@ -37,7 +37,7 @@
 				</div>
 			</div>
 
-			<div class="flex text-xs mt-6 text-nord7 max-w-sm">
+			<div class="mt-6 flex max-w-sm text-xs text-nord7">
 				I'm currently looking for a new job opportunity.<br />
 				If you have any questions or want to get in touch, feel free to contact me. :&#41;
 			</div>

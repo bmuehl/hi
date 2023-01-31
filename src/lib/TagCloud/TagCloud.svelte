@@ -2,7 +2,7 @@
 	import { tweened } from 'svelte/motion'
 	import { expoIn } from 'svelte/easing'
 	import { Canvas, T, Fog } from '@threlte/core'
-	import type { Skill } from 'src/routes/experience/types'
+	import type { Skill } from '$routes/experience/types'
 	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
 	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
 	import Icon from '$lib/Icon/Icon.svelte'

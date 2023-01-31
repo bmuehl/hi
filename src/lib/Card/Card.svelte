@@ -23,7 +23,7 @@
 <div class="shadow-lg">
 	<div class="flex flex-col overflow-hidden rounded-lg bg-nord1 md:flex-row">
 		<div class="self-stretch bg-[#adefd1]">
-			<img src={`./assets/${image}`} class="md:object-cover mx-auto h-full" alt="card" />
+			<img src={`./assets/${image}`} class="mx-auto h-full md:object-cover" alt="card" />
 		</div>
 		<div class="relative">
 			<div class="p-8 sm:p-9 md:p-7 xl:p-9">

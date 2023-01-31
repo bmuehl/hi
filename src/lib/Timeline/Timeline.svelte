@@ -37,13 +37,13 @@
 	]
 </script>
 
-<ol class="border-l border-gray-200 dark:border-gray-700 mx-4">
+<ol class="mx-4 border-l border-gray-200 dark:border-gray-700">
 	<InView>
 		{#each items as item, i}
-			<li class="mb-10 ml-8 relative">
+			<li class="relative mb-10 ml-8">
 				<span
 					in:blur={{ delay: i * 800 }}
-					class="flex absolute -left-[49px] justify-center items-center w-8 h-8 rounded-full"
+					class="absolute -left-[49px] flex h-8 w-8 items-center justify-center rounded-full"
 					class:bg-nord14={item.status === 'done'}
 					class:bg-nord13={item.status === 'waiting'}
 					class:bg-nord12={item.status === 'in-progress'}

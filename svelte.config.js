@@ -14,7 +14,10 @@ const config = {
 			pages: 'build',
 			assets: 'build',
 			fallback: undefined
-		})
+		}),
+		alias: {
+			$routes: './src/routes'
+		}
 	}
 }
 

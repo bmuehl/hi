@@ -5,7 +5,7 @@
 	import { Vector3, Color, MeshBasicMaterial } from 'three'
 	import { focusSkill } from '$lib/store'
 	import { tweened } from 'svelte/motion'
-	import type { Skill } from 'src/routes/experience/types'
+	import type { Skill } from '$routes/experience/types'
 	import { createEventDispatcher } from 'svelte'
 	import { get } from 'svelte/store'
 

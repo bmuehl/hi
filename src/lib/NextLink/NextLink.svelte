@@ -9,7 +9,7 @@
 <a
 	class="my-8 inline-flex items-center justify-center"
 	use:clickOnKey={[' ']}
-	data-sveltekit-prefetch
+	data-sveltekit-preload-code="viewport"
 	{href}
 >
 	<span>{top ? 'top' : 'next'}</span>
