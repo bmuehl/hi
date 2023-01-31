@@ -12,7 +12,7 @@
 <header>
 	<div class="wrapper">
 		<div class="nav-item" class:active={active === 'home'}>
-			<a data-sveltekit-prefetch href="/" use:clickOnKey={['h', 'H']}>
+			<a data-sveltekit-preload-code="viewport" href="/" use:clickOnKey={['h', 'H']}>
 				<span class="key-binding">h</span>ome
 			</a>
 		</div>
@@ -20,7 +20,7 @@
 			<Icon src={ChevronRight} />
 		</div>
 		<div class="nav-item" class:active={active === 'timeline'}>
-			<a data-sveltekit-prefetch href="/timeline" use:clickOnKey={['t', 'T']}>
+			<a data-sveltekit-preload-code="viewport" href="/timeline" use:clickOnKey={['t', 'T']}>
 				<span class="key-binding">t</span>imeline
 			</a>
 		</div>
@@ -28,7 +28,7 @@
 			<Icon src={ChevronRight} />
 		</div>
 		<div class="nav-item" class:active={active === 'experience'}>
-			<a data-sveltekit-prefetch href="/experience" use:clickOnKey={['e', 'E']}>
+			<a data-sveltekit-preload-code="viewport" href="/experience" use:clickOnKey={['e', 'E']}>
 				<span class="key-binding">e</span>xperience
 			</a>
 		</div>
@@ -36,7 +36,7 @@
 			<Icon src={ChevronRight} />
 		</div>
 		<div class="nav-item" class:active={active === 'me'}>
-			<a data-sveltekit-prefetch href="/me" use:clickOnKey={['A', 'a']}>
+			<a data-sveltekit-preload-code="viewport" href="/me" use:clickOnKey={['A', 'a']}>
 				<span class="key-binding">a</span>bout me
 			</a>
 		</div>
