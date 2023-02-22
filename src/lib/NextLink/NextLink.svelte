@@ -17,5 +17,5 @@
 	on:swipeleft={() => goto(href)}
 >
 	<span>{top ? 'to start' : 'next page'}</span>
-	<span class="hidden md:inline-flex">&nbsp;/&nbsp;<Kbd>Space</Kbd></span>
+	<span class="hidden md:inline-flex md:items-center">&nbsp;/&nbsp;<Kbd>Space</Kbd></span>
 </a>
