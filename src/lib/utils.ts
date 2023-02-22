@@ -28,6 +28,8 @@ export function clickOnKey(element: HTMLElement, keys = ['Enter']) {
 		([entry]) => {
 			if (entry.isIntersecting) {
 				inView = true
+			} else {
+				inView = false
 			}
 		},
 		{
