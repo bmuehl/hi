@@ -20,6 +20,6 @@
 
 <style lang="postcss">
 	section {
-		@apply container mb-9 flex min-h-screen min-w-full flex-col items-center justify-center px-4 pt-14;
+		@apply container flex min-h-screen min-w-full flex-col items-center justify-center px-4 pt-16 pb-9;
 	}
 </style>

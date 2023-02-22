@@ -70,6 +70,41 @@ export function clickOnKey(element: HTMLElement, keys = ['Enter']) {
 	}
 }
 
+export function onSwipe(element: HTMLElement) {
+	let touchstartX = 0
+	let touchendX = 0
+
+	function checkDirection() {
+		if (touchendX < touchstartX) {
+			element.dispatchEvent(new CustomEvent('swipeleft'))
+		}
+		if (touchendX > touchstartX) {
+			element.dispatchEvent(new CustomEvent('swiperight'))
+		}
+	}
+
+	function touchstartHandler(e: TouchEvent) {
+		if (e.target !== element) return
+		touchstartX = e.changedTouches[0].screenX
+	}
+
+	function touchendHandler(e: TouchEvent) {
+		if (e.target !== element) return
+		touchendX = e.changedTouches[0].screenX
+		checkDirection()
+	}
+
+	element.addEventListener('touchstart', touchstartHandler)
+	element.addEventListener('touchend', touchendHandler)
+
+	return {
+		destroy() {
+			element.removeEventListener('touchstart', touchstartHandler)
+			element.removeEventListener('touchend', touchendHandler)
+		}
+	}
+}
+
 export function randomNumberBetween(min = 0, max = 1) {
 	return Math.floor(Math.random() * (max - min + 1) + min)
 }
