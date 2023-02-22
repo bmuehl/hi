@@ -4,15 +4,15 @@
 
 	export let path: string
 
-	let height: number
+	let width: number
 	const duration = 350
 </script>
 
 {#key path}
 	<section
-		in:fly={{ y: height, duration, delay: duration - 100, easing: elasticOut }}
-		out:fly={{ y: -height, duration, easing: backIn }}
-		bind:clientHeight={height}
+		in:fly={{ x: width, duration, delay: duration - 100, easing: elasticOut }}
+		out:fly={{ x: -width, duration, easing: backIn }}
+		bind:clientWidth={width}
 	>
 		<slot />
 	</section>
@@ -20,6 +20,6 @@
 
 <style lang="postcss">
 	section {
-		@apply container mx-auto flex min-h-screen flex-col items-center justify-center px-4 pt-14 mb-9;
+		@apply container mb-9 flex min-h-screen min-w-full flex-col items-center justify-center px-4 pt-14;
 	}
 </style>

@@ -22,9 +22,28 @@ export const getJoke = async () => {
 }
 
 export function clickOnKey(element: HTMLElement, keys = ['Enter']) {
+	let inView = false
+
+	const observer = new window.IntersectionObserver(
+		([entry]) => {
+			if (entry.isIntersecting) {
+				inView = true
+			}
+		},
+		{
+			root: null,
+			threshold: 0
+		}
+	)
+
 	function handleKeyDown(event: KeyboardEvent) {
 		if (keys.includes(event.key)) {
 			event.preventDefault()
+			if (!inView) {
+				element.scrollIntoView({
+					behavior: 'smooth'
+				})
+			}
 			element.focus()
 		}
 	}
@@ -36,11 +55,13 @@ export function clickOnKey(element: HTMLElement, keys = ['Enter']) {
 		}
 	}
 
+	observer.observe(element)
 	document.addEventListener('keydown', handleKeyDown)
 	document.addEventListener('keyup', handleKeyUp)
 
 	return {
 		destroy() {
+			observer.disconnect()
 			document.removeEventListener('keydown', handleKeyDown)
 			document.removeEventListener('keyup', handleKeyUp)
 		}
