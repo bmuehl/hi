@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte'
 	import { tweened } from 'svelte/motion'
 	import { cubicOut } from 'svelte/easing'
-	import { inView, onCollision, onSwipe } from '$lib/utils'
+	import { inView, onCollision } from '$lib/utils'
 	import { activeSkill, focusSkill } from '$lib/store'
 	import Rating from '$lib/Rating/Rating.svelte'
 	import Icon from '$lib/Icon/Icon.svelte'
@@ -99,12 +99,7 @@
 
 <div class="slider">
 	<div class="collider" bind:this={collider} />
-	<div
-		class="slides" 
-		bind:this={slides}
-		use:onSwipe	
-		on:swipeleft={() => ($focusSkill = $activeSkill?.id)}
-	>
+	<div class="slides" bind:this={slides}>
 		{#each { length: skills.length * 2 } as _, i}
 			{#if i < skills.length}
 				{@const skill = skills[i]}

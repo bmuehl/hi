@@ -56,7 +56,7 @@
 		@apply flex h-full items-center justify-center whitespace-nowrap px-4;
 
 		&.active {
-			@apply bg-nord1 bg-opacity-80 rounded-b-lg;
+			@apply rounded-b-lg bg-nord1 bg-opacity-80;
 		}
 	}
 
