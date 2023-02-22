@@ -45,7 +45,7 @@
 
 <style lang="postcss">
 	header {
-		@apply absolute left-0 top-0 right-0 z-10 h-14 overflow-x-auto bg-nord1 bg-opacity-90 shadow-lg;
+		@apply absolute left-0 top-0 right-0 z-10 h-14 overflow-x-auto;
 	}
 
 	.wrapper {
@@ -56,7 +56,7 @@
 		@apply flex h-full items-center justify-center whitespace-nowrap px-4;
 
 		&.active {
-			@apply bg-nord0 bg-opacity-90 shadow-inner;
+			@apply bg-nord1 bg-opacity-80 rounded-b-lg;
 		}
 	}
 

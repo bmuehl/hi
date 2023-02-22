@@ -20,6 +20,6 @@
 
 <style lang="postcss">
 	section {
-		@apply container mx-auto flex min-h-screen flex-col items-center justify-center px-4 pt-20;
+		@apply container mx-auto flex min-h-screen flex-col items-center justify-center px-4 pt-14 mb-9;
 	}
 </style>
