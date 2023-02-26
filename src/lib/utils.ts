@@ -105,6 +105,27 @@ export function onSwipe(element: HTMLElement) {
 	}
 }
 
+export function onDoubleTap(element: HTMLElement) {
+	let lastTap = 0
+
+	function handleTap() {
+		const now = new Date().getTime()
+		const timesince = now - lastTap
+		if (timesince < 200 && timesince > 0) {
+			element.dispatchEvent(new CustomEvent('dbltab'))
+		}
+		lastTap = now
+	}
+
+	document.addEventListener('touchstart', handleTap)
+
+	return {
+		destroy() {
+			document.removeEventListener('touchstart', handleTap)
+		}
+	}
+}
+
 export function randomNumberBetween(min = 0, max = 1) {
 	return Math.floor(Math.random() * (max - min + 1) + min)
 }
