@@ -111,17 +111,17 @@ export function onDoubleTap(element: HTMLElement) {
 	function handleTap() {
 		const now = new Date().getTime()
 		const timesince = now - lastTap
-		if (timesince < 200 && timesince > 0) {
+		if (timesince < 200 && timesince > 100) {
 			element.dispatchEvent(new CustomEvent('dbltab'))
 		}
 		lastTap = now
 	}
 
-	document.addEventListener('click', handleTap)
+	document.addEventListener('touchstart', handleTap)
 
 	return {
 		destroy() {
-			document.removeEventListener('click', handleTap)
+			document.removeEventListener('touchstart', handleTap)
 		}
 	}
 }
