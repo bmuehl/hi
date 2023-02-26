@@ -117,11 +117,11 @@ export function onDoubleTap(element: HTMLElement) {
 		lastTap = now
 	}
 
-	document.addEventListener('touchstart', handleTap)
+	document.addEventListener('click', handleTap)
 
 	return {
 		destroy() {
-			document.removeEventListener('touchstart', handleTap)
+			document.removeEventListener('click', handleTap)
 		}
 	}
 }
