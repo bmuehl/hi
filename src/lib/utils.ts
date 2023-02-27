@@ -107,11 +107,13 @@ export function onSwipe(element: HTMLElement) {
 
 export function onDoubleTap(element: HTMLElement) {
 	let lastTap = 0
+	let maxTime = 200
+	let minTime = 100
 
 	function handleTap() {
 		const now = new Date().getTime()
 		const timesince = now - lastTap
-		if (timesince < 200 && timesince > 100) {
+		if (timesince < maxTime && timesince > minTime) {
 			element.dispatchEvent(new CustomEvent('dbltab'))
 		}
 		lastTap = now
