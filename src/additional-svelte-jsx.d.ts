@@ -5,5 +5,6 @@ declare namespace svelte.JSX {
 		oncollision?: (e: CustomEvent<T>) => void
 		onswipeleft?: (e: CustomEvent<T>) => void
 		onswiperight?: (e: CustomEvent<T>) => void
+		ondbltap?: (e: CustomEvent<T>) => void
 	}
 }
