@@ -6,7 +6,15 @@
 	"bracketSameLine": false,
 	"semi": false,
 	"printWidth": 100,
+	"htmlWhitespaceSensitivity": "ignore",
 	"plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 	"pluginSearchDirs": ["."],
-	"overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+	"overrides": [
+		{
+			"files": "*.svelte",
+			"options": {
+				"parser": "svelte"
+			}
+		}
+	]
 }
