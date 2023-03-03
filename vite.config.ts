@@ -13,7 +13,7 @@ const config: UserConfig = {
 		noExternal: ['three', 'troika-three-text']
 	},
 	define: {
-		__VERSION__: JSON.stringify(pkg.version)
+		__CV_VERSION__: JSON.stringify(pkg.version)
 	}
 }
 

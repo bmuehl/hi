@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="flex items-center text-xs text-nord2 md:absolute md:right-0 md:bottom-0">
-			cv.berni.cloud @ {__VERSION__}
+			cv.berni.cloud @ {__CV_VERSION__}
 		</div>
 	</div>
 </footer>
