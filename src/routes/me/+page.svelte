@@ -4,6 +4,7 @@
 	import Spinner from '$lib/Spinner/Spinner.svelte'
 	import { Canvas } from '@threlte/core'
 	import Scene from './Scene.svelte'
+	import ThreeCard from './ThreeCard.svelte'
 
 	let loading = true
 
@@ -38,11 +39,7 @@
 </div>
 
 <div class="z-20 flex flex-col items-center">
-	<div class="rounded-lg bg-nord2 bg-opacity-80 p-10">
-		<h1 class="mb-8">About Me</h1>
-
-		<span>// TODO</span>
-	</div>
+	<ThreeCard />
 
 	<NextLink href="/" top />
 </div>

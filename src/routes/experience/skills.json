@@ -28,7 +28,7 @@
 		"name": "CSS3",
 		"logo": "./assets/css3.svg",
 		"url": "https://www.w3.org/Style/CSS/",
-		"experience": "Used for a long time, but I'm not a designer",
+		"experience": "Used for a long time, but recently replaced by tailwindcss",
 		"score": 5
 	},
 	{
@@ -36,7 +36,7 @@
 		"name": "Sass",
 		"logo": "https://sass-lang.com/assets/img/logos/logo-b6e1ef6e.svg",
 		"url": "https://sass-lang.com/",
-		"experience": "Mostly for the nesting and variables, recently replaced CSS variables",
+		"experience": "Step up from plain css, but recently also replaced by tailwindcss",
 		"score": 3
 	},
 	{
@@ -44,7 +44,7 @@
 		"name": "postCSS",
 		"logo": "./assets/postcss.svg",
 		"url": "https://postcss.org/",
-		"experience": "In combination with tailwindcss, autoprefixer and nesting",
+		"experience": "Currently used in combination with tailwindcss, autoprefixer and nesting",
 		"score": 3
 	},
 	{

@@ -10,7 +10,7 @@
 
 {#key path}
 	<section
-		in:fly={{ x: width, duration, delay: duration - 100, easing: elasticOut }}
+		in:fly={{ x: width, duration, delay: duration, easing: elasticOut }}
 		out:fly={{ x: -width, duration, easing: backIn }}
 		bind:clientWidth={width}
 	>
