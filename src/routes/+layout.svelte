@@ -7,7 +7,7 @@
 
 	export let data: LayoutData
 
-	const version = __VERSION__ // TODO: fix linint error
+	const version = __VERSION__ // TODO: fix lint error
 </script>
 
 <Header path={data.path} />
