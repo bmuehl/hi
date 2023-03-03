@@ -2,7 +2,6 @@
 	import { getJoke } from '$lib/utils'
 
 	export let joke = 'Loading joke...'
-	export let version: string
 
 	const fetchJoke = async () => {
 		joke = await getJoke()
@@ -22,7 +21,7 @@
 		</div>
 
 		<div class="flex items-center text-xs text-nord2 md:absolute md:right-0 md:bottom-0">
-			cv.berni.cloud @ {version}
+			cv.berni.cloud @ {__VERSION__}
 		</div>
 	</div>
 </footer>
