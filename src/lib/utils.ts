@@ -41,12 +41,9 @@ export function clickOnKey(element: HTMLElement, keys = ['Enter']) {
 	function handleKeyDown(event: KeyboardEvent) {
 		if (keys.includes(event.key)) {
 			event.preventDefault()
-			if (!inView) {
-				element.scrollIntoView({
-					behavior: 'smooth'
-				})
+			if (inView) {
+				element.focus()
 			}
-			element.focus()
 		}
 	}
 
