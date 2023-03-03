@@ -39,7 +39,9 @@
 			focusTransition.set(slides.scrollLeft, { duration: 0 })
 			focusTransition.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2)
 			focusTransition.subscribe((value) => {
-				slides.scrollLeft = value
+				if (slides) {
+					slides.scrollLeft = value
+				}
 			})
 			setActiveSlide(id)
 			if (document.activeElement !== slide) {
