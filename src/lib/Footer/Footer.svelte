@@ -22,7 +22,11 @@
 			<button class="text-nord10" on:click={fetchJoke}>[try again]</button>
 		</div>
 
-		<div class="flex items-center text-xs text-nord2 md:absolute md:right-0 md:bottom-0">
+		<div class="h-2 md:hidden" />
+
+		<div
+			class="flex items-center justify-center text-xs text-nord2 md:absolute md:right-0 md:bottom-0"
+		>
 			cv.berni.cloud @ v{version}
 		</div>
 	</div>

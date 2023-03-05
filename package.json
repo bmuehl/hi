@@ -1,6 +1,6 @@
 {
 	"name": "cv",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "2.0.1",
-		"@sveltejs/kit": "1.9.3",
+		"@sveltejs/kit": "1.10.0",
 		"@threlte/preprocess": "^0.0.2",
 		"@types/three": "^0.149.0",
 		"@typescript-eslint/eslint-plugin": "^5.54.0",
