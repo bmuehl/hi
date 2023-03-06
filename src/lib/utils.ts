@@ -165,7 +165,7 @@ export function inView(node: HTMLElement, params = { threshold: 0 }) {
 	}
 }
 
-export function onCollision(node: HTMLElement) {
+export function onCollision(node: HTMLElement, _params: { collider: HTMLElement }) {
 	let collision = false
 
 	const collide = (n1: HTMLElement, n2: HTMLElement) => {
