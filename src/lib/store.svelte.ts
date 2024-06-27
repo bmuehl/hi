@@ -266,37 +266,15 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
 	{
-		category: 'education',
-		place: 'Vienna',
-		startDate: new Date('2006-09-01'),
-		endDate: new Date('2011-06-30'),
-		title: 'Technologisches Gewerbemuseum',
-		description: 'Information Technology',
-		status: 'done',
-		bullets: [],
-		skills: []
-	},
-	{
-		category: 'education',
-		place: 'Vienna',
-		startDate: new Date('2012-09-01'),
-		endDate: undefined,
-		title: 'Univsersity of Vienna',
-		description: 'Bachelor of Psychology',
-		status: 'waiting',
-		bullets: [],
-		skills: []
-	},
-	{
 		category: 'work',
 		place: 'Vienna',
-		startDate: new Date('2015-03-01'),
-		endDate: new Date('2024-01-01'),
-		title: 'Vienna BioCenter Core Facilities',
-		description: 'Software Architect',
-		status: 'done',
-		bullets: [],
-		skills: ['Java', 'Spring', 'PostgreSQL']
+		startDate: new Date('2024-01-01'),
+		endDate: undefined,
+		title: 'Rendity',
+		description: 'Senior Software Engineer',
+		status: 'progress',
+		skills: [],
+		bullets: []
 	},
 	{
 		category: 'work',
@@ -309,18 +287,42 @@ export const experience: ExperienceItem[] = [
 		bullets: [],
 		skills: []
 	},
+
 	{
 		category: 'work',
 		place: 'Vienna',
-		startDate: new Date('2024-01-01'),
+		startDate: new Date('2015-03-01'),
+		endDate: new Date('2024-01-01'),
+		title: 'Vienna BioCenter Core Facilities',
+		description: 'Software Architect',
+		status: 'done',
+		bullets: [],
+		skills: ['Java', 'Spring', 'PostgreSQL']
+	},
+	{
+		category: 'education',
+		place: 'Vienna',
+		startDate: new Date('2012-09-01'),
 		endDate: undefined,
-		title: 'Rendity',
-		description: 'Senior Software Engineer',
-		status: 'progress',
-		skills: [],
-		bullets: []
+		title: 'Univsersity of Vienna',
+		description: 'Bachelor of Psychology',
+		status: 'waiting',
+		bullets: [],
+		skills: []
+	},
+
+	{
+		category: 'education',
+		place: 'Vienna',
+		startDate: new Date('2006-09-01'),
+		endDate: new Date('2011-06-30'),
+		title: 'Technologisches Gewerbemuseum',
+		description: 'Information Technology',
+		status: 'done',
+		bullets: [],
+		skills: []
 	}
-].reverse();
+];
 
 export const pages = ['home', 'timeline', 'skills', 'me'] as const;
 
