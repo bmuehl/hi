@@ -29,7 +29,7 @@
 
 <ol class="mx-4 border-l border-cat-overlay0">
 	<InView>
-		{#each experience.reverse() as item, i}
+		{#each experience as item, i}
 			{#await tick() then}
 				<li class="relative mb-10 ml-8">
 					<span

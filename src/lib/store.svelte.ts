@@ -320,7 +320,7 @@ export const experience: ExperienceItem[] = [
 		skills: [],
 		bullets: []
 	}
-];
+].reverse();
 
 export const pages = ['home', 'timeline', 'skills', 'me'] as const;
 
