@@ -1,25 +1,27 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition'
-	import { backIn, elasticOut } from 'svelte/easing'
+	import { fly } from 'svelte/transition';
+	import { backIn, elasticOut } from 'svelte/easing';
+	import { pathToPage } from '$lib/utils';
+	import { store } from '$lib/store.svelte';
+	import type { Snippet } from 'svelte';
 
-	export let path: string
+	const { path, children }: { path: string; children: Snippet } = $props();
 
-	let width: number
-	const duration = 350
+	let width = $state(0);
+	const duration = 350;
+
+	$effect(() => {
+		store.update({ currentPage: pathToPage(path) });
+	});
 </script>
 
 {#key path}
 	<section
+		class="flex h-screen w-full flex-col items-center overflow-y-auto pb-32 pt-28"
 		in:fly={{ x: width, duration, delay: duration - 100, easing: elasticOut }}
 		out:fly={{ x: -width, duration, easing: backIn }}
 		bind:clientWidth={width}
 	>
-		<slot />
+		{@render children()}
 	</section>
 {/key}
-
-<style lang="postcss">
-	section {
-		@apply container flex min-h-screen min-w-full flex-col items-center justify-center px-4 pt-16 pb-9;
-	}
-</style>

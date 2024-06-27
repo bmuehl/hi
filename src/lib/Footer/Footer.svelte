@@ -1,33 +1,21 @@
 <script lang="ts">
-	import { getJoke } from '$lib/utils'
+	import NextLink from '$lib/NextLink/NextLink.svelte';
+	import { nextPage } from '$lib/utils';
+	import { store } from '$lib/store.svelte';
 
-	export let joke = 'Loading joke...'
-
-	const version = __PROJECT_VERSION__
-
-	const fetchJoke = async () => {
-		joke = await getJoke()
-	}
+	// eslint-disable-next-line no-undef
+	const version = __PROJECT_VERSION__;
 </script>
 
-<footer class="w-full overflow-hidden border-t-2 border-t-nord1 py-2 shadow-lg">
-	<div class="container relative mx-auto mb-2 flex flex-col px-2 text-center">
-		<div class="flex flex-col text-xs">
-			{@html joke}
-		</div>
-
-		<div class="h-3" />
-
-		<div class="text-xs">
-			<button class="text-nord10" on:click={fetchJoke}>[try again]</button>
-		</div>
-
-		<div class="h-2 md:hidden" />
-
-		<div
-			class="flex items-center justify-center text-xs text-nord2 md:absolute md:right-0 md:bottom-0"
-		>
-			cv.berni.cloud @ v{version}
+<footer class="absolute bottom-0 w-full">
+	<div class="flex items-center justify-center border-t border-t-cat-overlay1 bg-cat-surface0">
+		<NextLink href={`/${nextPage(store.value.currentPage)}`} />
+	</div>
+	<div class="border-t border-t-cat-overlay1 bg-cat-surface1 py-2">
+		<div class="container mx-auto">
+			<div class="text-right text-xs text-cat-subtext0">
+				cv.berni.cloud @ v{version}
+			</div>
 		</div>
 	</div>
 </footer>

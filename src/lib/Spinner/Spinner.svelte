@@ -1,12 +1,12 @@
 <script lang="ts">
-	const range = (size: number, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt)
+	const range = (size: number, startAt = 0) => [...Array(size).keys()].map((i) => i + startAt);
 
-	let duration = 0.3
+	let duration = 0.3;
 </script>
 
 <div class="wrapper">
 	{#each range(3, 1) as version}
-		<div class="circle" style="animation-delay: {(duration / 3) * (version - 1) + duration};" />
+		<div class="circle" style="animation-delay: {(duration / 3) * (version - 1) + duration};"></div>
 	{/each}
 </div>
 
@@ -15,7 +15,7 @@
 		@apply h-8 w-8;
 	}
 	.circle {
-		@apply h-8 w-8 bg-nord9;
+		@apply h-8 w-8 bg-cat-blue;
 		border-radius: 100%;
 		animation-fill-mode: both;
 		position: absolute;

@@ -1,79 +1,74 @@
 <script lang="ts">
-	import { useFrame, type ThreltePointerEvent } from '@threlte/core'
-	import { Text } from '@threlte/extras'
-	import type { Text as TextType } from '@threlte/extras/dist/types/types'
-	import { Vector3, Color, MeshBasicMaterial } from 'three'
-	import { focusSkill } from '$lib/store'
-	import { tweened } from 'svelte/motion'
-	import type { Skill } from '$routes/experience/types'
-	import { createEventDispatcher } from 'svelte'
-	import { get } from 'svelte/store'
+	import { useThrelte, useTask } from '@threlte/core';
+	import { Text, useCursor } from '@threlte/extras';
+	import { Color, MeshBasicMaterial } from 'three';
+	import { tweened } from 'svelte/motion';
+	import { type Skill, store } from '$lib/store.svelte';
+	import { get } from 'svelte/store';
 
-	export let text: string
-	export let length: number
-	export let index: number
-	export let skills: Array<Skill> = []
+	type Props = {
+		text: string;
+		length: number;
+		index: number;
+		skills: Array<Skill>;
+		onloaded: () => void;
+	};
 
-	let textObject: TextType
+	let { text, length, index, skills, onloaded }: Props = $props();
 
-	const dispatch = createEventDispatcher()
+	let textObject: Text | undefined = $state(undefined);
 
-	const font = '/assets/fonts/fira-code-all-700-normal.woff'
-	const fontSize = tweened(0.85, { duration: 200 })
-	const radius = 18
+	const font = '/assets/fonts/JetBrainsMono-Medium.ttf';
+	const fontSize = tweened(0.85, { duration: 200 });
+	const radius = 20;
 
-	let hovered = false
+	const color = new Color();
 
-	const color = new Color()
+	const { camera } = useThrelte();
+	const { hovering: hovered } = useCursor('pointer');
 
 	const computePosition = () => {
-		const phi = Math.acos(-1 + (2 * index + 1) / length)
-		const theta = Math.sqrt((length + 1) * Math.PI) * phi
-		return new Vector3(
+		const phi = Math.acos(-1 + (2 * index + 1) / length);
+		const theta = Math.sqrt((length + 1) * Math.PI) * phi;
+		return [
 			(radius * Math.cos(theta) * Math.sin(phi)) / 2,
 			(radius * Math.sin(theta) * Math.sin(phi)) / 2,
 			(radius * Math.cos(phi)) / 2
-		)
-	}
+		];
+	};
 
-	useFrame(({ camera }) => {
+	useTask(() => {
 		if (textObject) {
-			textObject.quaternion.copy(get(camera).quaternion)
-			const material = textObject.material as MeshBasicMaterial
-			material.color.lerp(color.set(hovered ? '#a3be8c' : 'white'), 0.1)
+			textObject.quaternion.copy(get(camera).quaternion);
+			const material = textObject.material as MeshBasicMaterial;
+			material.color.lerp(color.set(get(hovered) ? '#a3be8c' : 'white'), 0.1);
+			fontSize.set(get(hovered) ? 1 : 0.85);
 		}
-	})
+	});
 
-	const clickHandler = (e: CustomEvent<ThreltePointerEvent>) => {
-		e.stopPropagation()
-		const skill = skills.find((s) => s.name === (e.detail.object as TextType).text)
+	const clickHandler = (e: Text) => {
+		e.stopPropagation();
+		const skill = skills.find((s) => s.name === e.object.text);
 		if (skill) {
-			focusSkill.set(skill.id)
+			store.update({ focusSkill: skill.id });
 		}
-	}
-
-	const onHovered = () => {
-		document.body.style.cursor = hovered ? 'pointer' : 'auto'
-		fontSize.set(hovered ? 1 : 0.85)
-	}
-
-	$: hovered, onHovered()
+	};
 </script>
 
 <Text
+	bind:ref={textObject}
 	{text}
-	bind:textObject
 	{font}
 	fontSize={$fontSize}
 	position={computePosition()}
 	anchorX="center"
 	anchorY="middle"
 	interactive
-	on:sync={() => (skills.length === index + 1 ? dispatch('loaded') : null)}
 	on:pointerenter={(e) => {
-		e.stopPropagation()
-		hovered = true
+		e.stopPropagation();
+		$hovered = true;
 	}}
-	on:pointerleave={() => (hovered = false)}
+	on:pointerleave={() => ($hovered = false)}
 	on:click={clickHandler}
+	on:sync={() => (skills.length === index + 1 ? onloaded() : null)}
 />

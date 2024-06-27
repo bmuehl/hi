@@ -1,34 +1,42 @@
-<script>
-	import { randomNumberBetween } from '$lib/utils'
-	import { onMount } from 'svelte'
+<script lang="ts">
+	import type { Snippet } from 'svelte';
 
-	const imageDefault = 'me.svg'
-	const imageEyesClosed = 'me-eyes-closed.svg'
-
-	let image = imageDefault
-
-	function blink() {
-		setTimeout(() => {
-			image = imageEyesClosed
-			setTimeout(() => {
-				image = imageDefault
-				blink()
-			}, randomNumberBetween(150, 300))
-		}, randomNumberBetween(2000, 5000))
-	}
-
-	onMount(() => blink())
+	const {
+		src,
+		alt,
+		header,
+		footer,
+		children
+	}: { src?: string; alt?: string; header?: Snippet; footer?: Snippet; children?: Snippet } =
+		$props();
 </script>
 
-<div class="shadow-lg">
-	<div class="flex flex-col overflow-hidden rounded-lg bg-nord1 md:flex-row">
-		<div class="self-stretch bg-[#adefd1]">
-			<img src={`./assets/${image}`} class="mx-auto h-full md:object-cover" alt="card" />
+{#snippet hr()}
+	{#if children}
+		<hr class="w-full border-t border-cat-surface2" />
+	{/if}
+{/snippet}
+
+<div class="flex h-full flex-col rounded-lg border border-cat-surface2 bg-cat-surface1 md:flex-row">
+	{#if src}
+		<img
+			class="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-72 md:!rounded-none md:!rounded-s-lg"
+			{src}
+			{alt}
+		/>
+	{/if}
+
+	{#if header}
+		{@render header()}
+		{@render hr()}
+	{/if}
+	{#if children}
+		<div class="flex flex-col justify-start p-8 sm:p-9 md:p-7 xl:p-9">
+			{@render children()}
 		</div>
-		<div class="relative">
-			<div class="p-8 sm:p-9 md:p-7 xl:p-9">
-				<slot />
-			</div>
-		</div>
-	</div>
+	{/if}
+	{#if footer}
+		{@render hr()}
+		{@render footer()}
+	{/if}
 </div>

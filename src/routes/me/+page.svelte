@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte'
-	import NextLink from '$lib/NextLink/NextLink.svelte'
-	import Spinner from '$lib/Spinner/Spinner.svelte'
-	import { Canvas } from '@threlte/core'
-	import Scene from './Scene.svelte'
-	import ThreeCard from './ThreeCard.svelte'
+	import { onMount } from 'svelte';
+	import Spinner from '$lib/Spinner/Spinner.svelte';
+	import { Canvas } from '@threlte/core';
+	import Scene from './Scene.svelte';
+	import Card from '$lib/Card/Card.svelte';
+	import { NoToneMapping } from 'three';
 
-	let loading = true
+	let loading = true;
 
 	onMount(() => {
-		loading = false
-	})
+		loading = false;
+	});
 </script>
 
 <!-- nord15: 0xb48ead -->
@@ -19,6 +19,9 @@
 <!-- nord12: 0xd08770 -->
 <!-- nord11: 0xbf616a -->
 <!-- nord11: 0x2e3440 -->
+
+<!-- TODO: add personal stuff like favourite color themer etc. -->
+<!-- Idea for categories: NERD, MUSIC, SPORT  -->
 
 <svelte:head>
 	<title>Bernhard Mühl | My Self</title>
@@ -33,13 +36,15 @@
 {/if}
 
 <div class="absolute top-0 flex h-screen w-screen overflow-hidden">
-	<Canvas linear flat>
+	<Canvas toneMapping={NoToneMapping}>
 		<Scene />
 	</Canvas>
 </div>
 
 <div class="z-20 flex flex-col items-center">
-	<ThreeCard />
+	<Card>
+		<h1 class="mb-8">About Me</h1>
 
-	<NextLink href="/" top />
+		<span>// TODO</span>
+	</Card>
 </div>

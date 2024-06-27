@@ -1,11 +1,13 @@
 <script lang="ts">
-	export let icon = false
+	import type { Snippet } from 'svelte';
+
+	let { icon = false, children }: { icon?: boolean; children: Snippet } = $props();
 </script>
 
 <kbd
-	class="flex items-center justify-center rounded-lg border border-nord2 bg-nord1 px-2 py-1.5 text-xs font-semibold text-nord6 shadow-sm"
-	class:px-1={icon}
-	class:py-1={icon}
+	class="flex items-center justify-center rounded-lg border border-cat-overlay0 bg-cat-surface1 px-2 py-1.5 text-xs font-semibold text-cat-subtext0 shadow-sm"
+	class:px-0.5={icon}
+	class:py-0.5={icon}
 >
-	<slot />
+	{@render children()}
 </kbd>

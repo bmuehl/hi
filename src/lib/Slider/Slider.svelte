@@ -1,191 +1,208 @@
 <script lang="ts">
-	import type { Skill } from '$routes/experience/types'
-	import { onMount } from 'svelte'
-	import { tweened } from 'svelte/motion'
-	import { cubicOut } from 'svelte/easing'
-	import { inView, onCollision } from '$lib/utils'
-	import { activeSkill, focusSkill } from '$lib/store'
-	import Rating from '$lib/Rating/Rating.svelte'
-	import Icon from '$lib/Icon/Icon.svelte'
-	import Pause from '$lib/Icon/icons/Pause.svelte'
-	import Play from '$lib/Icon/icons/Play.svelte'
-	import { slide } from 'svelte/transition'
-	import ArrowTopRightOnSquare from '$lib/Icon/icons/ArrowTopRightOnSquare.svelte'
+	import { skills, store } from '$lib/store.svelte';
+	import { tweened } from 'svelte/motion';
+	import { cubicOut } from 'svelte/easing';
+	import { inView, onCollision } from '$lib/utils';
+	import Rating from '$lib/Rating/Rating.svelte';
+	import Icon from '$lib/Icon/Icon.svelte';
+	import Pause from '$lib/Icon/icons/Pause.svelte';
+	import Play from '$lib/Icon/icons/Play.svelte';
+	import { slide } from 'svelte/transition';
+	import ArrowTopRightOnSquare from '$lib/Icon/icons/ArrowTopRightOnSquare.svelte';
+	import { untrack } from 'svelte';
 
-	export let skills: Array<Skill> = []
+	let slides: HTMLDivElement | undefined = $state(undefined);
+	let collider: HTMLDivElement | undefined = $state(undefined);
+	let showControlDescription = $state(false);
+	const speed = 1.5;
 
-	let slides: HTMLDivElement
-	let collider: HTMLDivElement
-	const speed = 1.5
-	let showControlDescription = false
-
-	const focusTransition = tweened(0, { duration: 500, easing: cubicOut })
+	const focusTransition = tweened(0, { duration: 500, easing: cubicOut });
 
 	const setActiveSlide = (id: number) => {
-		const skill = skills.find((s) => s.id === id)
+		const skill = skills.find((s) => s.id === id);
 		if (skill) {
-			activeSkill.set(skill)
+			store.update({ activeSkill: skill });
 		}
-	}
+	};
 
 	const setSlideFocus = (id: number | false) => {
 		if (!slides || !id) {
-			return
+			return;
 		}
 
-		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`)
+		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`);
 
 		if (slide) {
-			focusTransition.set(slides.scrollLeft, { duration: 0 })
-			focusTransition.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2)
+			focusTransition.set(slides.scrollLeft, { duration: 0 });
+			focusTransition.set(slide.offsetLeft - slides.offsetWidth / 2 + slide.clientWidth / 2);
 			focusTransition.subscribe((value) => {
 				if (slides) {
-					slides.scrollLeft = value
+					slides.scrollLeft = value;
 				}
-			})
-			setActiveSlide(id)
+			});
+			setActiveSlide(id);
 			if (document.activeElement !== slide) {
-				slide.focus()
+				slide.focus();
 			}
 		}
-	}
+	};
 
 	const collisionHandler = (id: number) => {
-		if (!$focusSkill) {
-			setActiveSlide(id)
+		if (!store.value.focusSkill) {
+			setActiveSlide(id);
 		}
-	}
+	};
 
 	const swapNodes = (e: CustomEvent) => {
-		const node = e.target as HTMLDivElement
-		const id = Number(node.dataset.slideid) - skills.length
-		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`)
+		const node = e.target as HTMLDivElement;
+		const id = Number(node.dataset.slideid) - skills.length;
+		const slide = slides?.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`);
 		if (slide) {
-			swap(slide, node)
+			swap(slide, node);
 		}
-	}
+	};
 
 	function swap(node1: HTMLElement, node2: HTMLElement) {
-		const afterNode1 = node1.nextElementSibling
-		node2.replaceWith(node1)
-		slides.insertBefore(node2, afterNode1)
+		const afterNode1 = node1.nextElementSibling;
+		node2.replaceWith(node1);
+		slides?.insertBefore(node2, afterNode1);
 	}
 
 	function focusCurrent() {
-		if (!$focusSkill) {
-			$focusSkill = $activeSkill?.id
+		if (!store.value.focusSkill) {
+			store.update({ focusSkill: store.value.activeSkill?.id });
 		}
 	}
 
-	onMount(() => {
-		const loop = () => {
-			if (slides) {
-				if (slides.scrollWidth / 2 - slides.clientWidth <= slides.scrollLeft - slides.clientWidth) {
-					slides.scrollLeft = 0
-				}
+	$effect(() => {
+		untrack(() => {
+			let msPrev = performance.now();
+			const fps = 60;
+			const msPerFrame = 1000 / fps;
 
-				if (document.activeElement?.parentElement !== slides) {
-					if ($focusSkill) {
-						$focusSkill = false
+			const loop = () => {
+				requestAnimationFrame(loop);
+
+				const msNow = window.performance.now();
+				const msPassed = msNow - msPrev;
+
+				if (msPassed < msPerFrame) return;
+
+				const excessTime = msPassed % msPerFrame;
+				msPrev = msNow - excessTime;
+
+				if (slides) {
+					if (
+						slides.scrollWidth / 2 - slides.clientWidth <=
+						slides.scrollLeft - slides.clientWidth
+					) {
+						slides.scrollLeft = 0;
 					}
-					slides.scrollLeft += speed
-				}
-			}
-			requestAnimationFrame(loop)
-		}
-		loop()
-	})
 
-	$: $focusSkill, setSlideFocus($focusSkill)
+					if (document.activeElement?.parentElement !== slides) {
+						if (store.value.focusSkill) {
+							store.update({ focusSkill: false });
+						}
+						slides.scrollLeft += speed;
+					}
+				}
+			};
+			loop();
+		});
+	});
+
+	$effect(() => {
+		setSlideFocus(store.value.focusSkill);
+	});
 </script>
 
 <div class="slider">
-	<div class="collider" bind:this={collider} />
+	<div class="collider" bind:this={collider}></div>
 	<div class="slides" bind:this={slides}>
-		{#each { length: skills.length * 2 } as _, i}
+		{#each { length: skills.length * 2 } as _n, i}
 			{#if i < skills.length}
 				{@const skill = skills[i]}
 				<menuitem
 					tabindex="0"
 					class="slide"
-					class:active={$activeSkill?.id === skill.id}
-					on:click={() => ($focusSkill = skill.id)}
+					class:active={store.value.activeSkill?.id === skill.id}
+					onclick={() => store.update({ focusSkill: skill.id })}
 					data-slideId={skill.id}
 					use:onCollision={{ collider }}
-					on:collision={() => collisionHandler(skill.id)}
+					oncollision={() => collisionHandler(skill.id)}
 				>
 					<img src={skill.logo} alt={skill.name} />
 				</menuitem>
 			{:else}
 				{@const skill = skills[i - skills.length]}
-				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} on:enter={swapNodes}>
+				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} onenter={swapNodes}>
 					<img src={skill.logo} alt={skill.name} />
 				</div>
 			{/if}
 		{/each}
 	</div>
 	<div
-		class="absolute bottom-0 right-2 z-20 flex items-center md:h-full"
-		class:opacity-40={!$focusSkill}
+		class="absolute bottom-0 right-2 z-20 flex items-end md:h-full"
+		class:opacity-40={!store.value.focusSkill}
 	>
 		<button
 			class="flex items-center"
-			on:click={focusCurrent}
-			on:mouseenter={() => (showControlDescription = true)}
-			on:mouseleave={() => (showControlDescription = false)}
-			on:focus={() => (showControlDescription = true)}
-			on:blur={() => (showControlDescription = false)}
+			onclick={focusCurrent}
+			onmouseenter={() => (showControlDescription = true)}
+			onmouseleave={() => (showControlDescription = false)}
+			onfocus={() => (showControlDescription = true)}
+			onblur={() => (showControlDescription = false)}
 		>
 			{#if showControlDescription}
-				<span transition:slide class="text-sm">{$focusSkill ? 'Play' : 'Pause'}</span>
+				<span transition:slide class="text-sm">{store.value.focusSkill ? 'Play' : 'Pause'}</span>
 			{/if}
-			<Icon src={$focusSkill ? Play : Pause} />
+			<Icon src={store.value.focusSkill ? Play : Pause} />
 		</button>
 	</div>
 </div>
 
 <div class="description">
 	<div class="header">
-		<strong class="text-lg">{$activeSkill?.name}</strong>
-		{#if $activeSkill?.url}
+		<strong class="text-lg">{store.value.activeSkill?.name}</strong>
+		{#if store.value.activeSkill?.url}
 			<div class="flex items-center">
 				<a
-					href={$activeSkill.url}
+					href={store.value.activeSkill.url}
 					target="_blank"
 					rel="noopener noreferrer"
 					class="ml-1 flex items-center text-xs"
 				>
 					open website
-					<Icon src={ArrowTopRightOnSquare} size="xs" class="ml-1 text-nord10" />
+					<Icon src={ArrowTopRightOnSquare} size="xs" class="ml-1 text-cat-subtext0" />
 				</a>
 			</div>
 		{/if}
 	</div>
-	<hr class="w-full border-t border-nord3" />
-	<div class="content h-20">
-		<span class="my-2 text-center text-sm">{$activeSkill?.experience || '-'}</span>
+	<hr class="w-full border-t border-cat-surface2" />
+	<div class="content">
+		<span class="my-2 text-center text-sm">{store.value.activeSkill?.experience || '-'}</span>
 	</div>
-	<hr class="w-full border-t border-nord3" />
+	<hr class="w-full border-t border-cat-surface2" />
 	<div class="footer">
-		<Rating score={$activeSkill?.score || 0} />
+		<Rating score={store.value.activeSkill?.score || 0} />
 	</div>
 </div>
 
 <style lang="postcss">
 	.slider {
-		@apply relative flex w-screen flex-col;
+		@apply relative flex flex-col;
 		@apply max-w-7xl before:left-0 before:bg-gradient-to-r after:right-0 after:bg-gradient-to-l;
 
 		&::before,
 		&::after {
-			@apply absolute top-0 bottom-0 z-10 w-20 from-nord0 to-transparent content-[''] md:w-60;
+			@apply absolute bottom-0 top-0 z-10 hidden w-20 rounded-tl-lg rounded-tr-lg from-cat-surface1 to-transparent content-[''];
 			@apply pointer-events-none;
 			--tw-gradient-to: rgba(46, 52, 64, 0); /* fix for safari */
 		}
 	}
 
 	.slides {
-		@apply flex w-full overflow-y-hidden overflow-x-scroll py-2;
+		@apply flex overflow-y-hidden overflow-x-scroll py-2;
 		-ms-overflow-style: none; /* for Internet Explorer, Edge */
 		scrollbar-width: none; /* for Firefox */
 	}
@@ -199,7 +216,7 @@
 	}
 
 	.slide {
-		@apply pointer-events-auto flex h-[160px] w-[170px] flex-shrink-0 cursor-pointer items-center justify-center rounded-3xl p-7 transition-colors duration-200;
+		@apply pointer-events-auto flex h-32 w-32 flex-shrink-0 cursor-pointer items-center justify-center rounded-3xl p-6 transition-colors duration-200;
 
 		img {
 			@apply h-full w-full select-none object-contain transition-transform duration-300;
@@ -209,7 +226,7 @@
 		}
 
 		&.active {
-			@apply bg-nord1 bg-opacity-50;
+			@apply bg-cat-surface2 bg-opacity-50;
 		}
 
 		&:hover img,
@@ -219,14 +236,14 @@
 	}
 
 	.description {
-		@apply mt-6 flex w-full max-w-3xl flex-col rounded-lg;
+		@apply mt-6 flex max-w-3xl flex-auto flex-col rounded-lg;
 
 		.header {
 			@apply flex flex-col items-center justify-center p-3;
 		}
 
 		.content {
-			@apply flex items-center justify-center p-4;
+			@apply flex flex-auto items-center justify-center p-8;
 		}
 
 		.footer {

@@ -1,13 +1,13 @@
 <script lang="ts">
-	export let score = 5
+	const { score = 5 }: { score?: number } = $props();
 </script>
 
 <div class="flex items-center">
 	<svg
 		aria-hidden="true"
 		class="h-5 w-5"
-		class:text-nord3={score < 1}
-		class:text-nord13={score >= 1}
+		class:text-cat-subtext0={score < 1}
+		class:text-cat-yellow={score >= 1}
 		fill="currentColor"
 		viewBox="0 0 20 20"
 		xmlns="http://www.w3.org/2000/svg"
@@ -17,9 +17,9 @@
 	>
 	<svg
 		aria-hidden="true"
-		class="h-5 w-5 "
-		class:text-nord3={score < 2}
-		class:text-nord13={score >= 2}
+		class="h-5 w-5"
+		class:text-cat-subtext0={score < 2}
+		class:text-cat-yellow={score >= 2}
 		fill="currentColor"
 		viewBox="0 0 20 20"
 		xmlns="http://www.w3.org/2000/svg"
@@ -30,8 +30,8 @@
 	<svg
 		aria-hidden="true"
 		class="h-5 w-5"
-		class:text-nord3={score < 3}
-		class:text-nord13={score >= 3}
+		class:text-cat-subtext0={score < 3}
+		class:text-cat-yellow={score >= 3}
 		fill="currentColor"
 		viewBox="0 0 20 20"
 		xmlns="http://www.w3.org/2000/svg"
@@ -42,8 +42,8 @@
 	<svg
 		aria-hidden="true"
 		class="h-5 w-5"
-		class:text-nord3={score < 4}
-		class:text-nord13={score >= 4}
+		class:text-cat-subtext0={score < 4}
+		class:text-cat-yellow={score >= 4}
 		fill="currentColor"
 		viewBox="0 0 20 20"
 		xmlns="http://www.w3.org/2000/svg"
@@ -54,8 +54,8 @@
 	<svg
 		aria-hidden="true"
 		class="h-5 w-5"
-		class:text-nord3={score < 5}
-		class:text-nord13={score >= 5}
+		class:text-cat-subtext0={score < 5}
+		class:text-cat-yellow={score >= 5}
 		fill="currentColor"
 		viewBox="0 0 20 20"
 		xmlns="http://www.w3.org/2000/svg"

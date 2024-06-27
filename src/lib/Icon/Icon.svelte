@@ -1,12 +1,17 @@
 <script lang="ts">
-	import type { SvelteComponent } from 'svelte'
+	import type { Component } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	export let src: typeof SvelteComponent
-	export let size: 'l' | 'md' | 'base' | 'xs' = 'base'
+	interface Props extends HTMLAttributes<HTMLSpanElement> {
+		src: Component;
+		size?: 'l' | 'md' | 'base' | 'xs';
+	}
+
+	const { src, size = 'base', ...rest }: Props = $props();
 </script>
 
 <span
-	class={`${$$props.class} icon inline-flex h-8`}
+	class={`${rest.class} icon inline-flex h-8`}
 	class:h-14={size === 'l'}
 	class:w-14={size === 'l'}
 	class:h-8={size === 'md'}

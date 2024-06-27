@@ -1,87 +1,61 @@
 <script lang="ts">
-	import { tweened } from 'svelte/motion'
-	import { expoIn } from 'svelte/easing'
-	import { Canvas, T, Fog } from '@threlte/core'
-	import type { Skill } from '$routes/experience/types'
-	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte'
-	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte'
-	import Icon from '$lib/Icon/Icon.svelte'
-	import Tag from './Tag.svelte'
-	import TrackballControls from './TrackballControls.svelte'
-	import { onMount } from 'svelte'
-	import { fade } from 'svelte/transition'
+	import { Canvas } from '@threlte/core';
+	import ChevronUp from '$lib/Icon/icons/ChevronUp.svelte';
+	import ChevronDown from '$lib/Icon/icons/ChevronDown.svelte';
+	import Icon from '$lib/Icon/Icon.svelte';
+	import { NoToneMapping } from 'three';
+	import Scene from './Scene.svelte';
 
-	export let skills: Array<Skill> = []
+	let active = $state(false);
+	let loading = $state(true);
 
-	let cameraPositionZ = tweened(11, { duration: 1200, easing: expoIn })
-	let loaded = false
-	let active = false
-	let start = false
-
-	onMount(() => setTimeout(() => (start = true), 250))
-
-	$: (async () => {
-		if (loaded) {
-			await cameraPositionZ.set(28)
-			active = true
+	$effect(() => {
+		if (!loading) {
+			active = true;
 		}
-	})()
+	});
 </script>
 
 <div
-	class="tagcloud relative mx-auto flex h-[380px] max-w-[750px] items-center justify-center overflow-hidden md:h-[550px] md:overflow-visible"
+	class="tagcloud relative mx-auto flex h-full w-full items-center justify-center overflow-hidden md:overflow-visible"
 >
-	{#if start}
-		<div class="flex h-full w-full" in:fade>
-			<Canvas linear flat>
-				<Fog color={0x2e3440} near={0} far={60} />
-				<T.PerspectiveCamera makeDefault position={[0, 0, $cameraPositionZ]} />
-				{#if active}
-					<TrackballControls zoomSpeed={2} panSpeed={0} maxDistance={50} minDistance={4} />
-				{/if}
-				<T.AmbientLight intensity={0.75} />
-				<T.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
+	<div
+		class="flex h-full w-full transition-opacity"
+		class:opacity-0={!active}
+		class:opacity-1={active}
+	>
+		<Canvas toneMapping={NoToneMapping}>
+			<Scene onloaded={() => (loading = false)} />
+		</Canvas>
 
-				{#each skills as skill, index}
-					<Tag
-						text={skill.name}
-						{index}
-						{skills}
-						length={skills.length}
-						on:loaded={() => (loaded = true)}
-					/>
-				{/each}
-			</Canvas>
-
-			<div class="overlay">
-				<Icon
-					src={ChevronUp}
-					size="l"
-					class="icon left-0 top-0 translate-y-1 translate-x-1 -rotate-45"
-				/>
-				<Icon
-					src={ChevronUp}
-					size="l"
-					class="icon right-0 top-0 translate-y-1 -translate-x-1 rotate-45"
-				/>
-				<Icon
-					src={ChevronDown}
-					size="l"
-					class="icon left-0 bottom-0 -translate-y-1 translate-x-1 rotate-45"
-				/>
-				<Icon
-					src={ChevronDown}
-					size="l"
-					class="icon right-0 bottom-0 -translate-y-1 -translate-x-1 -rotate-45"
-				/>
-			</div>
+		<div class="overlay">
+			<Icon
+				src={ChevronUp}
+				size="l"
+				class="icon left-0 top-0 translate-x-1 translate-y-1 -rotate-45"
+			/>
+			<Icon
+				src={ChevronUp}
+				size="l"
+				class="icon right-0 top-0 -translate-x-1 translate-y-1 rotate-45"
+			/>
+			<Icon
+				src={ChevronDown}
+				size="l"
+				class="icon bottom-0 left-0 -translate-y-1 translate-x-1 rotate-45"
+			/>
+			<Icon
+				src={ChevronDown}
+				size="l"
+				class="icon bottom-0 right-0 -translate-x-1 -translate-y-1 -rotate-45"
+			/>
 		</div>
-	{/if}
+	</div>
 </div>
 
 <style lang="postcss">
 	.overlay {
-		@apply absolute left-0 right-0 top-0 bottom-0;
+		@apply absolute bottom-0 left-0 right-0 top-0;
 		@apply pointer-events-none scale-105 transition-all duration-300;
 		@apply opacity-0;
 	}
@@ -92,7 +66,7 @@
 		}
 
 		.tagcloud:focus {
-			@apply outline-none md:outline-2 md:outline-nord3;
+			@apply outline-none md:outline-2 md:outline-cat-surface1;
 		}
 
 		.tagcloud:hover .overlay,

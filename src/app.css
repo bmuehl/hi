@@ -1,7 +1,6 @@
-@import '@fontsource/fira-code';
-@import '@fontsource/fira-code/600.css';
+@import '@fontsource/jetbrains-mono';
+@import '@fontsource/jetbrains-mono/600.css';
 
-/* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,22 +12,22 @@
 
 	p,
 	q {
-		@apply my-2 text-[#606c85];
+		@apply my-2;
 	}
 
 	body,
 	html {
-		@apply bg-nord0 text-nord5;
+		@apply overscroll-none bg-cat-surface0 text-cat-text;
 	}
 
-	a {
-		@apply text-nord10;
+	a:not(.abase) {
+		@apply text-cat-blue;
 		@apply before:content-['['] after:content-[']'];
 	}
 }
 
 :root {
-	--selection: theme('colors.nord3');
+	--selection: theme('colors.cat-surface2.DEFAULT');
 }
 
 /* Text select color */
@@ -41,5 +40,5 @@
 
 /* Set global focus color */
 *:focus {
-	@apply rounded-sm border-0 border-transparent outline-none ring-2 ring-nord3;
+	@apply rounded-sm border-0 border-transparent outline-none ring-2 ring-cat-surface2;
 }

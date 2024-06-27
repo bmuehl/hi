@@ -1,28 +1,18 @@
 <script lang="ts">
-	import { applyMaterial } from '$lib/utils'
-	import { GLTF } from '@threlte/extras'
-	import { MeshStandardMaterial, Color } from 'three'
-	import { T, TransformableObject, useFrame } from '@threlte/core'
+	import { applyMaterial } from '$lib/utils';
+	import { GLTF } from '@threlte/extras';
+	import { MeshStandardMaterial, Color } from 'three';
+	import { T, useTask } from '@threlte/core';
 
-	let rotation = 0
+	let rotation = 0;
 
-	useFrame(() => {
-		rotation += 0.008
-	})
+	useTask(() => {
+		rotation += 0.008;
+	});
 </script>
 
 <T.Group rotation.y={rotation}>
-	<T.PerspectiveCamera
-		makeDefault
-		position={[0, 0, 0]}
-		near={1}
-		far={500}
-		fov={40}
-		scale={1}
-		let:ref={cam}
-	>
-		<TransformableObject object={cam} lookAt={{ y: 2 }} />
-	</T.PerspectiveCamera>
+	<T.PerspectiveCamera makeDefault position={[0, 0, 0]} near={1} far={500} fov={40} scale={1} />
 
 	<!-- <T.OrthographicCamera zoom={30} let:ref={cam} position={[0, 5, 10]} makeDefault> -->
 	<!-- 	<TransformableObject object={cam} lookAt={{ y: 2 }} /> -->
@@ -39,9 +29,9 @@
 	rotation={{ x: 9.7, y: 0, z: 0 }}
 	interactive
 	on:click={(e) => console.log(e.detail)}
-	on:load={({ detail }) =>
+	on:load={(gltf) =>
 		applyMaterial(
-			detail.scene,
+			gltf.scene,
 			new MeshStandardMaterial({
 				color: new Color(0xa3be8c),
 				wireframe: true

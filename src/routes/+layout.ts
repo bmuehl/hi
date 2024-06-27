@@ -1,12 +1,9 @@
-import type { LayoutLoad } from './$types'
+import type { LayoutLoad } from './$types';
 
-export const prerender = true
+export const prerender = true;
 
-export const load: LayoutLoad = async ({ fetch, url }) => {
-	const response = await fetch('/jokes')
-
+export const load: LayoutLoad = async ({ url }) => {
 	return {
-		joke: await response.text(),
 		path: url.pathname
-	}
-}
+	};
+};

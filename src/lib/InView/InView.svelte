@@ -1,11 +1,14 @@
-<script>
-	import { inView } from '$lib/utils'
-	export let threshold = 0.5
-	let animated = false
+<script lang="ts">
+	import { inView } from '$lib/utils';
+	import type { Snippet } from 'svelte';
+
+	const { threshold = 0.5, children }: { threshold?: number; children: Snippet } = $props();
+
+	let animated = $state(false);
 </script>
 
-<div use:inView={{ threshold }} on:enter={() => (animated = true)}>
+<div use:inView={{ threshold }} onenter={() => (animated = true)}>
 	{#if animated}
-		<slot />
+		{@render children()}
 	{/if}
 </div>
