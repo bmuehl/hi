@@ -13,7 +13,7 @@
 	<title>Bernhard Mühl | My Info</title>
 </svelte:head>
 
-<div class="container md:flex md:h-full md:items-center md:justify-center">
+<div class="container px-4 md:flex md:h-full md:items-center md:justify-center">
 	<div class="flex max-w-5xl flex-col items-center gap-9 md:flex-row md:items-start md:gap-12">
 		<img
 			src="./assets/me.jpg"
@@ -26,7 +26,7 @@
 			<h1 class="text-6xl">
 				<Typed oncomplete={() => (intro = false)}
 					><p>Hi,</p>
-					<p>I'm Berni.</p>
+					<p>I&apos;m Berni.</p>
 				</Typed>
 			</h1>
 			<div class:opacity-0={intro} class:opacity-1={!intro} class="transition-opacity duration-500">
