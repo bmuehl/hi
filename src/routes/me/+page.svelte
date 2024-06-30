@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Spinner from '$lib/Spinner/Spinner.svelte';
 	import { Canvas } from '@threlte/core';
 	import Scene from './Scene.svelte';
 	import Card from '$lib/Card/Card.svelte';
 	import { NoToneMapping } from 'three';
 
-	let loading = true;
+	let loading = $state(true);
 
-	onMount(() => {
+	$effect(() => {
 		loading = false;
 	});
 </script>
@@ -35,7 +34,7 @@
 	</div>
 {/if}
 
-<div class="absolute top-0 flex h-screen w-screen overflow-hidden">
+<div class="absolute top-0 flex h-full w-full overflow-hidden">
 	<Canvas toneMapping={NoToneMapping}>
 		<Scene />
 	</Canvas>
