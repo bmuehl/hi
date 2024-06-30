@@ -14,6 +14,7 @@
 	let slides: HTMLDivElement | undefined = $state(undefined);
 	let collider: HTMLDivElement | undefined = $state(undefined);
 	let showControlDescription = $state(false);
+	let autoScroll = $state(true);
 	const speed = 1.5;
 
 	const focusTransition = tweened(0, { duration: 500, easing: cubicOut });
@@ -42,6 +43,7 @@
 			});
 			setActiveSlide(id);
 			if (document.activeElement !== slide) {
+				autoScroll = false;
 				slide.focus();
 			}
 		}
@@ -72,6 +74,10 @@
 		if (!store.value.focusSkill) {
 			store.update({ focusSkill: store.value.activeSkill?.id });
 		}
+		if (store.value.focusSkill) {
+			store.update({ focusSkill: false });
+			autoScroll = true;
+		}
 	}
 
 	$effect(() => {
@@ -99,10 +105,7 @@
 						slides.scrollLeft = 0;
 					}
 
-					if (document.activeElement?.parentElement !== slides) {
-						if (store.value.focusSkill) {
-							store.update({ focusSkill: false });
-						}
+					if (autoScroll) {
 						slides.scrollLeft += speed;
 					}
 				}
@@ -112,7 +115,10 @@
 	});
 
 	$effect(() => {
-		setSlideFocus(store.value.focusSkill);
+		if (store.value.focusSkill) {
+			setSlideFocus(store.value.focusSkill);
+			autoScroll = false;
+		}
 	});
 </script>
 

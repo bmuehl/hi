@@ -23,6 +23,9 @@ importers:
       three:
         specifier: ^0.165.0
         version: 0.165.0
+      typed.js:
+        specifier: ^2.1.0
+        version: 2.1.0
     devDependencies:
       '@catppuccin/tailwindcss':
         specifier: ^0.1.6
@@ -1695,6 +1698,9 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
+  typed.js@2.1.0:
+    resolution: {integrity: sha512-bDuXEf7YcaKN4g08NMTUM6G90XU25CK3bh6U0THC/Mod/QPKlEt9g/EjvbYB8x2Qwr2p6J6I3NrsoYaVnY6wsQ==}
+
   typescript-eslint@8.0.0-alpha.30:
     resolution: {integrity: sha512-/vGhBMsK1TpadQh1eQ02c5pyiPGmKR9cVzX5C9plZ+LC0HPLpWoJbbTVfQN7BkIK7tUxDt2BFr3pFL5hDDrx7g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -3296,6 +3302,8 @@ snapshots:
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
+
+  typed.js@2.1.0: {}
 
   typescript-eslint@8.0.0-alpha.30(eslint@9.5.0)(typescript@5.5.2):
     dependencies:

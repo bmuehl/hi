@@ -17,7 +17,7 @@
 
 {#key path}
 	<section
-		class="flex h-screen w-full flex-col items-center overflow-y-auto pb-32 pt-28"
+		class="flex h-screen w-full flex-col items-center overflow-y-auto pb-32 pt-24"
 		in:fly={{ x: width, duration, delay: duration - 100, easing: elasticOut }}
 		out:fly={{ x: -width, duration, easing: backIn }}
 		bind:clientWidth={width}

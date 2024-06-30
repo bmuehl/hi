@@ -25,7 +25,7 @@
 	const color = new Color();
 
 	const { camera } = useThrelte();
-	const { hovering: hovered } = useCursor('pointer');
+	const { hovering } = useCursor('pointer');
 
 	const computePosition = () => {
 		const phi = Math.acos(-1 + (2 * index + 1) / length);
@@ -37,12 +37,20 @@
 		];
 	};
 
+	const isFocused = () => {
+		if (store.value.focusSkill && textObject) {
+			return textObject.text === skills.find((s) => s.id === store.value.focusSkill)?.name;
+		}
+		return false;
+	};
+
 	useTask(() => {
 		if (textObject) {
 			textObject.quaternion.copy(get(camera).quaternion);
 			const material = textObject.material as MeshBasicMaterial;
-			material.color.lerp(color.set(get(hovered) ? '#a3be8c' : 'white'), 0.1);
-			fontSize.set(get(hovered) ? 1 : 0.85);
+			const focused = isFocused();
+			material.color.lerp(color.set(get(hovering) || focused ? '#a3be8c' : 'white'), 0.1);
+			fontSize.set(get(hovering) || focused ? 1 : 0.85);
 		}
 	});
 
@@ -66,9 +74,9 @@
 	interactive
 	on:pointerenter={(e) => {
 		e.stopPropagation();
-		$hovered = true;
+		$hovering = true;
 	}}
-	on:pointerleave={() => ($hovered = false)}
+	on:pointerleave={() => ($hovering = false)}
 	on:click={clickHandler}
 	on:sync={() => (skills.length === index + 1 ? onloaded() : null)}
 />
