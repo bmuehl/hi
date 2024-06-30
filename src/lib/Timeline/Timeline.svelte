@@ -30,10 +30,10 @@
 	<InView>
 		{#each experience as item, i}
 			{#await tick() then}
-				<li class="relative mb-10 ml-8">
+				<li class="group relative mb-10 ml-8">
 					<span
 						in:blur={workaroundDelay({ delay: i * 800 })}
-						class="absolute -left-[49px] flex h-8 w-8 items-center justify-center rounded-full"
+						class="absolute -left-[49px] flex h-8 w-8 items-center justify-center rounded-full transition-transform group-hover:scale-150"
 						class:bg-cat-green={item.status === 'done'}
 						class:bg-cat-yellow={item.status === 'waiting'}
 						class:bg-cat-peach={item.status === 'progress'}
@@ -43,7 +43,10 @@
 							src={item.category === 'education' ? AcademicCap : Briefcase}
 						/>
 					</span>
-					<div in:slide={workaroundDelay({ delay: i * 800 + 500 })}>
+					<div
+						in:slide={workaroundDelay({ delay: i * 800 + 500 })}
+						class="transition-transform group-hover:translate-x-5"
+					>
 						<time class="mb-1 text-sm leading-none text-cat-subtext0">
 							{item.place}, {item.startDate.getFullYear()} - {item.endDate
 								? item.endDate.getFullYear()
