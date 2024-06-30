@@ -18,7 +18,7 @@
 		<img
 			src="./assets/me.jpg"
 			alt="Berni Portrait"
-			class="h-56 w-56 rounded-full transition-opacity duration-300"
+			class="h-56 w-56 rounded-full transition-opacity duration-500"
 			class:opacity-0={intro}
 			class:opacity-1={!intro}
 		/>
@@ -29,7 +29,7 @@
 					<p>I'm Berni.</p>
 				</Typed>
 			</h1>
-			<div class:opacity-0={intro} class:opacity-1={!intro} class="transition-opacity duration-300">
+			<div class:opacity-0={intro} class:opacity-1={!intro} class="transition-opacity duration-500">
 				<p class="my-6 text-xl text-cat-subtext0">
 					Enthusiastic Software Engineer with a passion for<br />Web Development and creating stuff.
 				</p>
