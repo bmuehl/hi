@@ -1,5 +1,6 @@
 import type { GLTF } from '@threlte/extras';
 import { onDestroy } from 'svelte';
+import { on } from 'svelte/events';
 import type { Mesh, MeshStandardMaterial, Object3D } from 'three';
 import { pages, type Page } from './store.svelte';
 
@@ -93,16 +94,16 @@ export function onDoubleTap(element: HTMLElement) {
 		const now = new Date().getTime();
 		const timesince = now - lastTap;
 		if (timesince < maxTime && timesince > minTime) {
-			element.dispatchEvent(new CustomEvent('dbltab'));
+			element.dispatchEvent(new CustomEvent('dbltap'));
 		}
 		lastTap = now;
 	}
 
-	document.addEventListener('touchstart', handleTap);
+	const off = on(document, 'touchstart', handleTap);
 
 	return {
 		destroy() {
-			document.removeEventListener('touchstart', handleTap);
+			off();
 		}
 	};
 }

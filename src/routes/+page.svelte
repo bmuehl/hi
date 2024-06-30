@@ -13,8 +13,8 @@
 	<title>Bernhard Mühl | My Info</title>
 </svelte:head>
 
-<div class="container mx-auto md:flex md:h-full md:items-center md:justify-center">
-	<div class="flex max-w-5xl flex-col gap-9 md:flex-row md:gap-12">
+<div class="container mx-auto px-4 md:flex md:h-full md:items-center md:justify-center">
+	<div class="flex max-w-5xl flex-col items-center gap-9 md:flex-row md:items-start md:gap-12">
 		<img
 			src="./assets/me.jpg"
 			alt="Berni Portrait"
@@ -22,7 +22,7 @@
 			class:opacity-0={intro}
 			class:opacity-1={!intro}
 		/>
-		<div>
+		<div class="flex flex-col items-center md:items-start">
 			<h1 class="text-6xl"><Typed oncomplete={() => (intro = false)}>Hi, I'm Berni.</Typed></h1>
 			<div class:opacity-0={intro} class:opacity-1={!intro} class="transition-opacity duration-300">
 				<p class="my-6 text-xl text-cat-subtext0">

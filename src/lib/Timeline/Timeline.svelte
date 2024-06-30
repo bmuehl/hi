@@ -18,7 +18,6 @@
 		easing?: (t: number) => number;
 	}) {
 		let virtual_duration = delay + duration;
-		console.log(virtual_duration);
 		let threshold = delay / virtual_duration;
 		return {
 			duration: virtual_duration,

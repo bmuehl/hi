@@ -28,7 +28,6 @@
 	position={{ x: 0, y: 60, z: 0 }}
 	rotation={{ x: 9.7, y: 0, z: 0 }}
 	interactive
-	on:click={(e) => console.log(e.detail)}
 	on:load={(gltf) =>
 		applyMaterial(
 			gltf.scene,

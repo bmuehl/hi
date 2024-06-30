@@ -71,12 +71,11 @@
 	}
 
 	function focusCurrent() {
-		if (!store.value.focusSkill) {
-			store.update({ focusSkill: store.value.activeSkill?.id });
-		}
 		if (store.value.focusSkill) {
 			store.update({ focusSkill: false });
 			autoScroll = true;
+		} else {
+			store.update({ focusSkill: store.value.activeSkill?.id });
 		}
 	}
 
