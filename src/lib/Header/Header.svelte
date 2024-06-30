@@ -9,7 +9,7 @@
 <header
 	class="absolute left-0 right-0 top-0 z-10 h-14 overflow-x-auto border-b border-b-cat-overlay1 bg-cat-surface0"
 >
-	<div class="container mx-auto flex h-full justify-between">
+	<div class="container flex h-full justify-between">
 		<div class="flex items-center">
 			<div class="nav-item" class:active={store.value.currentPage === 'home'}>
 				<a data-sveltekit-preload-code="viewport" href="/" use:clickOnKey={['h', 'H']}>

@@ -13,7 +13,7 @@
 	<title>Bernhard Mühl | My Info</title>
 </svelte:head>
 
-<div class="container mx-auto px-4 md:flex md:h-full md:items-center md:justify-center">
+<div class="container md:flex md:h-full md:items-center md:justify-center">
 	<div class="flex max-w-5xl flex-col items-center gap-9 md:flex-row md:items-start md:gap-12">
 		<img
 			src="./assets/me.jpg"

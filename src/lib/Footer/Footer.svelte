@@ -12,7 +12,7 @@
 		<NextLink href={`/${nextPage(store.value.currentPage)}`} />
 	</div>
 	<div class="border-t border-t-cat-overlay1 bg-cat-surface1 py-2">
-		<div class="container mx-auto">
+		<div class="container">
 			<div class="text-right text-xs text-cat-subtext0">
 				cv.berni.cloud @ v{version}
 			</div>

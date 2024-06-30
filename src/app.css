@@ -17,7 +17,7 @@
 
 	body,
 	html {
-		@apply overscroll-none bg-cat-surface0 text-cat-text;
+		@apply relative h-full overscroll-none bg-cat-surface0 text-cat-text;
 	}
 
 	a:not(.abase) {
