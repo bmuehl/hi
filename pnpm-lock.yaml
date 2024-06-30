@@ -17,9 +17,6 @@ importers:
       '@threlte/extras':
         specifier: ^9.0.0-next.9
         version: 9.0.0-next.9(@types/three@0.165.0)(svelte@5.0.0-next.162)(three@0.165.0)
-      gh-pages:
-        specifier: ^6.1.1
-        version: 6.1.1
       three:
         specifier: ^0.165.0
         version: 0.165.0
@@ -60,6 +57,9 @@ importers:
       eslint-plugin-svelte:
         specifier: ^2.41.0
         version: 2.41.0(eslint@9.5.0)(svelte@5.0.0-next.162)
+      gh-pages:
+        specifier: ^6.1.1
+        version: 6.1.1
       globals:
         specifier: ^15.0.0
         version: 15.6.0
