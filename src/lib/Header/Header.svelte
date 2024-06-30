@@ -16,9 +16,9 @@
 					<span class="key-binding">h</span>ome
 				</a>
 			</div>
-			<div class="nav-item" class:active={store.value.currentPage === 'timeline'}>
-				<a data-sveltekit-preload-code="viewport" href="/timeline" use:clickOnKey={['t', 'T']}>
-					<span class="key-binding">t</span>imeline
+			<div class="nav-item" class:active={store.value.currentPage === 'experience'}>
+				<a data-sveltekit-preload-code="viewport" href="/experience" use:clickOnKey={['e', 'E']}>
+					<span class="key-binding">e</span>xperience
 				</a>
 			</div>
 			<div class="nav-item" class:active={store.value.currentPage === 'skills'}>

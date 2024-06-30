@@ -324,7 +324,7 @@ export const experience: ExperienceItem[] = [
 	}
 ];
 
-export const pages = ['home', 'timeline', 'skills', 'me'] as const;
+export const pages = ['home', 'experience', 'skills', 'me'] as const;
 
 export type Page = (typeof pages)[number];
 

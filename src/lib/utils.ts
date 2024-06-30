@@ -189,6 +189,10 @@ export const pathToPage = (path: string) => {
 	return (path.split('/')[1] || 'home') as Page;
 };
 
+export const pageToPath = (page: Page) => {
+	return page === 'home' ? '/' : `/${page}`;
+};
+
 export const nextPage = (page: Page) => {
 	const next = pages[(pages.indexOf(page) + 1) % pages.length];
 	return next === 'home' ? '' : next;
