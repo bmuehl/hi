@@ -17,7 +17,7 @@
 				}
 			},
 			typeSpeed: 70,
-			backDelay: 400
+			backDelay: 500
 		});
 		return () => typed.destroy();
 	});
