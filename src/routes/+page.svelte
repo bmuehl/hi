@@ -23,7 +23,12 @@
 			class:opacity-1={!intro}
 		/>
 		<div class="flex flex-col items-center md:items-start">
-			<h1 class="text-6xl"><Typed oncomplete={() => (intro = false)}>Hi, I'm Berni.</Typed></h1>
+			<h1 class="text-6xl">
+				<Typed oncomplete={() => (intro = false)}
+					><p>Hi,</p>
+					<p>I'm Berni.</p>
+				</Typed>
+			</h1>
 			<div class:opacity-0={intro} class:opacity-1={!intro} class="transition-opacity duration-300">
 				<p class="my-6 text-xl text-cat-subtext0">
 					Enthusiastic Software Engineer with a passion for<br />Web Development and creating stuff.

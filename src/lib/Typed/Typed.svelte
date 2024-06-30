@@ -9,13 +9,15 @@
 
 	$effect(() => {
 		const typed = new Typed(mount, {
-			strings: [text.innerText],
+			stringsElement: text,
 			onComplete: () => {
 				if (oncomplete) {
+					typed.cursor.remove();
 					oncomplete();
 				}
 			},
-			typeSpeed: 80
+			typeSpeed: 70,
+			backDelay: 400
 		});
 		return () => typed.destroy();
 	});
