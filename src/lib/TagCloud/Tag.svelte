@@ -38,8 +38,8 @@
 	};
 
 	const isFocused = () => {
-		if (store.value.focusSkill && textObject) {
-			return textObject.text === skills.find((s) => s.id === store.value.focusSkill)?.name;
+		if (store.value.activeSkill && textObject) {
+			return textObject.text === store.value.activeSkill.name;
 		}
 		return false;
 	};
@@ -49,8 +49,8 @@
 			textObject.quaternion.copy(get(camera).quaternion);
 			const material = textObject.material as MeshBasicMaterial;
 			const focused = isFocused();
-			material.color.lerp(color.set(get(hovering) || focused ? '#a3be8c' : 'white'), 0.1);
-			fontSize.set(get(hovering) || focused ? 1 : 0.85);
+			material.color.lerp(color.set(get(hovering) || focused ? '#a6e3a1' : 'white'), 0.1);
+			fontSize.set(get(hovering) || focused ? 1.2 : 0.85);
 		}
 	});
 
