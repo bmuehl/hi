@@ -22,7 +22,7 @@
 			class:opacity-0={intro}
 			class:opacity-1={!intro}
 		/>
-		<div class="flex flex-col items-center md:items-start">
+		<div>
 			<h1 class="text-6xl">
 				<Typed oncomplete={() => (intro = false)}
 					><p>Hi,</p>
