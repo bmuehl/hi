@@ -274,7 +274,11 @@ export const experience: ExperienceItem[] = [
 		description: 'Senior Software Engineer',
 		status: 'progress',
 		skills: [],
-		bullets: []
+		bullets: [
+			'Customer KYC verification',
+			'Asset Tokenization on the Polygon Blockchain',
+			'Payment gateway integration with Lemonway'
+		]
 	},
 	{
 		category: 'work',
@@ -284,8 +288,8 @@ export const experience: ExperienceItem[] = [
 		title: 'Hyke Systems',
 		description: 'Software Engineer / Consultant',
 		status: 'progress',
-		bullets: [],
-		skills: []
+		skills: [],
+		bullets: ['Website development with Next.js', 'Software Consulting', 'Wordpress Development']
 	},
 
 	{
@@ -296,8 +300,13 @@ export const experience: ExperienceItem[] = [
 		title: 'Vienna BioCenter Core Facilities',
 		description: 'Software Architect',
 		status: 'done',
-		bullets: [],
-		skills: ['Java', 'Spring', 'PostgreSQL']
+		skills: ['Java', 'Spring', 'PostgreSQL'],
+		bullets: [
+			'Building campus wide LIMS systems',
+			'eCommerce solutions for labs',
+			'User management / data centralization / invoice generation',
+			'Automized deployments with Terraform / Jenkins / Kubernetes'
+		]
 	},
 	{
 		category: 'education',
@@ -307,8 +316,8 @@ export const experience: ExperienceItem[] = [
 		title: 'Univsersity of Vienna',
 		description: 'Bachelor of Psychology',
 		status: 'waiting',
-		bullets: [],
-		skills: []
+		skills: [],
+		bullets: []
 	},
 
 	{
@@ -319,8 +328,8 @@ export const experience: ExperienceItem[] = [
 		title: 'Technologisches Gewerbemuseum',
 		description: 'Information Technology',
 		status: 'done',
-		bullets: [],
-		skills: []
+		skills: [],
+		bullets: []
 	}
 ];
 

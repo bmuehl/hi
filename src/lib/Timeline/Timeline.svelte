@@ -3,10 +3,13 @@
 	import AcademicCap from '$lib/Icon/icons/AcademicCap.svelte';
 	import Briefcase from '$lib/Icon/icons/Briefcase.svelte';
 	import InView from '$lib/InView/InView.svelte';
+	import Card from '$lib/Card/Card.svelte';
 	import { blur, slide } from 'svelte/transition';
 	import { linear } from 'svelte/easing';
 	import { experience } from '$lib/store.svelte';
 	import { tick } from 'svelte';
+
+	let showDetailsId = $state(0);
 
 	function workaroundDelay({
 		delay,
@@ -30,7 +33,11 @@
 	<InView>
 		{#each experience as item, i}
 			{#await tick() then}
-				<li class="group relative mb-10 ml-8">
+				<li
+					class="group relative ml-8 pb-10 hover:cursor-pointer"
+					onmouseover={() => (showDetailsId = i)}
+					onfocus={() => (showDetailsId = i)}
+				>
 					<span
 						in:blur={workaroundDelay({ delay: i * 800 })}
 						class="absolute -left-[49px] flex h-8 w-8 items-center justify-center rounded-full transition-transform group-hover:scale-150"
@@ -54,6 +61,17 @@
 						</time>
 						<h3 class="text-lg">{item.title}</h3>
 						<p class="mb-4 text-base text-cat-overlay1">{item.description}</p>
+						{#if showDetailsId === i}
+							<div transition:slide class="w-80 md:w-96">
+								<Card>
+									<ul class="list-[square] text-sm">
+										{#each item.bullets as bullet}
+											<li>{bullet}</li>
+										{/each}
+									</ul>
+								</Card>
+							</div>
+						{/if}
 					</div>
 				</li>
 			{/await}
