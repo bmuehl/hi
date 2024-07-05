@@ -16,7 +16,7 @@
 
 	let { text, length, index, skills, onloaded }: Props = $props();
 
-	let textObject: Text | undefined = $state(undefined);
+	let textObject: Text['$$prop_def']['ref'] = $state(undefined);
 
 	const font = '/assets/fonts/JetBrainsMono-Medium.ttf';
 	const fontSize = tweened(0.85, { duration: 200 });

@@ -6,9 +6,16 @@
 		alt,
 		header,
 		footer,
-		children
-	}: { src?: string; alt?: string; header?: Snippet; footer?: Snippet; children?: Snippet } =
-		$props();
+		children,
+		class: classname
+	}: {
+		src?: string;
+		alt?: string;
+		header?: Snippet;
+		footer?: Snippet;
+		children?: Snippet;
+		class?: string;
+	} = $props();
 </script>
 
 {#snippet hr()}
@@ -17,7 +24,9 @@
 	{/if}
 {/snippet}
 
-<div class="flex h-full flex-col rounded-lg border border-cat-surface2 bg-cat-surface1 md:flex-row">
+<div
+	class={`flex flex-col rounded-lg border border-cat-surface2 bg-cat-surface1 md:flex-row ${classname}`}
+>
 	{#if src}
 		<img
 			class="h-96 w-full rounded-t-lg object-cover md:h-auto md:w-72 md:!rounded-none md:!rounded-s-lg"

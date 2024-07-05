@@ -34,6 +34,7 @@ export type Skill = {
 	url: string;
 	experience: string;
 	score: number;
+	tags: string[];
 };
 
 export const skills: Skill[] = [
@@ -43,7 +44,8 @@ export const skills: Skill[] = [
 		logo: './assets/vue.svg',
 		url: 'https://vuejs.org/',
 		experience: 'Used multiple years at work as main frontend framework',
-		score: 5
+		score: 5,
+		tags: []
 	},
 	{
 		id: 2,
@@ -51,7 +53,8 @@ export const skills: Skill[] = [
 		logo: './assets/react.svg',
 		url: 'https://reactjs.org/',
 		experience: 'Used for a bit in private projects, espacally with the combination of next.js',
-		score: 2.5
+		score: 2.5,
+		tags: []
 	},
 	{
 		id: 3,
@@ -59,7 +62,8 @@ export const skills: Skill[] = [
 		logo: './assets/svelte.svg',
 		url: 'https://svelte.dev/',
 		experience: 'Since svelte 3 used whenever possible. SvelteKit is also great! :)',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 4,
@@ -67,7 +71,8 @@ export const skills: Skill[] = [
 		logo: './assets/css3.svg',
 		url: 'https://www.w3.org/Style/CSS/',
 		experience: 'Used for a long time, but recently replaced by tailwindcss',
-		score: 5
+		score: 5,
+		tags: []
 	},
 	{
 		id: 5,
@@ -75,7 +80,8 @@ export const skills: Skill[] = [
 		logo: './assets/sass.svg',
 		url: 'https://sass-lang.com/',
 		experience: 'Step up from plain css, but recently also replaced by tailwindcss',
-		score: 3
+		score: 3,
+		tags: []
 	},
 	{
 		id: 6,
@@ -83,7 +89,8 @@ export const skills: Skill[] = [
 		logo: './assets/postcss.svg',
 		url: 'https://postcss.org/',
 		experience: 'Currently used in combination with tailwindcss, autoprefixer and nesting',
-		score: 3
+		score: 3,
+		tags: []
 	},
 	{
 		id: 7,
@@ -91,7 +98,8 @@ export const skills: Skill[] = [
 		logo: './assets/java.svg',
 		url: 'https://dev.java/',
 		experience: 'Main backend language at work, used for a long time',
-		score: 5
+		score: 5,
+		tags: []
 	},
 	{
 		id: 8,
@@ -99,7 +107,8 @@ export const skills: Skill[] = [
 		logo: './assets/python.svg',
 		url: 'https://www.python.org/',
 		experience: 'Small projects mostly for data analysis',
-		score: 2.5
+		score: 2.5,
+		tags: []
 	},
 	{
 		id: 9,
@@ -107,7 +116,8 @@ export const skills: Skill[] = [
 		logo: './assets/php.svg',
 		url: 'https://www.php.net/',
 		experience: 'Mostly in combination with Frameworks like Laravel or Symfony',
-		score: 3
+		score: 3,
+		tags: []
 	},
 	{
 		id: 10,
@@ -115,7 +125,8 @@ export const skills: Skill[] = [
 		logo: './assets/wordpress.svg',
 		url: 'https://wordpress.org/',
 		experience: 'Used as company intranet and devloped custom theme and plugins',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 11,
@@ -123,7 +134,8 @@ export const skills: Skill[] = [
 		logo: './assets/spring.svg',
 		url: 'https://spring.io/',
 		experience: 'Main backend framework in recent years. Happy to try Quarkus at some point',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 12,
@@ -131,7 +143,8 @@ export const skills: Skill[] = [
 		logo: 'https://nodejs.org/static/images/logo.svg',
 		url: 'https://nodejs.org/',
 		experience: 'Usally for smaller projects or as backend for frontend frameworks',
-		score: 3.5
+		score: 3.5,
+		tags: []
 	},
 	{
 		id: 13,
@@ -140,7 +153,8 @@ export const skills: Skill[] = [
 		url: 'https://business.adobe.com/products/magento/magento-commerce.html',
 		experience:
 			"Setup as main store for campus, developped custom theme and plugins. Don't like the architecture but api is great",
-		score: 3.5
+		score: 3.5,
+		tags: []
 	},
 	{
 		id: 14,
@@ -149,7 +163,8 @@ export const skills: Skill[] = [
 		url: 'https://www.microsoft.com/en-ww/microsoft-365/sharepoint/collaboration',
 		experience:
 			'Setup a company intranet with sharepoint. Played around with SPFx but only scratched the surface',
-		score: 2
+		score: 2,
+		tags: []
 	},
 	{
 		id: 15,
@@ -157,7 +172,8 @@ export const skills: Skill[] = [
 		logo: './assets/azure.svg',
 		url: 'https://azure.microsoft.com/',
 		experience: 'Used as the main cloud provider for work',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 16,
@@ -166,7 +182,8 @@ export const skills: Skill[] = [
 		url: 'https://azure.microsoft.com/en-us/services/devops/',
 		experience:
 			'Currently the main CI/CD tool for work. Used Repos, Pipelines, Boards, Tests and Artifacts',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 17,
@@ -174,7 +191,8 @@ export const skills: Skill[] = [
 		logo: './assets/git.svg',
 		url: 'https://git-scm.com/',
 		experience: 'Git is great!',
-		score: 5
+		score: 5,
+		tags: []
 	},
 	{
 		id: 18,
@@ -182,7 +200,8 @@ export const skills: Skill[] = [
 		logo: 'https://www.jenkins.io/images/logos/jenkins/jenkins.svg',
 		url: 'https://www.jenkins.io/',
 		experience: 'Used a bit for recent projects, but not as deep as Azure DevOps or Github Actions',
-		score: 1.5
+		score: 1.5,
+		tags: []
 	},
 	{
 		id: 19,
@@ -190,7 +209,8 @@ export const skills: Skill[] = [
 		logo: './assets/aws.svg',
 		url: 'https://aws.amazon.com/',
 		experience: 'Some private projects running currently on AWS',
-		score: 2.5
+		score: 2.5,
+		tags: []
 	},
 	{
 		id: 20,
@@ -199,7 +219,8 @@ export const skills: Skill[] = [
 		url: 'https://www.khronos.org/webgl/',
 		experience:
 			'Collected some experience with three.js while setting up a 3D viewer for a client. Also used a bit for this website ;)',
-		score: 2.5
+		score: 2.5,
+		tags: []
 	},
 	{
 		id: 21,
@@ -207,7 +228,8 @@ export const skills: Skill[] = [
 		logo: './assets/postgresql.svg',
 		url: 'https://www.postgresql.org/',
 		experience: 'Main database for main projects at work and private projects',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 22,
@@ -215,7 +237,8 @@ export const skills: Skill[] = [
 		logo: 'https://www.mysql.com/common/logos/mysql-logo.svg',
 		url: 'https://www.mysql.com/',
 		experience: 'Used mostly if required by a client but would prefer to use PostgreSQL',
-		score: 3
+		score: 3,
+		tags: []
 	},
 	{
 		id: 23,
@@ -223,7 +246,8 @@ export const skills: Skill[] = [
 		logo: './assets/googlecloud.svg',
 		url: 'https://cloud.google.com/',
 		experience: 'Mainly used with Google APIs like Maps, Vision, Translate, etc.',
-		score: 2.5
+		score: 2.5,
+		tags: []
 	},
 	{
 		id: 24,
@@ -231,7 +255,8 @@ export const skills: Skill[] = [
 		logo: './assets/docker.svg',
 		url: 'https://www.docker.com/',
 		experience: 'Used for local development and CI/CD',
-		score: 4
+		score: 4,
+		tags: []
 	},
 	{
 		id: 25,
@@ -240,7 +265,8 @@ export const skills: Skill[] = [
 		url: 'https://kubernetes.io/',
 		experience:
 			'Very complicated, very powerful. Used for big projects at work. Also setup a bare metal kubernetes cluster for fun',
-		score: 3
+		score: 3,
+		tags: []
 	},
 	{
 		id: 26,
@@ -248,7 +274,8 @@ export const skills: Skill[] = [
 		logo: './assets/terraform.svg',
 		url: 'https://www.terraform.io/',
 		experience: 'Main tool to deploy infrastructure at work. Like the flexibility',
-		score: 3
+		score: 3,
+		tags: []
 	}
 ];
 

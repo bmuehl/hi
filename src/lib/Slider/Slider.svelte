@@ -7,6 +7,7 @@
 	import Icon from '$lib/Icon/Icon.svelte';
 	import Pause from '$lib/Icon/icons/Pause.svelte';
 	import Play from '$lib/Icon/icons/Play.svelte';
+	import Chip from '$lib/Chip/Chip.svelte';
 	import { slide } from 'svelte/transition';
 	import ArrowTopRightOnSquare from '$lib/Icon/icons/ArrowTopRightOnSquare.svelte';
 	import { untrack } from 'svelte';
@@ -91,7 +92,7 @@
 				const msNow = window.performance.now();
 				const msPassed = msNow - msPrev;
 
-				if (msPassed < msPerFrame) return;
+				if (msPassed < msPerFrame) return; // ensure fps
 
 				const excessTime = msPassed % msPerFrame;
 				msPrev = msNow - excessTime;
@@ -184,8 +185,12 @@
 		{/if}
 	</div>
 	<hr class="w-full border-t border-cat-surface2" />
-	<div class="content">
-		<span class="my-2 text-center text-sm">{store.value.activeSkill?.experience || '-'}</span>
+	<div class="flex flex-auto flex-wrap items-center gap-4 p-6">
+		{#if store.value.activeSkill}
+			{#each store.value.activeSkill.tags as tag}
+				<Chip>{tag}</Chip>
+			{/each}
+		{/if}
 	</div>
 	<hr class="w-full border-t border-cat-surface2" />
 	<div class="footer">
@@ -245,10 +250,6 @@
 
 		.header {
 			@apply flex flex-col items-center justify-center p-3;
-		}
-
-		.content {
-			@apply flex flex-auto items-center justify-center p-8;
 		}
 
 		.footer {

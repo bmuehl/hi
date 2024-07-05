@@ -12,7 +12,7 @@
 	<TagCloud />
 
 	<div class="max-w-96">
-		<Card>
+		<Card class="h-full">
 			{#snippet header()}
 				<div class="flex flex-col overflow-hidden">
 					<div class="h-6"></div>

@@ -4,8 +4,7 @@ import { fileURLToPath } from 'url';
 import { defineConfig } from 'vite';
 
 const file = fileURLToPath(new URL('package.json', import.meta.url));
-const json = readFileSync(file, 'utf8');
-const pkg = JSON.parse(json);
+const pkgJson = JSON.parse(readFileSync(file, 'utf8'));
 
 export default defineConfig({
 	plugins: [sveltekit()],
@@ -15,6 +14,6 @@ export default defineConfig({
 	},
 
 	define: {
-		__PROJECT_VERSION__: JSON.stringify(pkg.version)
+		__PROJECT_VERSION__: JSON.stringify(pkgJson.version)
 	}
 });
