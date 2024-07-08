@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { useThrelte, useTask } from '@threlte/core';
-	import { Text, useCursor } from '@threlte/extras';
+	import { Text, useCursor, type IntersectionEvent } from '@threlte/extras';
 	import { Color, MeshBasicMaterial } from 'three';
 	import { tweened } from 'svelte/motion';
 	import { type Skill, store } from '$lib/store.svelte';
 	import { get } from 'svelte/store';
+
+	type TextMesh = Text['$$prop_def']['ref'];
 
 	type Props = {
 		text: string;
@@ -12,11 +14,12 @@
 		index: number;
 		skills: Array<Skill>;
 		onloaded: () => void;
+		onclick?: (text: TextMesh) => void;
 	};
 
-	let { text, length, index, skills, onloaded }: Props = $props();
+	let { text, length, index, skills, onloaded, onclick }: Props = $props();
 
-	let textObject: Text['$$prop_def']['ref'] = $state(undefined);
+	let textObject: TextMesh = $state(undefined);
 
 	const font = '/assets/fonts/JetBrainsMono-Medium.ttf';
 	const fontSize = tweened(0.85, { duration: 200 });
@@ -54,11 +57,15 @@
 		}
 	});
 
-	const clickHandler = (e: Text) => {
+	const clickHandler = (e: IntersectionEvent<MouseEvent>) => {
 		e.stopPropagation();
-		const skill = skills.find((s) => s.name === e.object.text);
+		const textObject = e.object as TextMesh;
+		const skill = skills.find((s) => s.name === textObject?.text);
 		if (skill) {
 			store.update({ focusSkill: skill.id });
+		}
+		if (onclick) {
+			onclick(textObject);
 		}
 	};
 </script>
