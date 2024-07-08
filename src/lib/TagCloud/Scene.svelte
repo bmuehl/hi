@@ -11,6 +11,7 @@
 	let { onloaded }: { onloaded: () => void } = $props();
 
 	const { scene } = useThrelte();
+	// @ts-expect-error Fog not compatible with FogBase. TODO: check after threlte release
 	scene.fog = new Fog(0x313244, 10, 60);
 </script>
 
