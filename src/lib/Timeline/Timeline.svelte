@@ -8,6 +8,7 @@
 	import { linear } from 'svelte/easing';
 	import { experience } from '$lib/store.svelte';
 	import { tick } from 'svelte';
+	import Chip from '$lib/Chip/Chip.svelte';
 
 	let showDetailsId = $state(0);
 
@@ -64,11 +65,23 @@
 						{#if showDetailsId === i}
 							<div transition:slide class="w-80 md:w-96">
 								<Card>
-									<ul class="list-[square] text-sm">
-										{#each item.bullets as bullet}
-											<li>{bullet}</li>
-										{/each}
-									</ul>
+									{#snippet header()}
+										<div class="ml-4 p-4">
+											<ul class="list-[square] text-sm">
+												{#each item.bullets as bullet}
+													<li>{bullet}</li>
+												{/each}
+											</ul>
+											{#if item.skills.length > 0}
+												<div class="h-4"></div>
+												<div class="flex flex-wrap gap-2">
+													{#each item.skills as skill}
+														<Chip>{skill}</Chip>
+													{/each}
+												</div>
+											{/if}
+										</div>
+									{/snippet}
 								</Card>
 							</div>
 						{/if}

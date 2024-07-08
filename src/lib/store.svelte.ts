@@ -4,7 +4,7 @@ const skillNames = [
 	'Svelte',
 	'CSS3',
 	'Sass',
-	'postCSS',
+	'TailwindCSS',
 	'Java',
 	'Python',
 	'PHP',
@@ -24,7 +24,8 @@ const skillNames = [
 	'Google Cloud',
 	'Docker',
 	'Kubernetes',
-	'Terraform'
+	'Terraform',
+	'Next.js'
 ] as const;
 
 export type Skill = {
@@ -32,9 +33,9 @@ export type Skill = {
 	name: (typeof skillNames)[number];
 	logo: string;
 	url: string;
-	experience: string;
+	experience?: string;
 	score: number;
-	tags: string[];
+	tags?: string[];
 };
 
 export const skills: Skill[] = [
@@ -85,11 +86,11 @@ export const skills: Skill[] = [
 	},
 	{
 		id: 6,
-		name: 'postCSS',
-		logo: './assets/postcss.svg',
-		url: 'https://postcss.org/',
-		experience: 'Currently used in combination with tailwindcss, autoprefixer and nesting',
-		score: 3,
+		name: 'TailwindCSS',
+		logo: './assets/tailwindcss.svg',
+		url: 'https://tailwindcss.com/',
+		experience: '',
+		score: 5,
 		tags: []
 	},
 	{
@@ -276,6 +277,13 @@ export const skills: Skill[] = [
 		experience: 'Main tool to deploy infrastructure at work. Like the flexibility',
 		score: 3,
 		tags: []
+	},
+	{
+		id: 27,
+		name: 'Next.js',
+		logo: './assets/nextjs.svg',
+		url: 'https://nextjs.org/',
+		score: 4
 	}
 ];
 
@@ -300,7 +308,7 @@ export const experience: ExperienceItem[] = [
 		title: 'Rendity',
 		description: 'Senior Software Engineer',
 		status: 'progress',
-		skills: [],
+		skills: ['Node', 'Docker', 'React'],
 		bullets: [
 			'Customer KYC verification',
 			'Asset Tokenization on the Polygon Blockchain',
