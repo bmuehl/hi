@@ -40,7 +40,7 @@ Title: Tennis Racket
 		};
 	};
 
-	const gltf = useGltf<GLTFResult>('/assets/models/racket/scene.glb');
+	const gltf = useGltf<GLTFResult>('/assets/models/racket/scene.glb', { useDraco: true });
 
 	const material = new MeshStandardMaterial({ color: 0xfab387, wireframe: true });
 </script>

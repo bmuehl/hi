@@ -60,7 +60,7 @@ Title: Mini Keyboard minimalist
 
 	const material = new MeshStandardMaterial({ color: 0x74c7ec, wireframe: true });
 
-	const gltf = useGltf<GLTFResult>('/assets/models/keyboard/scene.gltf');
+	const gltf = useGltf<GLTFResult>('/assets/models/keyboard/scene.glb', { useDraco: true });
 </script>
 
 <T.Group bind:ref dispose={false} {...props}>

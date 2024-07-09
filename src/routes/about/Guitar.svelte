@@ -34,7 +34,7 @@ Title: Low Poly Guitar.
 		materials: object;
 	};
 
-	const gltf = useGltf<GLTFResult>('/assets/models/guitar/scene.gltf');
+	const gltf = useGltf<GLTFResult>('/assets/models/guitar/scene.glb', { useDraco: true });
 </script>
 
 <T.Group bind:ref dispose={false} {...props}>
