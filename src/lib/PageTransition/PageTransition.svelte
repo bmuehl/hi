@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import { backIn, elasticOut } from 'svelte/easing';
+	import { expoOut, expoIn } from 'svelte/easing';
 	import { pathToPage } from '$lib/utils';
 	import { store } from '$lib/store.svelte';
 	import type { Snippet } from 'svelte';
@@ -18,8 +18,8 @@
 {#key path}
 	<section
 		class="flex h-dvh w-full flex-col items-center overflow-y-auto pb-32 pt-24"
-		in:fly={{ x: width, duration, delay: duration - 100, easing: elasticOut }}
-		out:fly={{ x: -width, duration, easing: backIn }}
+		in:fly={{ x: width, duration, delay: duration, easing: expoOut }}
+		out:fly={{ x: -width, duration, easing: expoIn }}
 		bind:clientWidth={width}
 	>
 		{@render children()}

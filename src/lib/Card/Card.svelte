@@ -7,7 +7,8 @@
 		header,
 		footer,
 		children,
-		class: classname
+		class: classname = '',
+		separator = false
 	}: {
 		src?: string;
 		alt?: string;
@@ -15,12 +16,13 @@
 		footer?: Snippet;
 		children?: Snippet;
 		class?: string;
+		separator?: boolean;
 	} = $props();
 </script>
 
 {#snippet hr()}
-	{#if children}
-		<hr class="w-full border-t border-cat-surface2" />
+	{#if children && separator}
+		<hr class="w-full border-t border-cat-surface2 md:hidden" />
 	{/if}
 {/snippet}
 

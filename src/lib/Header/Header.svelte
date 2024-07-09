@@ -26,9 +26,9 @@
 					<span class="key-binding">s</span>kills
 				</a>
 			</div>
-			<div class="nav-item" class:active={store.value.currentPage === 'me'}>
-				<a data-sveltekit-preload-code="viewport" href="/me" use:clickOnKey={['A', 'a']}>
-					<span class="key-binding">a</span>bout me
+			<div class="nav-item" class:active={store.value.currentPage === 'about'}>
+				<a data-sveltekit-preload-code="viewport" href="/about" use:clickOnKey={['A', 'a']}>
+					<span class="key-binding">a</span>bout
 				</a>
 			</div>
 		</div>

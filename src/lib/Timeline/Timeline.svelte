@@ -35,7 +35,7 @@
 		{#each experience as item, i}
 			{#await tick() then}
 				<li
-					class="group relative ml-8 pb-10 hover:cursor-pointer"
+					class="group relative ml-8 pb-10"
 					onmouseover={() => (showDetailsId = i)}
 					onfocus={() => (showDetailsId = i)}
 				>

@@ -9,7 +9,6 @@
 	import Play from '$lib/Icon/icons/Play.svelte';
 	import Chip from '$lib/Chip/Chip.svelte';
 	import { slide } from 'svelte/transition';
-	import ArrowTopRightOnSquare from '$lib/Icon/icons/ArrowTopRightOnSquare.svelte';
 	import { untrack } from 'svelte';
 
 	let slides: HTMLDivElement | undefined = $state(undefined);
@@ -179,7 +178,6 @@
 					class="ml-1 flex items-center text-xs"
 				>
 					open website
-					<Icon src={ArrowTopRightOnSquare} size="xs" class="ml-1 text-cat-subtext0" />
 				</a>
 			</div>
 		{/if}

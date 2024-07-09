@@ -18,7 +18,7 @@ const skillNames = [
 	'Git',
 	'Jenkins',
 	'AWS',
-	'WebGL',
+	'ThreeJS',
 	'PostgreSQL',
 	'MySQL',
 	'Google Cloud',
@@ -35,7 +35,7 @@ export type Skill = {
 	url: string;
 	experience?: string;
 	score: number;
-	tags?: string[];
+	tags: string[];
 };
 
 export const skills: Skill[] = [
@@ -135,16 +135,16 @@ export const skills: Skill[] = [
 		logo: './assets/spring.svg',
 		url: 'https://spring.io/',
 		experience: 'Main backend framework in recent years. Happy to try Quarkus at some point',
-		score: 4,
+		score: 5,
 		tags: []
 	},
 	{
 		id: 12,
 		name: 'Node',
-		logo: 'https://nodejs.org/static/images/logo.svg',
+		logo: './assets/nodejs.svg',
 		url: 'https://nodejs.org/',
 		experience: 'Usally for smaller projects or as backend for frontend frameworks',
-		score: 3.5,
+		score: 5,
 		tags: []
 	},
 	{
@@ -215,11 +215,9 @@ export const skills: Skill[] = [
 	},
 	{
 		id: 20,
-		name: 'WebGL',
-		logo: './assets/webgl.svg',
-		url: 'https://www.khronos.org/webgl/',
-		experience:
-			'Collected some experience with three.js while setting up a 3D viewer for a client. Also used a bit for this website ;)',
+		name: 'ThreeJS',
+		logo: './assets/threejs.svg',
+		url: 'https://threejs.org/',
 		score: 2.5,
 		tags: []
 	},
@@ -283,7 +281,8 @@ export const skills: Skill[] = [
 		name: 'Next.js',
 		logo: './assets/nextjs.svg',
 		url: 'https://nextjs.org/',
-		score: 4
+		score: 4,
+		tags: []
 	}
 ];
 
@@ -368,7 +367,7 @@ export const experience: ExperienceItem[] = [
 	}
 ];
 
-export const pages = ['home', 'experience', 'skills', 'me'] as const;
+export const pages = ['home', 'experience', 'skills', 'about'] as const;
 
 export type Page = (typeof pages)[number];
 
