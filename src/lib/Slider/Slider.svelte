@@ -183,12 +183,8 @@
 		{/if}
 	</div>
 	<hr class="w-full border-t border-cat-surface2" />
-	<div class="flex flex-auto flex-wrap items-center gap-4 p-6">
-		{#if store.value.activeSkill}
-			{#each store.value.activeSkill.tags as tag}
-				<Chip>{tag}</Chip>
-			{/each}
-		{/if}
+	<div class="flex flex-auto items-center p-6 text-center">
+		{store.value.activeSkill?.description}
 	</div>
 	<hr class="w-full border-t border-cat-surface2" />
 	<div class="footer">
