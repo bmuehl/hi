@@ -9,6 +9,7 @@ Title: Mini Keyboard minimalist
 
 <script lang="ts">
 	import type * as THREE from 'three';
+	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
 	import { useGltf } from '@threlte/extras';
 	import type { Snippet } from 'svelte';
@@ -57,6 +58,8 @@ Title: Mini Keyboard minimalist
 		};
 	};
 
+	const material = new MeshStandardMaterial({ color: 0x74c7ec, wireframe: true });
+
 	const gltf = useGltf<GLTFResult>('/assets/models/keyboard/scene.gltf');
 </script>
 
@@ -66,19 +69,19 @@ Title: Mini Keyboard minimalist
 	{:then gltf}
 		<T.Mesh
 			geometry={gltf.nodes.Object_4.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[0.13, 0.12, -0.07]}
 			scale={[1.5, 0.09, 0.94]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_6.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[-0.04, 0.06, 0.02]}
 			scale={[0.24, 0.1, 0.24]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_8.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[-0.92, 0.47, 0.38]}
 			scale={[0.15, 0.1, 0.15]}
 			interactive
@@ -86,101 +89,101 @@ Title: Mini Keyboard minimalist
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_10.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[1.12, 0.38, -0.63]}
 			scale={[0.15, 0.1, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_12.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[1.15, 0.38, -0.64]}
 			scale={[0.21, 0.15, 0.21]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_14.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[-0.42, 0.41, -0.62]}
 			scale={[0.15, 0.1, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_16.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[0.08, 0.4, -0.62]}
 			scale={[0.15, 0.1, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_18.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[0.57, 0.39, -0.62]}
 			scale={[0.15, 0.1, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_20.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[-0.26, 0.4, -0.13]}
 			scale={[0.15, 0.1, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_22.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[0.24, 0.4, -0.12]}
 			scale={[0.15, 0.1, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_24.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[0.26, 0.4, 0.38]}
 			rotation={[-Math.PI, 0.78, 0]}
 			scale={[-0.07, 0.05, 0.07]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_26.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[0.73, 0.49, -0.09]}
 			rotation={[0, 0.79, -Math.PI]}
 			scale={[-0.07, 0.07, 0.07]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_28.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[0.73, 0.4, 0.36]}
 			rotation={[Math.PI, -0.79, 0]}
 			scale={[-0.07, 0.05, 0.07]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_30.geometry}
-			material={gltf.materials.Material}
+			{material}
 			position={[1.2, 0.4, 0.38]}
 			rotation={[0, -0.78, -Math.PI]}
 			scale={[-0.07, 0.05, 0.07]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_32.geometry}
-			material={gltf.materials['Material.002']}
+			{material}
 			position={[-0.92, 0.29, -0.61]}
 			scale={[0.24, 0.1, 0.24]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_34.geometry}
-			material={gltf.materials['Material.003']}
+			{material}
 			position={[-0.59, 0.29, 0.39]}
 			scale={[0.58, 0.1, 0.24]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_36.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[-0.93, 0.42, -0.6]}
 			scale={[0.15, 0.11, 0.15]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_38.geometry}
-			material={gltf.materials['Material.004']}
+			{material}
 			position={[-0.94, 0.41, -0.12]}
 			scale={[0.12, 0.08, 0.12]}
 		/>
 		<T.Mesh
 			geometry={gltf.nodes.Object_40.geometry}
-			material={gltf.materials['Material.001']}
+			{material}
 			position={[0.73, 0.29, 0.26]}
 			scale={[0.24, 0.1, 0.24]}
 		/>

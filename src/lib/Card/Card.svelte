@@ -42,7 +42,7 @@
 		{@render hr()}
 	{/if}
 	{#if children}
-		<div class="flex flex-col justify-start p-8 sm:p-9 md:p-7 xl:p-9">
+		<div class="flex max-w-lg flex-col justify-start p-8 sm:p-9 md:p-7 xl:p-9">
 			{@render children()}
 		</div>
 	{/if}
