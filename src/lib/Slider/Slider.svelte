@@ -7,7 +7,6 @@
 	import Icon from '$lib/Icon/Icon.svelte';
 	import Pause from '$lib/Icon/icons/Pause.svelte';
 	import Play from '$lib/Icon/icons/Play.svelte';
-	import Chip from '$lib/Chip/Chip.svelte';
 	import { slide } from 'svelte/transition';
 	import { untrack } from 'svelte';
 
