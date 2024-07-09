@@ -359,7 +359,7 @@ export const experience: ExperienceItem[] = [
 		title: 'Rendity',
 		description: 'Senior Software Engineer',
 		status: 'progress',
-		skills: ['Node', 'Docker', 'React'],
+		skills: ['Node', 'Next.js', 'Supabase', 'Docker', 'AWS', 'MySQL'],
 		bullets: [
 			'Customer KYC verification',
 			'Asset Tokenization on the Polygon Blockchain',
@@ -374,7 +374,7 @@ export const experience: ExperienceItem[] = [
 		title: 'Hyke Systems',
 		description: 'Software Engineer / Consultant',
 		status: 'progress',
-		skills: [],
+		skills: ['Svelte', 'Next.js', 'Node', 'ThreeJS', 'TailwindCSS', 'Spring', 'Wordpress'],
 		bullets: ['Website development with Next.js', 'Software Consulting', 'Wordpress Development']
 	},
 
@@ -386,7 +386,18 @@ export const experience: ExperienceItem[] = [
 		title: 'Vienna BioCenter Core Facilities',
 		description: 'Software Architect',
 		status: 'done',
-		skills: ['Java', 'Spring', 'PostgreSQL'],
+		skills: [
+			'Java',
+			'Spring',
+			'Vue',
+			'PostgreSQL',
+			'Kubernetes',
+			'Kotlin',
+			'Django',
+			'RabbitMQ',
+			'Azure Cloud',
+			'Magento2'
+		],
 		bullets: [
 			'Building campus wide LIMS systems',
 			'eCommerce solutions for labs',
@@ -403,7 +414,7 @@ export const experience: ExperienceItem[] = [
 		description: 'Bachelor of Psychology',
 		status: 'waiting',
 		skills: [],
-		bullets: []
+		bullets: ['Cognitive Psychology', 'Neuroscience', 'Statistics', 'Scientific Writing']
 	},
 
 	{
@@ -415,7 +426,12 @@ export const experience: ExperienceItem[] = [
 		description: 'Information Technology',
 		status: 'done',
 		skills: [],
-		bullets: []
+		bullets: [
+			'Computer Science',
+			'Programming',
+			'Distributed Systems / Database Management',
+			'Networks'
+		]
 	}
 ];
 
