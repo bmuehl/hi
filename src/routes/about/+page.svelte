@@ -21,7 +21,7 @@
 					<Canvas toneMapping={NoToneMapping}>
 						<!-- <Scene /> -->
 						<T.PerspectiveCamera makeDefault position={[10, 5, 10]} lookAt.y={0.5} zoom={3}>
-							<OrbitControls enableDamping autoRotate enableZoom={false} />
+							<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
 						</T.PerspectiveCamera>
 
 						<T.AmbientLight intensity={0.75} />
@@ -59,7 +59,7 @@
 					<Canvas toneMapping={NoToneMapping}>
 						<!-- <Scene /> -->
 						<T.PerspectiveCamera makeDefault position={[5, 30, 5]} zoom={6}>
-							<OrbitControls enableDamping autoRotate enableZoom={false} />
+							<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
 						</T.PerspectiveCamera>
 
 						<T.AmbientLight intensity={0.75} />
@@ -89,7 +89,7 @@
 					<Canvas toneMapping={NoToneMapping}>
 						<!-- <Scene /> -->
 						<T.PerspectiveCamera makeDefault position={[10, 10, 800]} lookAt.y={50} zoom={1}>
-							<OrbitControls enableDamping autoRotate enableZoom={false} />
+							<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
 						</T.PerspectiveCamera>
 
 						<T.AmbientLight intensity={0.75} />
