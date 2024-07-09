@@ -47,7 +47,7 @@
 	},
 	"husky": {
 		"hooks": {
-			"pre-push": "pnpm version minor"
+			"pre-push": "pnpm version patch"
 		}
 	}
 }
