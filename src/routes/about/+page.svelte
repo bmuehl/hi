@@ -15,9 +15,9 @@
 
 <div class="container px-4">
 	<div class="flex flex-col items-center gap-9">
-		<Card>
+		<Card class="min-h-80">
 			{#snippet header()}
-				<div class="rounded-lg bg-cat-surface0">
+				<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
 					<Canvas toneMapping={NoToneMapping}>
 						<!-- <Scene /> -->
 						<T.PerspectiveCamera makeDefault position={[10, 5, 10]} lookAt.y={0.5} zoom={3}>
@@ -53,12 +53,12 @@
 			</ul>
 		</Card>
 
-		<Card class="md:flex-row-reverse">
+		<Card class="min-h-80 md:flex-row-reverse">
 			{#snippet header()}
-				<div class="rounded-lg bg-cat-surface0">
+				<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
 					<Canvas toneMapping={NoToneMapping}>
 						<!-- <Scene /> -->
-						<T.PerspectiveCamera makeDefault position={[10, 5, 80]} lookAt.y={0.5}>
+						<T.PerspectiveCamera makeDefault position={[5, 30, 5]} zoom={6}>
 							<OrbitControls enableDamping autoRotate enableZoom={false} />
 						</T.PerspectiveCamera>
 
@@ -83,9 +83,9 @@
 			</p>
 		</Card>
 
-		<Card>
+		<Card class="min-h-80">
 			{#snippet header()}
-				<div class="rounded-lg bg-cat-surface0">
+				<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
 					<Canvas toneMapping={NoToneMapping}>
 						<!-- <Scene /> -->
 						<T.PerspectiveCamera makeDefault position={[10, 10, 800]} lookAt.y={50} zoom={1}>

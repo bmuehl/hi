@@ -10,7 +10,10 @@
 	import { tick } from 'svelte';
 	import Chip from '$lib/Chip/Chip.svelte';
 
-	let showDetailsId = $state(0);
+	let showDetailsId: number | undefined = $state(undefined);
+	let loading = $state(true);
+	const delayInMs = 800;
+	const offset = 500;
 
 	function workaroundDelay({
 		delay,
@@ -28,6 +31,24 @@
 			easing: (t: number) => (t < threshold ? 0 : easing((t - threshold) / (1 - threshold)))
 		};
 	}
+
+	const onHover = (i: number) => {
+		showDetailsId = i;
+	};
+
+	$effect(() => {
+		const timeout = setTimeout(
+			() => {
+				loading = false;
+				if (showDetailsId === undefined) {
+					onHover(0);
+				}
+			},
+			(experience.length + 1) * delayInMs
+		);
+
+		return () => clearTimeout(timeout);
+	});
 </script>
 
 <ol class="mx-4 border-l border-cat-overlay0">
@@ -36,11 +57,11 @@
 			{#await tick() then}
 				<li
 					class="group relative ml-8 pb-10"
-					onmouseover={() => (showDetailsId = i)}
-					onfocus={() => (showDetailsId = i)}
+					onmouseover={() => onHover(i)}
+					onfocus={() => onHover(i)}
 				>
 					<span
-						in:blur={workaroundDelay({ delay: i * 800 })}
+						in:blur={workaroundDelay({ delay: i * delayInMs })}
 						class="absolute -left-[49px] flex h-8 w-8 items-center justify-center rounded-full transition-transform group-hover:scale-150"
 						class:bg-cat-green={item.status === 'done'}
 						class:bg-cat-yellow={item.status === 'waiting'}
@@ -52,7 +73,7 @@
 						/>
 					</span>
 					<div
-						in:slide={workaroundDelay({ delay: i * 800 + 500 })}
+						in:slide={workaroundDelay({ delay: i * delayInMs + offset })}
 						class="transition-transform group-hover:translate-x-5"
 					>
 						<time class="mb-1 text-sm leading-none text-cat-subtext0">
@@ -62,7 +83,7 @@
 						</time>
 						<h3 class="text-lg">{item.title}</h3>
 						<p class="mb-4 text-base text-cat-overlay1">{item.description}</p>
-						{#if showDetailsId === i}
+						{#if showDetailsId === i && !loading}
 							<div transition:slide class="w-80 md:w-96">
 								<Card>
 									{#snippet header()}
