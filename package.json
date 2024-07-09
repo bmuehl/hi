@@ -24,7 +24,6 @@
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.41.0",
 		"globals": "^15.8.0",
-		"husky": "^9.0.11",
 		"postcss": "^8.4.39",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
@@ -44,10 +43,5 @@
 		"@threlte/extras": "^9.0.0-next.9",
 		"three": "^0.166.1",
 		"typed.js": "^2.1.0"
-	},
-	"husky": {
-		"hooks": {
-			"pre-push": "pnpm version patch"
-		}
 	}
 }
