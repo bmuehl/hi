@@ -1,12 +1,8 @@
 <script lang="ts">
-	import Spinner from '$lib/Spinner/Spinner.svelte';
-	import { Canvas, T } from '@threlte/core';
-	import Card from '$lib/Card/Card.svelte';
-	import { NoToneMapping } from 'three';
 	import Keyboard from './Keyboard.svelte';
-	import { OrbitControls } from '@threlte/extras';
 	import Guitar from './Guitar.svelte';
 	import Tennis from './Tennis.svelte';
+	import ThreeCard from './ThreeCard.svelte';
 </script>
 
 <svelte:head>
@@ -15,26 +11,7 @@
 
 <div class="container px-4">
 	<div class="flex flex-col items-center gap-9">
-		<Card class="min-h-80">
-			{#snippet header()}
-				<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
-					<Canvas toneMapping={NoToneMapping}>
-						<!-- <Scene /> -->
-						<T.PerspectiveCamera makeDefault position={[10, 5, 10]} lookAt.y={0.5} zoom={3}>
-							<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
-						</T.PerspectiveCamera>
-
-						<T.AmbientLight intensity={0.75} />
-						<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
-
-						<Keyboard>
-							{#snippet fallback()}
-								<Spinner />
-							{/snippet}
-						</Keyboard>
-					</Canvas>
-				</div>
-			{/snippet}
+		<ThreeCard position={[10, 5, 10]} zoom={3} gltf={Keyboard}>
 			<h1 class="mb-4">Tech</h1>
 
 			<p>I&apos;m kind of a nerd.</p>
@@ -51,28 +28,9 @@
 				<li>Color Theme: <a href="https://catppuccin.com/" target="_blank">Catppuccin Mocha</a></li>
 				<li>IDE: <a href="https://neovim.io/" target="_blank">nvim</a></li>
 			</ul>
-		</Card>
+		</ThreeCard>
 
-		<Card class="min-h-80 md:flex-row-reverse">
-			{#snippet header()}
-				<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
-					<Canvas toneMapping={NoToneMapping}>
-						<!-- <Scene /> -->
-						<T.PerspectiveCamera makeDefault position={[5, 30, 5]} zoom={6}>
-							<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
-						</T.PerspectiveCamera>
-
-						<T.AmbientLight intensity={0.75} />
-						<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
-
-						<Guitar>
-							{#snippet fallback()}
-								<Spinner />
-							{/snippet}
-						</Guitar>
-					</Canvas>
-				</div>
-			{/snippet}
+		<ThreeCard position={[5, 30, 5]} zoom={6} gltf={Guitar} reverse>
 			<h1 class="mb-4">Music</h1>
 
 			<p>I love music.</p>
@@ -81,28 +39,9 @@
 				Since I started school, my path has always been closely linked to music. I love playing the
 				guitar and I love going to concerts. I still need to work on my singing, though.
 			</p>
-		</Card>
+		</ThreeCard>
 
-		<Card class="min-h-80">
-			{#snippet header()}
-				<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
-					<Canvas toneMapping={NoToneMapping}>
-						<!-- <Scene /> -->
-						<T.PerspectiveCamera makeDefault position={[10, 10, 800]} lookAt.y={50} zoom={1}>
-							<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
-						</T.PerspectiveCamera>
-
-						<T.AmbientLight intensity={0.75} />
-						<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
-
-						<Tennis>
-							{#snippet fallback()}
-								<Spinner />
-							{/snippet}
-						</Tennis>
-					</Canvas>
-				</div>
-			{/snippet}
+		<ThreeCard position={[10, 10, 800]} zoom={1} gltf={Tennis}>
 			<h1 class="mb-4">Sport</h1>
 
 			<p>Let's get physical.</p>
@@ -112,6 +51,6 @@
 				especially at the weekend. During the week a quick jog is enough. I have recently started
 				playing tennis. However, there is a great need for improvement.
 			</p>
-		</Card>
+		</ThreeCard>
 	</div>
 </div>
