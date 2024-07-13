@@ -126,8 +126,7 @@
 		{#each { length: skills.length * 2 } as _n, i}
 			{#if i < skills.length}
 				{@const skill = skills[i]}
-				<menuitem
-					tabindex="0"
+				<button
 					class="slide"
 					class:active={store.value.activeSkill?.id === skill.id}
 					onclick={() => store.update({ focusSkill: skill.id })}
@@ -136,7 +135,7 @@
 					oncollision={() => collisionHandler(skill.id)}
 				>
 					<img src={skill.logo} alt={skill.name} />
-				</menuitem>
+				</button>
 			{:else}
 				{@const skill = skills[i - skills.length]}
 				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} onenter={swapNodes}>

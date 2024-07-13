@@ -5,27 +5,14 @@
 	import Icon from '$lib/Icon/Icon.svelte';
 	import { NoToneMapping } from 'three';
 	import Scene from './Scene.svelte';
-
-	let active = $state(false);
-	let loading = $state(true);
-
-	$effect(() => {
-		if (!loading) {
-			active = true;
-		}
-	});
 </script>
 
 <div
 	class="tagcloud relative mx-auto flex h-full w-full items-center justify-center overflow-hidden md:overflow-visible"
 >
-	<div
-		class="flex h-full w-full transition-opacity"
-		class:opacity-0={!active}
-		class:opacity-1={active}
-	>
+	<div class="flex h-full w-full">
 		<Canvas toneMapping={NoToneMapping}>
-			<Scene onloaded={() => (loading = false)} />
+			<Scene />
 		</Canvas>
 
 		<div class="overlay">

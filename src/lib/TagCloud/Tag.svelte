@@ -13,11 +13,10 @@
 		length: number;
 		index: number;
 		skills: Array<Skill>;
-		onloaded: () => void;
 		onclick?: (text: TextMesh) => void;
 	};
 
-	let { text, length, index, skills, onloaded, onclick }: Props = $props();
+	let { text, length, index, skills, onclick }: Props = $props();
 
 	let textObject: TextMesh = $state(undefined);
 
@@ -85,5 +84,4 @@
 	}}
 	on:pointerleave={() => ($hovering = false)}
 	on:click={clickHandler}
-	on:sync={() => (skills.length === index + 1 ? onloaded() : null)}
 />

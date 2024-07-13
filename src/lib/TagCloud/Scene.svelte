@@ -8,8 +8,6 @@
 
 	interactivity();
 
-	let { onloaded }: { onloaded: () => void } = $props();
-
 	const { scene } = useThrelte();
 	scene.fog = new Fog(0x313244, 10, 60);
 </script>
@@ -28,5 +26,5 @@
 <T.DirectionalLight intensity={0.6} position={[-2, 3, 2]} />
 
 {#each skills as skill, index}
-	<Tag text={skill.name} {index} {skills} length={skills.length} {onloaded} />
+	<Tag text={skill.name} {index} {skills} length={skills.length} />
 {/each}

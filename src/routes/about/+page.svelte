@@ -2,7 +2,7 @@
 	import Keyboard from './Keyboard.svelte';
 	import Guitar from './Guitar.svelte';
 	import Tennis from './Tennis.svelte';
-	import ThreeCard from './ThreeCard.svelte';
+	import ThreeCard from '$lib/Card/ThreeCard.svelte';
 </script>
 
 <svelte:head>

@@ -5,7 +5,6 @@
 	import InView from '$lib/InView/InView.svelte';
 	import Card from '$lib/Card/Card.svelte';
 	import { blur, slide } from 'svelte/transition';
-	import { linear } from 'svelte/easing';
 	import { experience } from '$lib/store.svelte';
 	import { tick } from 'svelte';
 	import Chip from '$lib/Chip/Chip.svelte';
@@ -14,23 +13,6 @@
 	let loading = $state(true);
 	const delayInMs = 800;
 	const offset = 500;
-
-	function workaroundDelay({
-		delay,
-		duration = 300,
-		easing = linear
-	}: {
-		delay: number;
-		duration?: number;
-		easing?: (t: number) => number;
-	}) {
-		let virtual_duration = delay + duration;
-		let threshold = delay / virtual_duration;
-		return {
-			duration: virtual_duration,
-			easing: (t: number) => (t < threshold ? 0 : easing((t - threshold) / (1 - threshold)))
-		};
-	}
 
 	const onHover = (i: number) => {
 		showDetailsId = i;
@@ -61,7 +43,7 @@
 					onfocus={() => onHover(i)}
 				>
 					<span
-						in:blur={workaroundDelay({ delay: i * delayInMs })}
+						in:blur={{ delay: i * delayInMs }}
 						class="absolute -left-[49px] flex h-8 w-8 items-center justify-center rounded-full transition-transform group-hover:scale-150"
 						class:bg-cat-green={item.status === 'done'}
 						class:bg-cat-yellow={item.status === 'waiting'}
@@ -73,7 +55,7 @@
 						/>
 					</span>
 					<div
-						in:slide={workaroundDelay({ delay: i * delayInMs + offset })}
+						in:slide={{ delay: i * delayInMs + offset }}
 						class="transition-transform group-hover:translate-x-5"
 					>
 						<time class="mb-1 text-sm leading-none text-cat-subtext0">
