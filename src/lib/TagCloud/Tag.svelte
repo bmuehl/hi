@@ -77,11 +77,10 @@
 	position={computePosition()}
 	anchorX="center"
 	anchorY="middle"
-	interactive
-	on:pointerenter={(e) => {
+	onpointerenter={(e: Event) => {
 		e.stopPropagation();
 		$hovering = true;
 	}}
-	on:pointerleave={() => ($hovering = false)}
-	on:click={clickHandler}
+	onpointerleave={() => ($hovering = false)}
+	onclick={clickHandler}
 />
