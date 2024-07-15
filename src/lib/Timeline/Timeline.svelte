@@ -2,6 +2,8 @@
 	import Icon from '$lib/Icon/Icon.svelte';
 	import AcademicCap from '$lib/Icon/icons/AcademicCap.svelte';
 	import Briefcase from '$lib/Icon/icons/Briefcase.svelte';
+	import Plus from '$lib/Icon/icons/Plus.svelte';
+	import Minus from '$lib/Icon/icons/Minus.svelte';
 	import InView from '$lib/InView/InView.svelte';
 	import Card from '$lib/Card/Card.svelte';
 	import { blur, slide } from 'svelte/transition';
@@ -15,6 +17,9 @@
 	const offset = 500;
 
 	const onHover = (i: number) => {
+		if (showDetailsId === undefined) {
+			return;
+		}
 		showDetailsId = i;
 	};
 
@@ -23,7 +28,7 @@
 			() => {
 				loading = false;
 				if (showDetailsId === undefined) {
-					onHover(0);
+					showDetailsId = 0;
 				}
 			},
 			(experience.length + 1) * delayInMs
@@ -57,8 +62,20 @@
 					<div
 						in:slide={{ delay: i * delayInMs + offset }}
 						style="overflow: hidden;"
-						class="transition-transform group-hover:translate-x-5"
+						class="relative pr-9 transition-transform group-hover:translate-x-5"
 					>
+						<button
+							class="absolute right-0.5 top-0.5 flex items-center justify-center p-1 text-cat-overlay0 transition-opacity duration-300"
+							class:opacity-0={loading}
+							class:opacity-1={!loading}
+							onclick={() => (showDetailsId = showDetailsId === i ? undefined : i)}
+						>
+							{#if showDetailsId === i}
+								<Icon src={Minus} />
+							{:else}
+								<Icon src={Plus} />
+							{/if}
+						</button>
 						<time class="mb-1 text-sm leading-none text-cat-subtext0">
 							{item.place}, {item.startDate.getFullYear()} - {item.endDate
 								? item.endDate.getFullYear()
