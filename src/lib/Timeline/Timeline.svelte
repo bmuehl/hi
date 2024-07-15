@@ -56,6 +56,7 @@
 					</span>
 					<div
 						in:slide={{ delay: i * delayInMs + offset }}
+						style="overflow: hidden;"
 						class="transition-transform group-hover:translate-x-5"
 					>
 						<time class="mb-1 text-sm leading-none text-cat-subtext0">
@@ -66,7 +67,7 @@
 						<h3 class="text-lg">{item.title}</h3>
 						<p class="mb-4 text-base text-cat-overlay1">{item.description}</p>
 						{#if showDetailsId === i && !loading}
-							<div transition:slide class="w-80 md:w-96">
+							<div transition:slide style="overflow: hidden;" class="w-80 md:w-96">
 								<Card>
 									{#snippet header()}
 										<div class="ml-4 p-4">
