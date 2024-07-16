@@ -402,7 +402,7 @@ export const experience: ExperienceItem[] = [
 		category: 'work',
 		place: 'Vienna',
 		startDate: new Date('2015-03-01'),
-		endDate: new Date('2024-01-01'),
+		endDate: new Date('2023-12-31'),
 		title: 'Vienna BioCenter Core Facilities GmbH',
 		description: 'Software Architect',
 		status: 'done',
