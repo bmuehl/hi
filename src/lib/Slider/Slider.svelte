@@ -10,6 +10,8 @@
 	import { slide } from 'svelte/transition';
 	import { untrack } from 'svelte';
 
+	let { fadeOut = true }: { fadeOut?: boolean } = $props();
+
 	let slides: HTMLDivElement | undefined = $state(undefined);
 	let collider: HTMLDivElement | undefined = $state(undefined);
 	let showControlDescription = $state(false);
@@ -121,7 +123,7 @@
 	});
 </script>
 
-<div class="slider">
+<div class="slider" class:before:hidden={!fadeOut} class:after:hidden={!fadeOut}>
 	<div class="collider" bind:this={collider}></div>
 	<div class="slides" bind:this={slides}>
 		{#each { length: skills.length * 2 } as _n, i}
@@ -198,7 +200,7 @@
 
 		&::before,
 		&::after {
-			@apply absolute bottom-0 top-0 z-10 hidden w-20 rounded-tl-lg rounded-tr-lg from-cat-surface1 to-transparent content-[''];
+			@apply absolute bottom-0 top-0 z-10 w-20 rounded-tl-lg rounded-tr-lg from-cat-surface0 to-transparent content-[''];
 			@apply pointer-events-none;
 			--tw-gradient-to: rgba(46, 52, 64, 0); /* fix for safari */
 		}

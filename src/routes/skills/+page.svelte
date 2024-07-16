@@ -16,7 +16,7 @@
 			{#snippet header()}
 				<div class="flex flex-col overflow-hidden">
 					<div class="h-6"></div>
-					<Slider />
+					<Slider fadeOut={false} />
 				</div>
 			{/snippet}
 		</Card>
