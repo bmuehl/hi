@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { skills, store } from '$lib/store.svelte';
+	import { skills, store, type Skill } from '$lib/store.svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { inView, onCollision } from '$lib/utils';
@@ -18,19 +18,18 @@
 
 	const focusTransition = tweened(0, { duration: 500, easing: cubicOut });
 
-	const setActiveSlide = (id: number) => {
-		const skill = skills.find((s) => s.id === id);
+	const setActiveSlide = (skill: Skill | undefined) => {
 		if (skill) {
 			store.update({ activeSkill: skill });
 		}
 	};
 
-	const setSlideFocus = (id: number | false) => {
-		if (!slides || !id) {
+	const setSlideFocus = (skill: Skill | undefined) => {
+		if (!slides || !skill) {
 			return;
 		}
 
-		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${id}"]`);
+		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${skill.name}"]`);
 
 		if (slide) {
 			focusTransition.set(slides.scrollLeft, { duration: 0 });
@@ -40,7 +39,7 @@
 					slides.scrollLeft = value;
 				}
 			});
-			setActiveSlide(id);
+			setActiveSlide(skill);
 			if (document.activeElement !== slide) {
 				autoScroll = false;
 				slide.focus();
@@ -48,9 +47,9 @@
 		}
 	};
 
-	const collisionHandler = (id: number) => {
+	const collisionHandler = (skill: Skill | undefined) => {
 		if (!store.value.focusSkill) {
-			setActiveSlide(id);
+			setActiveSlide(skill);
 		}
 	};
 
@@ -71,10 +70,10 @@
 
 	function focusCurrent() {
 		if (store.value.focusSkill) {
-			store.update({ focusSkill: false });
+			store.update({ focusSkill: undefined });
 			autoScroll = true;
 		} else {
-			store.update({ focusSkill: store.value.activeSkill?.id });
+			store.update({ focusSkill: store.value.activeSkill });
 		}
 	}
 
@@ -128,11 +127,11 @@
 				{@const skill = skills[i]}
 				<button
 					class="slide"
-					class:active={store.value.activeSkill?.id === skill.id}
-					onclick={() => store.update({ focusSkill: skill.id })}
-					data-slideId={skill.id}
+					class:active={store.value.activeSkill?.name === skill.name}
+					onclick={() => store.update({ focusSkill: skill })}
+					data-slideId={skill.name}
 					use:onCollision={{ collider }}
-					oncollision={() => collisionHandler(skill.id)}
+					oncollision={() => collisionHandler(skill)}
 				>
 					<img src={skill.logo} alt={skill.name} />
 				</button>

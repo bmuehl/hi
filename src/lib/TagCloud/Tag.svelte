@@ -61,7 +61,7 @@
 		const textObject = e.object as TextMesh;
 		const skill = skills.find((s) => s.name === textObject?.text);
 		if (skill) {
-			store.update({ focusSkill: skill.id });
+			store.update({ focusSkill: skill });
 		}
 		if (onclick) {
 			onclick(textObject);
