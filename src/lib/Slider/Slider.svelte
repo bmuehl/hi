@@ -29,7 +29,9 @@
 			return;
 		}
 
-		const slide = slides.querySelector<HTMLDivElement>(`[data-slideId="${skill.name}"]`);
+		const slide = slides.querySelector<HTMLDivElement>(
+			`[data-slideId="${skills.findIndex((s) => s.name === skill.name)}"]`
+		);
 
 		if (slide) {
 			focusTransition.set(slides.scrollLeft, { duration: 0 });
@@ -129,7 +131,7 @@
 					class="slide"
 					class:active={store.value.activeSkill?.name === skill.name}
 					onclick={() => store.update({ focusSkill: skill })}
-					data-slideId={skill.name}
+					data-slideId={i}
 					use:onCollision={{ collider }}
 					oncollision={() => collisionHandler(skill)}
 				>
@@ -137,7 +139,7 @@
 				</button>
 			{:else}
 				{@const skill = skills[i - skills.length]}
-				<div class="slide" data-slideId={i + 1} use:inView={{ threshold: 0 }} onenter={swapNodes}>
+				<div class="slide" data-slideId={i} use:inView={{ threshold: 0 }} onenter={swapNodes}>
 					<img src={skill.logo} alt={skill.name} />
 				</div>
 			{/if}

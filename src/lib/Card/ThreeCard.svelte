@@ -27,7 +27,6 @@
 	{#snippet header()}
 		<div class="relative h-72 rounded-lg bg-cat-surface0 md:h-auto">
 			<Canvas toneMapping={NoToneMapping}>
-				<!-- <Scene /> -->
 				<T.PerspectiveCamera makeDefault {position} lookAt.y={0.5} {zoom}>
 					<OrbitControls enableDamping autoRotate enableZoom={false} enablePan={false} />
 				</T.PerspectiveCamera>
