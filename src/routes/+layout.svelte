@@ -13,10 +13,14 @@
 	store.update({ currentPage: pathToPage(data.path) });
 </script>
 
-<Header />
-
-<PageTransition path={data.path}>
+{#if data.path === '/cv'}
 	{@render children()}
-</PageTransition>
+{:else}
+	<Header />
 
-<Footer />
+	<PageTransition path={data.path}>
+		{@render children()}
+	</PageTransition>
+
+	<Footer />
+{/if}

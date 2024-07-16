@@ -51,7 +51,7 @@
 						</div>
 						<div class="flex items-center">
 							<Icon src={Download} />
-							<a href="./assets/cv.pdf" class="ml-4" target="_blank">Download CV</a>
+							<a href="/cv" class="ml-4">Download CV</a>
 						</div>
 					</Card>
 				</div>

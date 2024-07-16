@@ -20,7 +20,8 @@
 		@apply relative h-full overscroll-none bg-cat-surface0 text-cat-text;
 	}
 
-	a:not(.abase) {
+	a:not(.abase),
+	.link {
 		@apply text-cat-blue;
 		@apply before:content-['['] after:content-[']'];
 	}
