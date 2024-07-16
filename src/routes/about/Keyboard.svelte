@@ -19,11 +19,13 @@ Title: Mini Keyboard minimalist
 		fallback,
 		error,
 		children,
+		onloaded,
 		...props
 	}: Props<THREE.Group> & {
 		ref?: THREE.Group;
 		children?: Snippet<[{ ref?: THREE.Group }]>;
 		fallback?: Snippet;
+		onloaded?: () => void;
 		error?: Snippet<[{ error: Error }]>;
 	} = $props();
 
@@ -67,6 +69,7 @@ Title: Mini Keyboard minimalist
 	{#await gltf}
 		{@render fallback?.()}
 	{:then gltf}
+		{onloaded?.()}
 		<T.Mesh
 			geometry={gltf.nodes.Object_4.geometry}
 			{material}

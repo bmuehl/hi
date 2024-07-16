@@ -19,11 +19,13 @@
 		reverse?: boolean;
 		gltf: Component;
 	} = $props();
+
+	let loading = $state(true);
 </script>
 
 <Card class={`min-h-80 ${reverse && 'md:flex-row-reverse'}`}>
 	{#snippet header()}
-		<div class="h-72 rounded-lg bg-cat-surface0 md:h-auto">
+		<div class="relative h-72 rounded-lg bg-cat-surface0 md:h-auto">
 			<Canvas toneMapping={NoToneMapping}>
 				<!-- <Scene /> -->
 				<T.PerspectiveCamera makeDefault {position} lookAt.y={0.5} {zoom}>
@@ -33,12 +35,14 @@
 				<T.AmbientLight intensity={0.75} />
 				<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
 
-				<svelte:component this={gltf}>
-					{#snippet fallback()}
-						<Spinner />
-					{/snippet}
-				</svelte:component>
+				<svelte:component this={gltf} onloaded={() => (loading = false)} />
 			</Canvas>
+
+			{#if loading}
+				<div class="absolute inset-0 flex items-center justify-center">
+					<Spinner />
+				</div>
+			{/if}
 		</div>
 	{/snippet}
 

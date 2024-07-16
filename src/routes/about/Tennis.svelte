@@ -19,11 +19,13 @@ Title: Tennis Racket
 		fallback,
 		error,
 		children,
+		onloaded,
 		...props
 	}: Props<THREE.Group> & {
 		ref?: THREE.Group;
 		children?: Snippet<[{ ref?: THREE.Group }]>;
 		fallback?: Snippet;
+		onloaded?: () => void;
 		error?: Snippet<[{ error: Error }]>;
 	} = $props();
 
@@ -49,6 +51,7 @@ Title: Tennis Racket
 	{#await gltf}
 		{@render fallback?.()}
 	{:then gltf}
+		{onloaded?.()}
 		<T.Group scale={[1, 1.38, 0.65]} position={[0, 150, 0]}>
 			<T.Mesh geometry={gltf.nodes['Tennis_Racket_03_-_Default_0'].geometry} {material} />
 			<T.Mesh geometry={gltf.nodes['Tennis_Racket_02_-_Default_0'].geometry} {material} />
