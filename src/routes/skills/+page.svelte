@@ -8,18 +8,20 @@
 	<title>Bernhard Mühl | My Skills</title>
 </svelte:head>
 
-<div class="container hidden h-full grid-cols-[minmax(0,_1fr)_auto] lg:grid">
-	<TagCloud />
+<div class="hidden h-full items-center lg:flex">
+	<div class="container grid h-full max-h-[750px] grid-cols-[minmax(0,_1fr)_auto]">
+		<TagCloud />
 
-	<div class="max-w-96">
-		<Card class="h-full">
-			{#snippet header()}
-				<div class="flex flex-col overflow-hidden">
-					<div class="h-6"></div>
-					<Slider fadeOut={false} />
-				</div>
-			{/snippet}
-		</Card>
+		<div class="max-w-96">
+			<Card class="h-full">
+				{#snippet header()}
+					<div class="flex flex-col overflow-hidden">
+						<div class="h-6"></div>
+						<Slider fadeOut={false} />
+					</div>
+				{/snippet}
+			</Card>
+		</div>
 	</div>
 </div>
 
