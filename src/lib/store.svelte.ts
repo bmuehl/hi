@@ -154,7 +154,7 @@ export const skills = [
 	},
 	{
 		name: 'MySQL',
-		logo: 'https://www.mysql.com/common/logos/mysql-logo.svg',
+		logo: './assets/mysql.svg',
 		url: 'https://www.mysql.com/',
 		score: 4,
 		tags: [],
@@ -243,7 +243,7 @@ export const skills = [
 
 	{
 		name: 'Jenkins',
-		logo: 'https://www.jenkins.io/images/logos/jenkins/jenkins.svg',
+		logo: './assets/jenkins.svg',
 		url: 'https://www.jenkins.io/',
 		score: 2,
 		tags: [],
