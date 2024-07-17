@@ -37,18 +37,19 @@
 
 			<p>
 				Since I started school, my path has always been closely linked to music. I love playing the
-				guitar and I love going to concerts. I still need to work on my singing, though.
+				guitar and can&apos;t wait to visit my next concert, or discover new music. Still need to
+				work on my singing, though.
 			</p>
 		</ThreeCard>
 
 		<ThreeCard position={[10, 10, 800]} zoom={1} gltf={Tennis}>
 			<h1 class="mb-4">Sport</h1>
 
-			<p>Let's get physical.</p>
+			<p>Let&apos;s get physical.</p>
 
 			<p>
 				In my free time I like to get out into the fresh air. Long hikes are very welcome,
-				especially at the weekend. During the week a quick jog is enough. I have recently started
+				especially on the weekend. During the week a quick jog is enough. I have recently started
 				playing tennis. However, there is a great need for improvement.
 			</p>
 		</ThreeCard>
