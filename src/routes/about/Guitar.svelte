@@ -91,12 +91,12 @@ Title: Guitar
 			position={[0, 0.02, 1.61]}
 			scale={[0.11, 0.02, 0.11]}
 		/>
-		<T.Mesh
-			geometry={gltf.nodes.Object_14.geometry}
-			{material}
-			position={[0, 0.02, -1.67]}
-			scale={0.02}
-		/>
+		<!-- <T.Mesh -->
+		<!-- 	geometry={gltf.nodes.Object_14.geometry} -->
+		<!-- 	{material} -->
+		<!-- 	position={[0, 0.02, -1.67]} -->
+		<!-- 	scale={0.02} -->
+		<!-- /> -->
 		<T.Mesh
 			geometry={gltf.nodes.Object_16.geometry}
 			{material}
