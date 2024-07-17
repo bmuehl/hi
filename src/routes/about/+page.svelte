@@ -11,7 +11,7 @@
 
 <div class="container px-4">
 	<div class="flex flex-col items-center gap-9">
-		<ThreeCard position={[10, 5, 10]} zoom={3} gltf={Keyboard}>
+		<ThreeCard position={[10, 10, 5]} zoom={3} gltf={Keyboard}>
 			<h1 class="mb-4">Tech</h1>
 
 			<p>I&apos;m kind of a nerd.</p>
