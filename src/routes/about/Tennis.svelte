@@ -11,7 +11,7 @@ Title: Tennis Racket
 	import type * as THREE from 'three';
 	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
-	import { useGltf } from '@threlte/extras';
+	import { useDraco, useGltf } from '@threlte/extras';
 	import type { Snippet } from 'svelte';
 
 	let {
@@ -42,7 +42,8 @@ Title: Tennis Racket
 		};
 	};
 
-	const gltf = useGltf<GLTFResult>('/assets/models/racket/scene.glb', { useDraco: true });
+	const dracoLoader = useDraco();
+	const gltf = useGltf<GLTFResult>('/assets/models/racket/scene.glb', { dracoLoader });
 
 	const material = new MeshStandardMaterial({ color: 0xfab387, wireframe: true });
 </script>

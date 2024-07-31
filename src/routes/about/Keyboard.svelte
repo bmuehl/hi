@@ -11,7 +11,7 @@ Title: Mini Keyboard minimalist
 	import type * as THREE from 'three';
 	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
-	import { useGltf } from '@threlte/extras';
+	import { useDraco, useGltf } from '@threlte/extras';
 	import type { Snippet } from 'svelte';
 
 	let {
@@ -62,7 +62,8 @@ Title: Mini Keyboard minimalist
 
 	const material = new MeshStandardMaterial({ color: 0x74c7ec, wireframe: true });
 
-	const gltf = useGltf<GLTFResult>('/assets/models/keyboard/scene.glb', { useDraco: true });
+	const dracoLoader = useDraco();
+	const gltf = useGltf<GLTFResult>('/assets/models/keyboard/scene.glb', { dracoLoader });
 </script>
 
 <T.Group bind:ref dispose={false} {...props}>

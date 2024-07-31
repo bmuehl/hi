@@ -4,8 +4,8 @@
 
 	let { children, oncomplete }: { children: Snippet; oncomplete?: () => void } = $props();
 
-	let mount: HTMLSpanElement;
-	let text: HTMLSpanElement;
+	let mount: HTMLSpanElement | undefined = $state(undefined);
+	let text: HTMLSpanElement | undefined = $state(undefined);
 
 	$effect(() => {
 		const typed = new Typed(mount, {

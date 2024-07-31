@@ -11,7 +11,7 @@ Title: Guitar
 	import type * as THREE from 'three';
 	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
-	import { useGltf } from '@threlte/extras';
+	import { useDraco, useGltf } from '@threlte/extras';
 	import type { Snippet } from 'svelte';
 
 	let {
@@ -64,7 +64,8 @@ Title: Guitar
 
 	const material = new MeshStandardMaterial({ color: 0xa6e2a1, wireframe: true });
 
-	const gltf = useGltf<GLTFResult>('/assets/models/guitar/scene.glb', { useDraco: true });
+	const dracoLoader = useDraco();
+	const gltf = useGltf<GLTFResult>('/assets/models/guitar/scene.glb', { dracoLoader });
 </script>
 
 <T.Group bind:ref dispose={false} {...props}>
