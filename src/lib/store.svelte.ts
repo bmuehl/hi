@@ -28,7 +28,7 @@ export const contact = {
 	languages: { name: string; level: number }[];
 };
 
-const skillNames = [
+type SkillNames = [
 	'Vue',
 	'React',
 	'Svelte',
@@ -61,10 +61,10 @@ const skillNames = [
 	'Terraform',
 	'Next.js',
 	'Express'
-] as const;
+];
 
 export type Skill = {
-	name: (typeof skillNames)[number];
+	name: SkillNames[number];
 	logo: string;
 	url: string;
 	score: number;

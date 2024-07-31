@@ -29,7 +29,7 @@
 	const { camera } = useThrelte();
 	const { hovering } = useCursor('pointer');
 
-	const computePosition = () => {
+	const computePosition = (): [x: number, y: number, z: number] => {
 		const phi = Math.acos(-1 + (2 * index + 1) / length);
 		const theta = Math.sqrt((length + 1) * Math.PI) * phi;
 		return [

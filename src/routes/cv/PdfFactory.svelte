@@ -46,7 +46,7 @@
 	});
 </script>
 
-{#snippet page({ number, content })}
+{#snippet page({ number, content }: { number: number; content?: Snippet })}
 	<article
 		class="flex h-[297mm] w-[210mm] break-after-page flex-col gap-4 overflow-hidden rounded-xl bg-white px-20 py-14"
 		bind:this={pages[number]}

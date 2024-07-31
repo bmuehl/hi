@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { experience, skills, contact } from '$lib/store.svelte';
+	import { experience, skills, contact, type ExperienceItem } from '$lib/store.svelte';
 	import Icon from '$lib/Icon/Icon.svelte';
 	import Mail from '$lib/Icon/icons/Mail.svelte';
 	import Home from '$lib/Icon/icons/Home.svelte';
@@ -19,7 +19,7 @@
 	const onclick = () => window.print();
 </script>
 
-{#snippet experienceItem(item, details = true)}
+{#snippet experienceItem(item: ExperienceItem, details = true)}
 	<div class="flex justify-between">
 		<div>
 			<h3 class="font-bold">{item.description}</h3>
