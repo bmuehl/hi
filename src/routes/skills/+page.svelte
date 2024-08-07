@@ -8,8 +8,8 @@
 	<title>Bernhard Mühl | My Skills</title>
 </svelte:head>
 
-<div class="hidden h-full items-center lg:flex">
-	<div class="container grid h-full max-h-[750px] grid-cols-[minmax(0,_1fr)_auto]">
+<div class="hidden h-full w-full items-center lg:flex">
+	<div class="container grid h-full max-h-[750px] w-full grid-cols-[minmax(0,_1fr)_auto]">
 		<TagCloud />
 
 		<div class="max-w-96">

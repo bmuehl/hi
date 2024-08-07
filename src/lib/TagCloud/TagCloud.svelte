@@ -10,33 +10,31 @@
 <div
 	class="tagcloud relative mx-auto flex h-full w-full items-center justify-center overflow-hidden md:overflow-visible"
 >
-	<div class="flex h-full w-full">
-		<Canvas toneMapping={NoToneMapping}>
-			<Scene />
-		</Canvas>
+	<Canvas toneMapping={NoToneMapping}>
+		<Scene />
+	</Canvas>
 
-		<div class="overlay">
-			<Icon
-				src={ChevronUp}
-				size="l"
-				class="icon left-0 top-0 translate-x-1 translate-y-1 -rotate-45"
-			/>
-			<Icon
-				src={ChevronUp}
-				size="l"
-				class="icon right-0 top-0 -translate-x-1 translate-y-1 rotate-45"
-			/>
-			<Icon
-				src={ChevronDown}
-				size="l"
-				class="icon bottom-0 left-0 -translate-y-1 translate-x-1 rotate-45"
-			/>
-			<Icon
-				src={ChevronDown}
-				size="l"
-				class="icon bottom-0 right-0 -translate-x-1 -translate-y-1 -rotate-45"
-			/>
-		</div>
+	<div class="overlay">
+		<Icon
+			src={ChevronUp}
+			size="l"
+			class="icon left-0 top-0 translate-x-1 translate-y-1 -rotate-45"
+		/>
+		<Icon
+			src={ChevronUp}
+			size="l"
+			class="icon right-0 top-0 -translate-x-1 translate-y-1 rotate-45"
+		/>
+		<Icon
+			src={ChevronDown}
+			size="l"
+			class="icon bottom-0 left-0 -translate-y-1 translate-x-1 rotate-45"
+		/>
+		<Icon
+			src={ChevronDown}
+			size="l"
+			class="icon bottom-0 right-0 -translate-x-1 -translate-y-1 -rotate-45"
+		/>
 	</div>
 </div>
 
