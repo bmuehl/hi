@@ -1,6 +1,6 @@
 export const contact = {
 	name: 'Bernhard Mühl',
-	email: 'bernhard.mueh@gmail.com',
+	email: 'bernhard.muehl@gmail.com',
 	phone: '+43 660 50 90 135',
 	address: 'Grünentorgasse 7, 1090 Vienna',
 	birthday: new Date('1992-01-13'),
