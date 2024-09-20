@@ -42,7 +42,6 @@ type SkillNames = [
 	'Django',
 	'Spring',
 	'Quarkus',
-	'RabbitMQ',
 	'Node',
 	'Magento2',
 	'Sharepoint',
@@ -55,6 +54,9 @@ type SkillNames = [
 	'MySQL',
 	'MongoDB',
 	'Supabase',
+	'RabbitMQ',
+	'Kafka',
+	'Snowflake',
 	'Google Cloud',
 	'Docker',
 	'Kubernetes',
@@ -212,6 +214,24 @@ export const skills = [
 		tags: [],
 		description:
 			'RabbitMQ is an open-source message-broker software that implements the Advanced Message Queuing Protocol (AMQP).'
+	},
+	{
+		name: 'Kafka',
+		logo: './assets/kafka.svg',
+		url: 'https://kafka.apache.org/',
+		score: 3,
+		tags: [],
+		description:
+			'Kafka is an open-source distributed messaging system for building real-time applications.'
+	},
+	{
+		name: 'Snowflake',
+		logo: './assets/snowflake.svg',
+		url: 'https://www.snowflake.com/',
+		score: 2,
+		tags: [],
+		description:
+			'Snowflake is an open-source, cloud-based platform for data warehouse development and analytics.'
 	},
 	{
 		name: 'Azure Cloud',
@@ -374,17 +394,23 @@ export const experience: ExperienceItem[] = [
 	{
 		category: 'work',
 		place: 'Vienna',
-		startDate: new Date('2024-01-01'),
+		startDate: new Date('2024-09-01'),
 		endDate: undefined,
-		title: 'Rendity GmbH',
+		title: 'willhaben internet service GmbH & Co KG',
 		description: 'Senior Software Engineer',
 		status: 'progress',
-		skills: ['Node', 'Next.js', 'Supabase', 'Docker', 'AWS', 'MySQL'],
-		bullets: [
-			'Customer KYC verification',
-			'Asset Tokenization on the Polygon Blockchain',
-			'Payment gateway integration with Lemonway'
-		]
+		skills: [
+			'Java',
+			'Kotlin',
+			'Spring',
+			'Kubernetes',
+			'AWS',
+			'PostgreSQL',
+			'React',
+			'Kafka',
+			'Snowflake'
+		],
+		bullets: ['Building apps and services around the willhaben platform']
 	},
 	{
 		category: 'work',
@@ -395,9 +421,27 @@ export const experience: ExperienceItem[] = [
 		description: 'Software Engineer / Consultant',
 		status: 'progress',
 		skills: ['Svelte', 'Next.js', 'Node', 'ThreeJS', 'TailwindCSS', 'Spring', 'Wordpress'],
-		bullets: ['Website development with Next.js', 'Software Consulting', 'Wordpress Development']
+		bullets: [
+			'Website development with Next.js',
+			'Software Consulting',
+			'Backend service integrations'
+		]
 	},
-
+	{
+		category: 'work',
+		place: 'Vienna',
+		startDate: new Date('2024-01-01'),
+		endDate: new Date('2024-08-01'),
+		title: 'Rendity GmbH',
+		description: 'Senior Software Engineer',
+		status: 'done',
+		skills: ['Node', 'Next.js', 'Supabase', 'Docker', 'AWS', 'MySQL'],
+		bullets: [
+			'Customer KYC verification',
+			'Asset Tokenization on the Polygon Blockchain',
+			'Payment gateway integration with Lemonway'
+		]
+	},
 	{
 		category: 'work',
 		place: 'Vienna',

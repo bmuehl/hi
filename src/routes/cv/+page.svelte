@@ -8,13 +8,7 @@
 	import Link from '$lib/Icon/icons/Link.svelte';
 	import Rating from '$lib/Rating/Rating.svelte';
 	import PdfFactory from './PdfFactory.svelte';
-
-	const formatDate = (date: Date, showDay = false) =>
-		date.toLocaleDateString('en-GB', {
-			year: 'numeric',
-			month: 'short',
-			day: showDay ? 'numeric' : undefined
-		});
+	import { formatDate } from '$lib/utils';
 
 	const onclick = () => window.print();
 </script>

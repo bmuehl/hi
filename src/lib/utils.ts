@@ -197,3 +197,10 @@ export const nextPage = (page: Page) => {
 	const next = pages[(pages.indexOf(page) + 1) % pages.length];
 	return next === 'home' ? '' : next;
 };
+
+export const formatDate = (date: Date, showDay = false) =>
+	date.toLocaleDateString('en-GB', {
+		year: 'numeric',
+		month: 'short',
+		day: showDay ? 'numeric' : undefined
+	});

@@ -10,6 +10,7 @@
 	import { experience } from '$lib/store.svelte';
 	import { tick } from 'svelte';
 	import Chip from '$lib/Chip/Chip.svelte';
+	import { formatDate } from '$lib/utils';
 
 	let showDetailsId: number | undefined = $state(undefined);
 	let loading = $state(true);
@@ -77,8 +78,8 @@
 							{/if}
 						</button>
 						<time class="mb-1 text-sm leading-none text-cat-subtext0">
-							{item.place}, {item.startDate.getFullYear()} - {item.endDate
-								? item.endDate.getFullYear()
+							{item.place}, {formatDate(item.startDate)} - {item.endDate
+								? formatDate(item.endDate)
 								: 'Present'}
 						</time>
 						<h3 class="text-lg">{item.title}</h3>

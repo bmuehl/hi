@@ -56,7 +56,7 @@
 {/snippet}
 
 <div
-	class="flex flex-col gap-4 text-sm leading-5 text-black print:visible print:absolute print:inset-0 print:block print:border-none"
+	class="flex flex-col gap-4 text-sm leading-4 text-black print:visible print:absolute print:inset-0 print:block print:border-none"
 >
 	{@render page({ number: 0, content: children })}
 	{#each Array(pageNumbers) as _, index}
