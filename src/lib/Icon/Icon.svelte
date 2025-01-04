@@ -7,7 +7,7 @@
 		size?: 'l' | 'md' | 'base' | 'xs';
 	}
 
-	const { src, size = 'base', ...rest }: Props = $props();
+	const { src: Icon, size = 'base', ...rest }: Props = $props();
 </script>
 
 <span
@@ -21,7 +21,7 @@
 	class:h-3={size === 'xs'}
 	class:w-3={size === 'xs'}
 >
-	<svelte:component this={src} />
+	<Icon />
 </span>
 
 <style lang="postcss">

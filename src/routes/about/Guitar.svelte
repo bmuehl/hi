@@ -12,7 +12,7 @@ Title: Guitar
 	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
 	import { useDraco, useGltf } from '@threlte/extras';
-	import type { Snippet } from 'svelte';
+	import { untrack, type Snippet } from 'svelte';
 
 	let {
 		ref = $bindable(),
@@ -72,7 +72,7 @@ Title: Guitar
 	{#await gltf}
 		{@render fallback?.()}
 	{:then gltf}
-		{onloaded?.()}
+		{untrack(() => onloaded?.())}
 		<T.Group position={[0, 0, 0.82]} scale={0.13}>
 			<T.Mesh geometry={gltf.nodes.Object_4.geometry} {material} />
 			<T.Mesh geometry={gltf.nodes.Object_5.geometry} {material} />

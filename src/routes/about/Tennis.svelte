@@ -12,7 +12,7 @@ Title: Tennis Racket
 	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
 	import { useDraco, useGltf } from '@threlte/extras';
-	import type { Snippet } from 'svelte';
+	import { untrack, type Snippet } from 'svelte';
 
 	let {
 		ref = $bindable(),
@@ -52,7 +52,7 @@ Title: Tennis Racket
 	{#await gltf}
 		{@render fallback?.()}
 	{:then gltf}
-		{onloaded?.()}
+		{untrack(() => onloaded?.())}
 		<T.Group scale={[1, 1.38, 0.65]} position={[0, 150, 0]}>
 			<T.Mesh geometry={gltf.nodes['Tennis_Racket_03_-_Default_0'].geometry} {material} />
 			<T.Mesh geometry={gltf.nodes['Tennis_Racket_02_-_Default_0'].geometry} {material} />

@@ -12,7 +12,7 @@ Title: Mini Keyboard minimalist
 	import { MeshStandardMaterial } from 'three';
 	import { T, type Props } from '@threlte/core';
 	import { useDraco, useGltf } from '@threlte/extras';
-	import type { Snippet } from 'svelte';
+	import { untrack, type Snippet } from 'svelte';
 
 	let {
 		ref = $bindable(),
@@ -70,7 +70,7 @@ Title: Mini Keyboard minimalist
 	{#await gltf}
 		{@render fallback?.()}
 	{:then gltf}
-		{onloaded?.()}
+		{untrack(() => onloaded?.())}
 		<T.Mesh
 			geometry={gltf.nodes.Object_4.geometry}
 			{material}

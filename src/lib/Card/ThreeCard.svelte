@@ -8,7 +8,7 @@
 
 	const {
 		children,
-		gltf,
+		gltf: Gltf,
 		position,
 		zoom,
 		reverse = false
@@ -34,7 +34,7 @@
 				<T.AmbientLight intensity={0.75} />
 				<T.DirectionalLight intensity={0.6} position={[0, 10, 10]} />
 
-				<svelte:component this={gltf} onloaded={() => (loading = false)} />
+				<Gltf onloaded={() => (loading = false)} />
 			</Canvas>
 
 			{#if loading}
