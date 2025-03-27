@@ -74,6 +74,7 @@ export type Skill = {
 	description: string;
 };
 
+// TODO: load logos from https://svgl.app/api
 export const skills = [
 	{
 		name: 'Java',
