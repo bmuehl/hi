@@ -475,7 +475,7 @@ export const experience: ExperienceItem[] = [
 		place: 'Vienna',
 		startDate: new Date('2012-09-01'),
 		endDate: undefined,
-		title: 'Univsersity of Vienna',
+		title: 'University of Vienna',
 		description: 'Bachelor of Psychology',
 		status: 'waiting',
 		skills: [],
